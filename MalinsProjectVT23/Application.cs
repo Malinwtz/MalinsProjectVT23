@@ -8,5 +8,9 @@ namespace MalinsProjectVT23
 {
     internal class Application
     {
+        public void Run()
+        {
+
+        }
     }
 }
