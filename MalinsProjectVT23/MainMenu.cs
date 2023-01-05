@@ -12,11 +12,11 @@ namespace MalinsProjectVT23
             {
                 Console.Clear();
                 var endAlternative = 3;
-                Console.WriteLine(" STARTMENY");
+                Console.WriteLine(" START MENU");
                 Console.WriteLine("*********");//Lines.LineThreeStar();
-                Console.WriteLine(" 1. KUND      (Registrera - Visa - Ändra - Ta bort)");
-                Console.WriteLine(" 2. RUM       (Registrera - Visa - Ändra - Ta bort)");
-                Console.WriteLine($" {endAlternative}. BOKNING   (Registrera - Visa - Ändra - Ta bort)");
+                Console.WriteLine(" 1. Shapes");
+                Console.WriteLine(" 2. Calculator");
+                Console.WriteLine($" {endAlternative}. Rock, Scissors, Paper");
                 ReturnFromMenuClass.ExitMenu();
                 var sel = ReturnFromMenuClass.ReturnFromMenu(endAlternative);
                 return sel;
@@ -39,11 +39,10 @@ namespace MalinsProjectVT23
                         }
                         case 2:
                         {
-                            //calculator
-                            //var roomMenu = new RoomMenu();
-                            //var selectedFromRoomMenu = roomMenu.ReturnSelectionFromMenu();
-                            //if (selectedFromRoomMenu == 0) loop = false;
-                            //roomMenu.LoopMenu(selectedFromRoomMenu, dbContext);
+                            var calculatorMenu = new CalculatorMenu();
+                            var inputFromCalculatorMenu = calculatorMenu.ReturnSelectionFromMenu();
+                            if (inputFromCalculatorMenu == 0) loop = false;
+                            calculatorMenu.LoopMenu(inputFromCalculatorMenu); //, dbContext);
                             break;
                         }
                         case 3:
