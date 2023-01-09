@@ -1,6 +1,6 @@
 ﻿using MalinsProjectVT23.Data;
 
-namespace MalinsProjectVT23;
+namespace MalinsProjectVT23.MainMenuController;
 
 public class MainMenu
 {
@@ -24,28 +24,28 @@ public class MainMenu
             switch (selectedFromMenu)
             {
                 case 1:
-                {
-                    //shapesmenu
-                    //var customerMenu = new CustomerMenu();
-                    //var selectedFromCustomerMenu = customerMenu.ReturnSelectionFromMenu();
-                    //if (selectedFromCustomerMenu == 0) loop = false;
-                    //customerMenu.LoopMenu(selectedFromCustomerMenu, dbContext);
+                    {
+                        //shapesmenu
+                        //var customerMenu = new CustomerMenu();
+                        //var selectedFromCustomerMenu = customerMenu.ReturnSelectionFromMenu();
+                        //if (selectedFromCustomerMenu == 0) loop = false;
+                        //customerMenu.LoopMenu(selectedFromCustomerMenu, dbContext);
 
-                    //0. Exit
-                    //1. Rectangle
-                    //2. Parallelogram
-                    //3. Triangle
-                    //4. Rhombus
-                    break;
-                }
+                        //0. Exit
+                        //1. Rectangle
+                        //2. Parallelogram
+                        //3. Triangle
+                        //4. Rhombus
+                        break;
+                    }
                 case 2:
-                {
-                    var calculatorMenu = new CalculatorMenu();
-                    var inputFromCalculatorMenu = calculatorMenu.ReturnSelectionFromMenu();
-                    if (inputFromCalculatorMenu == 0) loop = false;
-                    calculatorMenu.LoopMenu(inputFromCalculatorMenu, dbContext);
-                    break;
-                }
+                    {
+                        var calculatorMenu = new CalculatorMenu();
+                        var inputFromCalculatorMenu = calculatorMenu.ReturnSelectionFromMenu();
+                        if (inputFromCalculatorMenu == 0) loop = false;
+                        calculatorMenu.LoopMenu(inputFromCalculatorMenu, dbContext);
+                        break;
+                    }
                 case 3:
                     //rock scissors paper
                     //var bookingMenu = new BookingMenu();

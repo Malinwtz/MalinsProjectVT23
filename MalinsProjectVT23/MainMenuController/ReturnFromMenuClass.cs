@@ -1,4 +1,4 @@
-﻿namespace MalinsProjectVT23;
+﻿namespace MalinsProjectVT23.MainMenuController;
 
 public class ReturnFromMenuClass
 {
