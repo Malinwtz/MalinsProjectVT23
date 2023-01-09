@@ -18,5 +18,7 @@ public class Application
             if (selectionFromMainMenu == 0) break;
             mainMenu.LoopMenu(selectionFromMainMenu, dbContext);
         }
+
+        
     }
 }
