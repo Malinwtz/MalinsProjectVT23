@@ -1,4 +1,6 @@
-﻿namespace MalinsProjectVT23;
+﻿using MalinsProjectVT23.Data;
+
+namespace MalinsProjectVT23;
 
 public class MainMenu
 {
@@ -15,8 +17,7 @@ public class MainMenu
         var sel = ReturnFromMenuClass.ReturnFromMenu(endAlternative);
         return sel;
     }
-
-    public void LoopMenu(int selectedFromMenu) //ApplicationDbContext dbContext)
+    public void LoopMenu(int selectedFromMenu, ApplicationDbContext dbContext)
     {
         var loop = true;
         while (loop)
@@ -42,7 +43,7 @@ public class MainMenu
                     var calculatorMenu = new CalculatorMenu();
                     var inputFromCalculatorMenu = calculatorMenu.ReturnSelectionFromMenu();
                     if (inputFromCalculatorMenu == 0) loop = false;
-                    calculatorMenu.LoopMenu(inputFromCalculatorMenu); //, dbContext);
+                    calculatorMenu.LoopMenu(inputFromCalculatorMenu, dbContext);
                     break;
                 }
                 case 3:

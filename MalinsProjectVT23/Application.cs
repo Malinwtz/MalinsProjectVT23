@@ -1,18 +1,19 @@
 ﻿namespace MalinsProjectVT23;
 
-internal class Application
+public class Application
 {
     public void Run()
     {
         var builder = new Builder();
         builder.BuildProject();
-        var dbContext = builder.ConnectProject();
+        var dbContext = builder.ConnectProject(); //Här skapas dbContext  - ska skickas med i hela programmet
 
         while (true)
         {
             var mainMenu = new MainMenu();
-            var inputFromMainMenu = mainMenu.ReturnSelectionFromMenu();
-            mainMenu.LoopMenu(inputFromMainMenu);
+            var selectionFromMainMenu = mainMenu.ReturnSelectionFromMenu();
+            if (selectionFromMainMenu == 0) break;
+            mainMenu.LoopMenu(selectionFromMainMenu, dbContext);
         }
     }
 }
