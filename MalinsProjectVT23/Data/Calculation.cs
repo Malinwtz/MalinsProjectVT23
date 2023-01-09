@@ -11,8 +11,8 @@ namespace MalinsProjectVT23.Data
     public class Calculation
     {
         [Key] public int CalculationId { get; set; }
-        public decimal Input1 { get; set; }
-        public decimal Input2 { get; set; }
-        public decimal Result { get; set; }
+        [Required] public decimal Input1 { get; set; }
+        [Required] public decimal Input2 { get; set; }
+        [Required] public decimal Result { get; set; }
     }
 }
