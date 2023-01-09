@@ -10,6 +10,8 @@ namespace MalinsProjectVT23
     {
         public void Run()
         {
+           
+
             MainMenu mainMenu = new MainMenu();
             var inputFromMainMenu = mainMenu.ReturnSelectionFromMenu();
             mainMenu.LoopMenu(inputFromMainMenu);
