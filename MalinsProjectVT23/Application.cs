@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,9 @@ namespace MalinsProjectVT23
     {
         public void Run()
         {
-           
+            var builder = new ConfigurationBuilder().AddJsonFile($"appsettings.json", true, true);
+            var config = builder.Build();
+
 
             MainMenu mainMenu = new MainMenu();
             var inputFromMainMenu = mainMenu.ReturnSelectionFromMenu();
