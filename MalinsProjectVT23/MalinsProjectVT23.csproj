@@ -22,4 +22,10 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ShapeResultController\" />
+    <Folder Include="RockScissorPaperGameController\" />
+    <Folder Include="ShapeController\" />
+  </ItemGroup>
+
 </Project>

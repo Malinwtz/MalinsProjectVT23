@@ -1,7 +1,7 @@
 ﻿using MalinsProjectVT23.Data;
 using MalinsProjectVT23.MainMenuController;
 
-namespace MalinsProjectVT23;
+namespace MalinsProjectVT23.CalculatorController;
 
 public class CalculatorMenu
 {
@@ -22,37 +22,37 @@ public class CalculatorMenu
         return sel;
     }
 
-    public void LoopMenu(int selectedFromMenu, ApplicationDbContext dbContext) 
+    public void LoopMenu(int selectedFromMenu, ApplicationDbContext dbContext)
     {
         var loop = true;
         while (loop)
             switch (selectedFromMenu)
             {
                 case 1:
-                {
-                    //add
-                    break;
-                }
+                    {
+                        //add
+                        break;
+                    }
                 case 2:
-                {
-                    //subtract
-                    break;
-                }
+                    {
+                        //subtract
+                        break;
+                    }
                 case 3:
-                {
-                    //multi
-                    break;
-                }
+                    {
+                        //multi
+                        break;
+                    }
                 case 4:
-                {
-                    //divide
-                    break;
-                }
+                    {
+                        //divide
+                        break;
+                    }
                 case 5:
-                {
-                    //modulus
-                    break;
-                }
+                    {
+                        //modulus
+                        break;
+                    }
             }
     }
 }
