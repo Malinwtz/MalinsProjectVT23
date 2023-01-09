@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MalinsProjectVT23.Data
 {
-    internal class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext() { }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
