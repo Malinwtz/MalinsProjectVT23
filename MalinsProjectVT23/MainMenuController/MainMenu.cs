@@ -1,4 +1,5 @@
-﻿using MalinsProjectVT23.Data;
+﻿using MalinsProjectVT23.CalculatorController;
+using MalinsProjectVT23.Data;
 
 namespace MalinsProjectVT23.MainMenuController;
 

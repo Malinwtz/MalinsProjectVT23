@@ -1,4 +1,7 @@
-﻿namespace MalinsProjectVT23;
+﻿using MalinsProjectVT23.Data;
+using MalinsProjectVT23.MainMenuController;
+
+namespace MalinsProjectVT23;
 
 public class Application
 {
