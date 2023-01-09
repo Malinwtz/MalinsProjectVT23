@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using MalinsProjectVT23.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,9 @@ namespace MalinsProjectVT23
             var builder = new ConfigurationBuilder().AddJsonFile($"appsettings.json", true, true);
             var config = builder.Build();
 
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>();
+            var connectionString = config.GetConnectionString("DefaultConnection");
+            options.UseSqlServer(connectionString);
 
             MainMenu mainMenu = new MainMenu();
             var inputFromMainMenu = mainMenu.ReturnSelectionFromMenu();
