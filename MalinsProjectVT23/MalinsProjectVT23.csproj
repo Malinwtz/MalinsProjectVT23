@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ClassLibraryCalculations\ClassLibraryCalculations.csproj" />
+    <ProjectReference Include="..\ClassLibraryErrorHandling\ClassLibraryErrorHandling.csproj" />
   </ItemGroup>
 
 </Project>
