@@ -1,5 +1,6 @@
 ﻿using MalinsProjectVT23.Data;
 using MalinsProjectVT23.MainMenuController;
+using ClassLibraryCalculations;
 
 namespace MalinsProjectVT23;
 
@@ -18,7 +19,5 @@ public class Application
             if (selectionFromMainMenu == 0) break;
             mainMenu.LoopMenu(selectionFromMainMenu, dbContext);
         }
-
-        
     }
 }

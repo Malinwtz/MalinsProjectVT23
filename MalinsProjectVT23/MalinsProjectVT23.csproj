@@ -28,4 +28,8 @@
     <Folder Include="ShapeController\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibraryCalculations\ClassLibraryCalculations.csproj" />
+  </ItemGroup>
+
 </Project>
