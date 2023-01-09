@@ -2,10 +2,8 @@
 
 namespace ClassLibraryCalculations
 {
-    public class Calculate
+    public class MathServices
     {
-        public class MathServices
-        {
             public decimal Addition(decimal num1, decimal num2) 
             {
                 return num1 + num2;
@@ -54,6 +52,6 @@ namespace ClassLibraryCalculations
                 return numberToCalculateSquareRoot;
             }
             //design pattern strategy pattern: byta ut en viss operation(metoderna ovan) mot en klass istället. 
-        }
+        
     }
 }

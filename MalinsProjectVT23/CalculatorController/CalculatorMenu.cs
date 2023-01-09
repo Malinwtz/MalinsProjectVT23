@@ -1,5 +1,7 @@
 ﻿using MalinsProjectVT23.Data;
 using MalinsProjectVT23.MainMenuController;
+using ClassLibraryCalculations;
+using ClassLibraryErrorHandling;
 
 namespace MalinsProjectVT23.CalculatorController;
 
@@ -24,6 +26,7 @@ public class CalculatorMenu
 
     public void LoopMenu(int selectedFromMenu, ApplicationDbContext dbContext)
     {
+        MathServices mathServices = new MathServices();
         var loop = true;
         while (loop)
             switch (selectedFromMenu)
@@ -31,6 +34,13 @@ public class CalculatorMenu
                 case 1:
                     {
                         //add
+                        Console.Clear();
+                        Console.Write(" Write number 1 to add: ");
+                        var userInputNumberToAdd1 = ErrorHandling.TryInt();
+                        Console.Write(" Write number 2 to add: ");
+                        var userInputNumberToAdd2 = ErrorHandling.TryInt();
+                        var resultAddedNumbers = mathServices.Addition(userInputNumberToAdd1, userInputNumberToAdd2);
+                        Console.Write($" Result: {resultAddedNumbers}");
                         break;
                     }
                 case 2:
