@@ -24,7 +24,6 @@ public class MainMenu
 
     public void LoopMenu(int selectedFromMenu, ApplicationDbContext dbContext)
     {
-        IShape shape = new Rectangle();
         var loop = true;
         while (loop)
             switch (selectedFromMenu)
