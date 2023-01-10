@@ -30,17 +30,10 @@ public class MainMenu
             {
                 case 1:
                 {
-                    //shapesmenu
-                    //var customerMenu = new CustomerMenu();
-                    //var selectedFromCustomerMenu = customerMenu.ReturnSelectionFromMenu();
-                    //if (selectedFromCustomerMenu == 0) loop = false;
-                    //customerMenu.LoopMenu(selectedFromCustomerMenu, dbContext);
-
-                    //0. Exit
-                    //1. Rectangle
-                    //2. Parallelogram
-                    //3. Triangle
-                    //4. Rhombus
+                    var shapesMenu = new ShapeMenu();
+                    var inputFromShapeMenu = shapesMenu.ReturnSelectionFromMenu();
+                    if (inputFromShapeMenu == 0) loop = false;
+                    else shapesMenu.LoopMenu(inputFromShapeMenu, dbContext);
                     break;
                 }
                 case 2:
@@ -48,7 +41,7 @@ public class MainMenu
                     var calculatorMenu = new CalculatorMenu();
                     var inputFromCalculatorMenu = calculatorMenu.ReturnSelectionFromMenu();
                     if (inputFromCalculatorMenu == 0) loop = false;
-                    calculatorMenu.LoopMenu(inputFromCalculatorMenu, dbContext);
+                    else calculatorMenu.LoopMenu(inputFromCalculatorMenu, dbContext);
                     break;
                 }
                 case 3:
