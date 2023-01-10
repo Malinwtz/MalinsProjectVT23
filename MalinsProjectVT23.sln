@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MalinsProjectVT23", "MalinsProjectVT23\MalinsProjectVT23.csproj", "{E92C9C2C-0A54-4CC7-9631-8B83FF4CDE5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MalinsProjectVT23", "MalinsProjectVT23\MalinsProjectVT23.csproj", "{E92C9C2C-0A54-4CC7-9631-8B83FF4CDE5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryCalculations", "ClassLibraryCalculations\ClassLibraryCalculations.csproj", "{6953166E-45AE-4BA8-B915-CCB379CB1998}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibraryCalculations", "ClassLibraryCalculations\ClassLibraryCalculations.csproj", "{6953166E-45AE-4BA8-B915-CCB379CB1998}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryErrorHandling", "ClassLibraryErrorHandling\ClassLibraryErrorHandling.csproj", "{61520976-7EB8-4D58-8194-041BC137683C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibraryErrorHandling", "ClassLibraryErrorHandling\ClassLibraryErrorHandling.csproj", "{61520976-7EB8-4D58-8194-041BC137683C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryStrings", "ClassLibraryStrings\ClassLibraryStrings.csproj", "{7E1EDA34-2469-4DE1-A4BD-BAF9C016697E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{61520976-7EB8-4D58-8194-041BC137683C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61520976-7EB8-4D58-8194-041BC137683C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61520976-7EB8-4D58-8194-041BC137683C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E1EDA34-2469-4DE1-A4BD-BAF9C016697E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E1EDA34-2469-4DE1-A4BD-BAF9C016697E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E1EDA34-2469-4DE1-A4BD-BAF9C016697E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E1EDA34-2469-4DE1-A4BD-BAF9C016697E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
