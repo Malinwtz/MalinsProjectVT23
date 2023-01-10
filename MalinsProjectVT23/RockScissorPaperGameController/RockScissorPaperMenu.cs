@@ -35,7 +35,6 @@ namespace MalinsProjectVT23.RockScissorPaperGameController
                 {
                     case 1:
                         {
-                            //gamemenu
                             var playGameMenu = new PlayGameMenu();
                             var inputFromPlayGameMenu = playGameMenu.ReturnSelectionFromMenu();
                             if (inputFromPlayGameMenu == 0) loop = false;

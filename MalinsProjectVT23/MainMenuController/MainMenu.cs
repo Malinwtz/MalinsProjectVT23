@@ -50,7 +50,7 @@ public class MainMenu
                     var rockScissorPaperMenu = new RockScissorPaperMenu();
                     var selectedFromRockScissorPaperMenu = rockScissorPaperMenu.ReturnSelectionFromMenu();
                     if (selectedFromRockScissorPaperMenu == 0) loop = false;
-                    rockScissorPaperMenu.LoopMenu(selectedFromRockScissorPaperMenu, dbContext);
+                    else rockScissorPaperMenu.LoopMenu(selectedFromRockScissorPaperMenu, dbContext);
                     break;
                     }
             }

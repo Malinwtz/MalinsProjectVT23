@@ -48,4 +48,4 @@ namespace MalinsProjectVT23.RockScissorPaperGameController
         }
     }
 }
-}
+
