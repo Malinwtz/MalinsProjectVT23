@@ -1,6 +1,8 @@
 ﻿using ClassLibraryStrings;
 using MalinsProjectVT23.CalculatorController;
 using MalinsProjectVT23.Data;
+using MalinsProjectVT23.Interface;
+using MalinsProjectVT23.ShapeController;
 
 namespace MalinsProjectVT23.MainMenuController;
 
@@ -22,6 +24,7 @@ public class MainMenu
 
     public void LoopMenu(int selectedFromMenu, ApplicationDbContext dbContext)
     {
+        IShape shape = new Rectangle();
         var loop = true;
         while (loop)
             switch (selectedFromMenu)
