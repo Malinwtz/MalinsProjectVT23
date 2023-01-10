@@ -2,6 +2,7 @@
 using MalinsProjectVT23.MainMenuController;
 using ClassLibraryCalculations;
 using ClassLibraryErrorHandling;
+using ClassLibraryStrings;
 
 namespace MalinsProjectVT23.CalculatorController;
 
@@ -12,7 +13,7 @@ public class CalculatorMenu
         Console.Clear();
         var endAlternative = 6;
         Console.WriteLine(" Calculator Menu");
-        Console.WriteLine("*****************"); //Lines.LineThreeStar();
+        Line.LineThreeStar();
         Console.WriteLine(" 1. Add two numbers");
         Console.WriteLine(" 2. Subtract two numbers");
         Console.WriteLine(" 3. Multiplicate two numbers");

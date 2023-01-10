@@ -1,4 +1,5 @@
-﻿using MalinsProjectVT23.CalculatorController;
+﻿using ClassLibraryStrings;
+using MalinsProjectVT23.CalculatorController;
 using MalinsProjectVT23.Data;
 
 namespace MalinsProjectVT23.MainMenuController;
@@ -10,7 +11,7 @@ public class MainMenu
         Console.Clear();
         var endAlternative = 3;
         Console.WriteLine(" START MENU");
-        Console.WriteLine("*********"); //Lines.LineThreeStar();
+        Line.LineThreeStar();
         Console.WriteLine(" 1. Shapes");
         Console.WriteLine(" 2. Calculator");
         Console.WriteLine($" {endAlternative}. Rock, Scissors, Paper");
@@ -18,6 +19,7 @@ public class MainMenu
         var sel = ReturnFromMenuClass.ReturnFromMenu(endAlternative);
         return sel;
     }
+
     public void LoopMenu(int selectedFromMenu, ApplicationDbContext dbContext)
     {
         var loop = true;
@@ -25,28 +27,28 @@ public class MainMenu
             switch (selectedFromMenu)
             {
                 case 1:
-                    {
-                        //shapesmenu
-                        //var customerMenu = new CustomerMenu();
-                        //var selectedFromCustomerMenu = customerMenu.ReturnSelectionFromMenu();
-                        //if (selectedFromCustomerMenu == 0) loop = false;
-                        //customerMenu.LoopMenu(selectedFromCustomerMenu, dbContext);
+                {
+                    //shapesmenu
+                    //var customerMenu = new CustomerMenu();
+                    //var selectedFromCustomerMenu = customerMenu.ReturnSelectionFromMenu();
+                    //if (selectedFromCustomerMenu == 0) loop = false;
+                    //customerMenu.LoopMenu(selectedFromCustomerMenu, dbContext);
 
-                        //0. Exit
-                        //1. Rectangle
-                        //2. Parallelogram
-                        //3. Triangle
-                        //4. Rhombus
-                        break;
-                    }
+                    //0. Exit
+                    //1. Rectangle
+                    //2. Parallelogram
+                    //3. Triangle
+                    //4. Rhombus
+                    break;
+                }
                 case 2:
-                    {
-                        var calculatorMenu = new CalculatorMenu();
-                        var inputFromCalculatorMenu = calculatorMenu.ReturnSelectionFromMenu();
-                        if (inputFromCalculatorMenu == 0) loop = false;
-                        calculatorMenu.LoopMenu(inputFromCalculatorMenu, dbContext);
-                        break;
-                    }
+                {
+                    var calculatorMenu = new CalculatorMenu();
+                    var inputFromCalculatorMenu = calculatorMenu.ReturnSelectionFromMenu();
+                    if (inputFromCalculatorMenu == 0) loop = false;
+                    calculatorMenu.LoopMenu(inputFromCalculatorMenu, dbContext);
+                    break;
+                }
                 case 3:
                     //rock scissors paper
                     //var bookingMenu = new BookingMenu();
