@@ -2,6 +2,7 @@
 using MalinsProjectVT23.CalculatorController;
 using MalinsProjectVT23.Data;
 using MalinsProjectVT23.Interface;
+using MalinsProjectVT23.RockScissorPaperGameController;
 using MalinsProjectVT23.ShapeController;
 
 namespace MalinsProjectVT23.MainMenuController;
@@ -45,16 +46,13 @@ public class MainMenu
                     break;
                 }
                 case 3:
-                    //rock scissors paper
-                    //var bookingMenu = new BookingMenu();
-                    //var selectedFromBookingMenu = bookingMenu.ReturnSelectionFromMenu();
-                    //if (selectedFromBookingMenu == 0) loop = false;
-                    //bookingMenu.LoopMenu(selectedFromBookingMenu, dbContext);
-
-                    //0. Exit
-                    //1. Play game
-                    //2. Show statistics
+                {
+                    var rockScissorPaperMenu = new RockScissorPaperMenu();
+                    var selectedFromRockScissorPaperMenu = rockScissorPaperMenu.ReturnSelectionFromMenu();
+                    if (selectedFromRockScissorPaperMenu == 0) loop = false;
+                    rockScissorPaperMenu.LoopMenu(selectedFromRockScissorPaperMenu, dbContext);
                     break;
+                    }
             }
     }
 }

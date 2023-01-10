@@ -1,6 +1,7 @@
 ﻿using ClassLibraryCalculations;
 using ClassLibraryErrorHandling;
 using ClassLibraryStrings;
+using MalinsProjectVT23.CalculatorController;
 using MalinsProjectVT23.Data;
 using MalinsProjectVT23.MainMenuController;
 using System;
@@ -16,8 +17,8 @@ namespace MalinsProjectVT23.RockScissorPaperGameController
         public int ReturnSelectionFromMenu()
         {
             Console.Clear();
-            var endAlternative = 6;
-            Console.WriteLine(" Game Menu");
+            var endAlternative = 2;
+            Console.WriteLine(" Rock Scissor Paper Menu");
             Line.LineThreeStar();
             Console.WriteLine(" 1. Play game");
             Console.WriteLine($" {endAlternative}. Show statistics");
@@ -34,7 +35,11 @@ namespace MalinsProjectVT23.RockScissorPaperGameController
                 {
                     case 1:
                         {
-                           //gamemenu
+                            //gamemenu
+                            var playGameMenu = new PlayGameMenu();
+                            var inputFromPlayGameMenu = playGameMenu.ReturnSelectionFromMenu();
+                            if (inputFromPlayGameMenu == 0) loop = false;
+                            else playGameMenu.LoopMenu(inputFromPlayGameMenu, dbContext);
                             break;
                         }
                     case 2:
