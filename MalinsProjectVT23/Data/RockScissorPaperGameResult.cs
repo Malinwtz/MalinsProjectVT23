@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace MalinsProjectVT23.Data
+namespace MalinsProjectVT23.Data;
+
+public class RockScissorPaperGameResult
 {
-    public class RockScissorPaperGameResult
-    {
-        [Key] public int GameId { get; set; }
-    }
+    [Key] public int GameId { get; set; }
 }

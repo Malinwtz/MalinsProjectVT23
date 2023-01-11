@@ -1,4 +1,4 @@
-﻿using MalinsProjectVT23.Data;
+using MalinsProjectVT23.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +41,7 @@ namespace MalinsProjectVT23.ShapeController
             foreach (var shape in DbContext.ShapeResults.Include(s=>s.Shape))
             {
                 Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}{5,-10}{6,-10}", 
-                    $"{shape.ShapeResultId}", $"{shape.Shape.Name}", $"{shape.Heigth}", 
+                    $"{shape.ShapeResultId}", $"{shape.Shape.Name}", $"{shape.Height}", 
                     $"{shape.Length}", $"{shape.Area}", $"{shape.Circumference}", $"{shape.Shape.Date}");
             }
         }

@@ -43,7 +43,7 @@ public class CreateShape
                 {
                     Area = pArea,
                     Circumference = pCircumference,
-                    Heigth = pHeight,
+                    Height = pHeight,
                     Length = pLength,
                     Shape = new Shape //hamnar denna i rätt tabell???
                     {
