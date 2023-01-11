@@ -9,19 +9,17 @@ namespace MalinsProjectVT23.ShapeController
 {
     public class Rectangle : IShape
     {
-        public void CalculateShape()
-        {
-            throw new NotImplementedException();
-        }
 
         public decimal CalculateArea(decimal length, decimal height)
         {
-            throw new NotImplementedException();
+            var rectangleArea = length * height;
+            return rectangleArea;
         }
 
         public decimal CalculateCircumference(decimal length, decimal height)
         {
-            throw new NotImplementedException();
+            var circumferenceOfRectangle = (length + height) * 2;
+            return circumferenceOfRectangle;
         }
     }
 }
