@@ -13,7 +13,7 @@ public class PlayGame
         var gameOptions = new[] { "Rock", "Scissor", "Paper" };
         Console.Clear();
         Console.ForegroundColor = ConsoleColor.Blue;
-        Console.WriteLine("{0, 190}", " Rock, Scissor, Paper Game"); //gör snyggare
+        Console.WriteLine("{0, 190}", " Rock, Scissor, Paper Game");
         Line.LineThreeStar();
         Console.ForegroundColor = ConsoleColor.Gray;
         Action.PressEnterToContinue();
