@@ -13,11 +13,13 @@ public class MainMenu
     {
         Console.Clear();
         var endAlternative = 3;
+        Console.ForegroundColor = ConsoleColor.DarkYellow;
         Console.WriteLine(" START MENU");
         Line.LineThreeStar();
         Console.WriteLine(" 1. Shapes");
         Console.WriteLine(" 2. Calculator");
         Console.WriteLine($" {endAlternative}. Rock, Scissors, Paper");
+        Console.ForegroundColor = ConsoleColor.Gray;
         ReturnFromMenuClass.ExitMenu();
         var sel = ReturnFromMenuClass.ReturnFromMenu(endAlternative);
         return sel;

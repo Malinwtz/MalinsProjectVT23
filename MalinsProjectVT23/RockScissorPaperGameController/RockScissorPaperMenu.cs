@@ -18,10 +18,12 @@ namespace MalinsProjectVT23.RockScissorPaperGameController
         {
             Console.Clear();
             var endAlternative = 2;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(" Rock Scissor Paper Menu");
             Line.LineThreeStar();
             Console.WriteLine(" 1. Play game");
             Console.WriteLine($" {endAlternative}. Show statistics");
+            Console.ForegroundColor = ConsoleColor.Gray;
             ReturnFromMenuClass.ExitMenu();
             var sel = ReturnFromMenuClass.ReturnFromMenu(endAlternative);
             return sel;
@@ -30,15 +32,13 @@ namespace MalinsProjectVT23.RockScissorPaperGameController
         public void LoopMenu(int selectedFromMenu, ApplicationDbContext dbContext)
         {
             var loop = true;
-            while (loop)
+            //while (loop)
                 switch (selectedFromMenu)
                 {
                     case 1:
                         {
-                            var playGameMenu = new PlayGameMenu();
-                            var inputFromPlayGameMenu = playGameMenu.ReturnSelectionFromMenu();
-                            if (inputFromPlayGameMenu == 0) loop = false;
-                            else playGameMenu.LoopMenu(inputFromPlayGameMenu, dbContext);
+                            var playGameMenu = new PlayGame();
+                            playGameMenu.LoopGame(dbContext);
                             break;
                         }
                     case 2:

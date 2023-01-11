@@ -23,4 +23,12 @@ public class Action
         Console.WriteLine(text);
         Console.ForegroundColor = ConsoleColor.Gray;
     }
+
+    public static void Winner(string text)
+    {
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine(text);
+        Console.ForegroundColor = ConsoleColor.Gray;
+    }
+
 }

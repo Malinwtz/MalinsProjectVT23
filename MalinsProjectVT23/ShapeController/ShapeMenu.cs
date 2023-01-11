@@ -17,12 +17,14 @@ namespace MalinsProjectVT23.ShapeController
         {
             Console.Clear();
             var endAlternative = 4;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(" Shape Menu");
             Line.LineThreeStar();
             Console.WriteLine(" 1. Rectangle");
             Console.WriteLine(" 2. Parallelogram");
             Console.WriteLine(" 3. Triangle");
             Console.WriteLine($" {endAlternative}. Rhombus");
+            Console.ForegroundColor = ConsoleColor.Gray;
             ReturnFromMenuClass.ExitMenu();
             var sel = ReturnFromMenuClass.ReturnFromMenu(endAlternative);
             return sel;

@@ -12,6 +12,7 @@ public class CalculatorMenu
     {
         Console.Clear();
         var endAlternative = 6;
+        Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine(" Calculator Menu");
         Line.LineThreeStar();
         Console.WriteLine(" 1. Add two numbers");
@@ -20,6 +21,7 @@ public class CalculatorMenu
         Console.WriteLine(" 4. Divide two numbers");
         Console.WriteLine(" 5. Square Root");
         Console.WriteLine($" {endAlternative}. Modulus");
+        Console.ForegroundColor = ConsoleColor.Gray;
         ReturnFromMenuClass.ExitMenu();
         var sel = ReturnFromMenuClass.ReturnFromMenu(endAlternative);
         return sel;
