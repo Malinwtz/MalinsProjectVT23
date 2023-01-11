@@ -1,27 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MalinsProjectVT23.Interface;
+﻿using MalinsProjectVT23.Interface;
 
-namespace MalinsProjectVT23.ShapeController
+namespace MalinsProjectVT23.ShapeController;
+
+public class Triangle : IShape
 {
-    public class Triangle : IShape
+    public decimal CalculateArea(decimal length, decimal height)
     {
-        public void CalculateShape()
-        {
-            throw new NotImplementedException();
-        }
+        var tArea = (length * height)/2;
+        return tArea;
+    }
 
-        public decimal CalculateArea(decimal length, decimal height)
-        {
-            throw new NotImplementedException();
-        }
-
-        public decimal CalculateCircumference(decimal length, decimal height)
-        {
-            throw new NotImplementedException();
-        }
+    public decimal CalculateCircumference(decimal length, decimal height)
+    {
+        var tCircumference = length * 3;
+        return tCircumference;
     }
 }

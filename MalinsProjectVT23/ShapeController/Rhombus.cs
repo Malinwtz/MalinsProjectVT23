@@ -1,27 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MalinsProjectVT23.Interface;
+﻿using MalinsProjectVT23.Interface;
 
-namespace MalinsProjectVT23.ShapeController
+namespace MalinsProjectVT23.ShapeController;
+
+public class Rhombus : IShape
 {
-    public class Rhombus : IShape
+    public decimal CalculateArea(decimal length, decimal height)
     {
-        public void CalculateShape()
-        {
-            throw new NotImplementedException();
-        }
+        var rArea = length * height;
+        return rArea;
+    }
 
-        public decimal CalculateArea(decimal length, decimal height)
-        {
-            throw new NotImplementedException();
-        }
-
-        public decimal CalculateCircumference(decimal length, decimal height)
-        {
-            throw new NotImplementedException();
-        }
+    public decimal CalculateCircumference(decimal length, decimal height)
+    {
+        var rCircumference = length * 4;
+        return rCircumference;
     }
 }
