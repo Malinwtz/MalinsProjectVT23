@@ -25,34 +25,40 @@ public class ShapeMenu
 
     public void LoopMenu(int selectedFromMenu, ApplicationDbContext dbContext)
     {
-        var crudShape = new CrudShapeMenu();
-        //var loop = true;
-        //while (loop)
-        switch (selectedFromMenu)
-        {
-            case 1:
+        var crudShape =
+            new CrudShapeMenu(); //Skickar in en IShape i varje menyalternativ för att det ska skapas olika former.
+        var inputFromCrudShapeMenu = crudShape.ReturnSelectionFromMenu();
+        if (inputFromCrudShapeMenu != 0)
+            switch (selectedFromMenu)
             {
-                //rectangle menu
-
-                break;
-            }
-            case 2:
-            {
-                var inputFromCrudShapeMenu = crudShape.ReturnSelectionFromMenu();
-                if (inputFromCrudShapeMenu != 0)
+                case 1:
+                {
+                    //var inputFromCrudShapeMenu = crudShape.ReturnSelectionFromMenu(); //flytta kod till innan switch?
+                    //if (inputFromCrudShapeMenu != 0)
+                    crudShape.LoopMenu(inputFromCrudShapeMenu, dbContext, new Rectangle());
+                    break;
+                }
+                case 2:
+                {
+                    //var inputFromCrudShapeMenu = crudShape.ReturnSelectionFromMenu();
+                    //if (inputFromCrudShapeMenu != 0)
                     crudShape.LoopMenu(inputFromCrudShapeMenu, dbContext, new Parallelogram());
-                break;
+                    break;
+                }
+                case 3:
+                {
+                    //var inputFromCrudShapeMenu = crudShape.ReturnSelectionFromMenu();
+                    //if (inputFromCrudShapeMenu != 0)
+                    crudShape.LoopMenu(inputFromCrudShapeMenu, dbContext, new Triangle());
+                    break;
+                }
+                case 4:
+                {
+                    //var inputFromCrudShapeMenu = crudShape.ReturnSelectionFromMenu();
+                    //if (inputFromCrudShapeMenu != 0)
+                    crudShape.LoopMenu(inputFromCrudShapeMenu, dbContext, new Rhombus());
+                    break;
+                }
             }
-            case 3:
-            {
-                //trigangle menu
-                break;
-            }
-            case 4:
-            {
-                //rhombus menu
-            }
-                break;
-        }
     }
 }

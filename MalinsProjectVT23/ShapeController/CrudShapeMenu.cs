@@ -33,8 +33,6 @@ namespace MalinsProjectVT23.ShapeController
         {
             CreateShape create = new CreateShape(dbContext);
             
-            //var loop = true;
-            //while (loop)
                 switch (selectedFromMenu)
                 {
                     case 1:
@@ -45,21 +43,24 @@ namespace MalinsProjectVT23.ShapeController
                     }
                     case 2:
                     {
-                            //read shape
-                            //gör en klass där man kan visa shape.
+                        Console.WriteLine("Read Shape");
+                        Console.ReadKey();
+                        //gör en klass där man kan visa shape.
                             //beroende på vilken shape - olika listor
-                            break;
+                        break;
                     }
                     case 3:
                     {
-                        //update shape
+                        Console.WriteLine("Update shape");
+                        Console.ReadKey();
                         break;
                     }
                     case 4:
                     {
-                        //delete shape
-                    }
+                        Console.WriteLine("Delete shape");
+                        Console.ReadKey();
                         break;
+                    }
                 }
         }
     }
