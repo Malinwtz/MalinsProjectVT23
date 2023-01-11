@@ -31,33 +31,33 @@ namespace MalinsProjectVT23.ShapeController
 
         public void LoopMenu(int selectedFromMenu, ApplicationDbContext dbContext, IShape shape)
         {
-            CreateShape create = new CreateShape(dbContext);
-            
+            var create = new CreateShape(dbContext);
+            var read = new ReadShape(dbContext);
+           // var update = new UpdateShape(dbContext);
+            //var delete = new DeleteShape(dbContext);
                 switch (selectedFromMenu)
                 {
                     case 1:
                     {
                         create.Create(shape);
-                        Console.ReadKey(); //flyttta denna
                         break;
                     }
                     case 2:
                     {
-                        Console.WriteLine("Read Shape");
-                        Console.ReadKey();
-                        //gör en klass där man kan visa shape.
-                            //beroende på vilken shape - olika listor
+                        read.Read();
                         break;
                     }
                     case 3:
                     {
-                        Console.WriteLine("Update shape");
+                        //update.Update(shape);
+                        Console.WriteLine("Update shape not finished");
                         Console.ReadKey();
                         break;
                     }
                     case 4:
                     {
-                        Console.WriteLine("Delete shape");
+                        //delete.Delete(shape);
+                        Console.WriteLine("Delete shape not finished");
                         Console.ReadKey();
                         break;
                     }

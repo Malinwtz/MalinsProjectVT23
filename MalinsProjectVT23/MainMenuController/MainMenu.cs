@@ -1,7 +1,6 @@
 ﻿using ClassLibraryStrings;
 using MalinsProjectVT23.CalculatorController;
 using MalinsProjectVT23.Data;
-using MalinsProjectVT23.Interface;
 using MalinsProjectVT23.RockScissorPaperGameController;
 using MalinsProjectVT23.ShapeController;
 
@@ -54,7 +53,7 @@ public class MainMenu
                     if (selectedFromRockScissorPaperMenu == 0) loop = false;
                     else rockScissorPaperMenu.LoopMenu(selectedFromRockScissorPaperMenu, dbContext);
                     break;
-                    }
+                }
             }
     }
 }
