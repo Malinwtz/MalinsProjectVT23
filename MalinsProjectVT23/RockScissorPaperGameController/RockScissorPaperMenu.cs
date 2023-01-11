@@ -31,7 +31,7 @@ namespace MalinsProjectVT23.RockScissorPaperGameController
 
         public void LoopMenu(int selectedFromMenu, ApplicationDbContext dbContext)
         {
-            var loop = true;
+            //var loop = true;
             //while (loop)
                 switch (selectedFromMenu)
                 {
