@@ -6,7 +6,9 @@ public class ErrorHandling
 {
     public static void WrongInputMessage()
     {
+        Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine(" Felaktig input");
+        Console.ForegroundColor = ConsoleColor.Gray;
     }
 
     public static DateTime TryDate()
