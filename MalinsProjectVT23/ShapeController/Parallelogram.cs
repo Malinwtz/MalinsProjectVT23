@@ -9,9 +9,16 @@ namespace MalinsProjectVT23.ShapeController
 {
     public class Parallelogram : IShape
     {
-        public void CalculateShape()
+        public decimal CalculateArea(decimal length, decimal height)
         {
-            throw new NotImplementedException();
+            var areaOfParallelogram = (length * height);
+            return areaOfParallelogram;
+        }
+
+        public decimal CalculateCircumference(decimal length, decimal height)
+        {
+            var circumferenceOfParallelogram = (length + height) * 2;
+            return circumferenceOfParallelogram;
         }
     }
 }

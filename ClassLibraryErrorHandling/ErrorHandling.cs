@@ -29,9 +29,24 @@ public class ErrorHandling
         while (true)
             try
             {
-                int.TryParse(Console.ReadLine(), out var saldo);
-                if (saldo > 0)
-                    return saldo;
+                int.TryParse(Console.ReadLine(), out var integer);
+                if (integer > 0)
+                    return integer;
+            }
+            catch
+            {
+                WrongInputMessage();
+            }
+    }
+
+    public static decimal TryDecimal()
+    {
+        while (true)
+            try
+            {
+                decimal.TryParse(Console.ReadLine(), out var decimalNumber);
+                if (decimalNumber > 0)
+                    return decimalNumber;
             }
             catch
             {

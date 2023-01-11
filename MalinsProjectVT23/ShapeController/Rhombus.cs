@@ -13,5 +13,15 @@ namespace MalinsProjectVT23.ShapeController
         {
             throw new NotImplementedException();
         }
+
+        public decimal CalculateArea(decimal length, decimal height)
+        {
+            throw new NotImplementedException();
+        }
+
+        public decimal CalculateCircumference(decimal length, decimal height)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

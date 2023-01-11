@@ -8,6 +8,7 @@ namespace MalinsProjectVT23.Interface
 {
     public interface IShape
     {
-        void CalculateShape();
+        decimal CalculateArea(decimal length, decimal height);
+        decimal CalculateCircumference(decimal length, decimal height);
     }
 }
