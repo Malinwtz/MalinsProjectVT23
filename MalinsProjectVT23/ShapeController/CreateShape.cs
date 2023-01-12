@@ -16,52 +16,69 @@ public class CreateShape
 
     public void Create(IShape shape)
     {
+        Console.WriteLine($" Create shape: {shape}");
+        Console.WriteLine(" Write length");
+        var length = ErrorHandling.TryDecimal();
+        Console.WriteLine(" Write height");
+        var height = ErrorHandling.TryDecimal();
         switch (shape)
         {
             case Rectangle:
             {
-                Console.WriteLine("Create Rectangle");
-                break;
+                var pCircumference = shape.CalculateCircumference(length, height);
+                var pArea = shape.CalculateArea(length, height);
+                AddShapeResultAndShapeToDatabase(pArea, pCircumference, height, length, "Rectangle"); //gör om till enum
+                DbContext.SaveChanges();
+                Action.Successful(" Saved");
+                Action.PressEnterToContinue();
+                    break;
             }
             case Triangle:
             {
-                Console.WriteLine("Create Triangle");
-                break;
+                var pCircumference = shape.CalculateCircumference(length, height);
+                var pArea = shape.CalculateArea(length, height);
+                AddShapeResultAndShapeToDatabase(pArea, pCircumference, height, length, "Triangle"); //gör om till enum
+                DbContext.SaveChanges();
+                Action.Successful(" Saved");
+                Action.PressEnterToContinue();
+                    break;
             }
             case Parallelogram:
             {
-                Console.WriteLine("Create Parallelogram");
-                //flytta inmatningen eftersom det är för alla shapes
-                Console.WriteLine(" Write length");
-                var pLength = ErrorHandling.TryDecimal();
-                Console.WriteLine(" Write height");
-                var pHeight = ErrorHandling.TryDecimal();
-
-                var pCircumference = shape.CalculateCircumference(pLength, pHeight);
-                var pArea = shape.CalculateArea(pLength, pHeight);
-
-                DbContext.ShapeResults.Add(new ShapeResult
-                {
-                    Area = pArea,
-                    Circumference = pCircumference,
-                    Height = pHeight,
-                    Length = pLength,
-                    Shape = new Shape //hamnar denna i rätt tabell???
-                    {
-                        Date = DateTime.Now,
-                        Name = "Parallelogram" //parallelogram - enum?
-                    }
-                });
-                DbContext.SaveChanges(); //invalid column names
-                Console.WriteLine("Saved");
+                var pCircumference = shape.CalculateCircumference(length, height);
+                var pArea = shape.CalculateArea(length, height);
+                AddShapeResultAndShapeToDatabase(pArea, pCircumference, height, length, "Parallelogram"); //gör om till enum
+                DbContext.SaveChanges();
+                Action.Successful(" Saved");
                 Action.PressEnterToContinue();
                 break;
             }
             case Rhombus:
             {
-                Console.WriteLine("Create Rhombus");
-                break;
+                var pCircumference = shape.CalculateCircumference(length, height);
+                var pArea = shape.CalculateArea(length, height);
+                AddShapeResultAndShapeToDatabase(pArea, pCircumference, height, length, "Rhombus"); //gör om till enum
+                DbContext.SaveChanges();
+                Action.Successful(" Saved");
+                Action.PressEnterToContinue();
+                    break;
             }
         }
+    }
+
+    private void AddShapeResultAndShapeToDatabase(decimal pArea, decimal pCircumference, decimal height, decimal length, string shapeName)
+    {
+        DbContext.ShapeResults.Add(new ShapeResult
+        {
+            Area = pArea,
+            Circumference = pCircumference,
+            Height = height,
+            Length = length,
+            Shape = new Shape
+            {
+                Date = DateTime.Now,
+                Name = shapeName // - enum?
+            }
+        });
     }
 }
