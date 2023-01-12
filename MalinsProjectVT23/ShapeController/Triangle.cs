@@ -12,7 +12,7 @@ public class Triangle : IShape
 
     public decimal CalculateCircumference(decimal length, decimal height)
     {
-        var tCircumference = length * 3; /// bara rätvinklig
+        var tCircumference = length * 3; 
         return tCircumference;
     }
 }

@@ -4,10 +4,7 @@ namespace ClassLibraryCalculations
 {
     public class MathServices
     {
-            public decimal Addition(decimal num1, decimal num2) 
-            {
-                return num1 + num2;
-            }
+            
             public decimal Subtraction(decimal num1, decimal num2) 
             {
                 return num1 - num2;
@@ -23,10 +20,10 @@ namespace ClassLibraryCalculations
                     if (num2 != 0) 
                         return num1 / num2;
 
-                    Console.WriteLine("The number to divide with can not be zero. Try again");
-                    Console.Write("Number to be divided: ");
+                    Console.WriteLine(" The number to divide with can not be zero. Try again");
+                    Console.Write(" Number to be divided: ");
                     num1 = ErrorHandling.TryInt(); 
-                    Console.Write("Number to divide with: ");
+                    Console.Write(" Number to divide with: ");
                     num2 = ErrorHandling.TryInt(); 
                 }
             }
@@ -39,10 +36,10 @@ namespace ClassLibraryCalculations
                         return (Math.Abs(num1 + num2) + num1) % num2; ///trycatch?
                     }
 
-                    Console.WriteLine("The number to divide with can not be zero. Try again");
-                    Console.Write("Number to be divided: ");
+                    Console.WriteLine(" The number to divide with can not be zero. Try again");
+                    Console.Write(" Number to be divided: ");
                     num1 = ErrorHandling.TryInt();
-                    Console.Write("Number to divide with: ");
+                    Console.Write(" Number to divide with: ");
                     num2 = ErrorHandling.TryInt();
                 }
             }
