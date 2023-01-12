@@ -8,7 +8,7 @@ public class DataInitializer
     {
         dbContext.Database.Migrate();
         
-        //SeedShapeResult(dbContext);
+        //SeedShape(dbContext);
         dbContext.SaveChanges();
     }
 }

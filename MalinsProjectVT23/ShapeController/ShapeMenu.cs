@@ -15,7 +15,7 @@ public class ShapeMenu
         Line.LineThreeStar();
         Console.WriteLine(" 1. Rectangle");
         Console.WriteLine(" 2. Parallelogram");
-        Console.WriteLine(" 3. Triangle");
+        Console.WriteLine(" 3. Equilateral triangle");
         Console.WriteLine($" {endAlternative}. Rhombus");
         Console.ForegroundColor = ConsoleColor.Gray;
         ReturnFromMenuClass.ExitMenu();

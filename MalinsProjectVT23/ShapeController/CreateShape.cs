@@ -51,7 +51,7 @@ public class CreateShape
                         Name = "Parallelogram" //parallelogram - enum?
                     }
                 });
-               //// DbContext.SaveChanges(); //invalid column names
+                DbContext.SaveChanges(); //invalid column names
                 Console.WriteLine("Saved");
                 Action.PressEnterToContinue();
                 break;
