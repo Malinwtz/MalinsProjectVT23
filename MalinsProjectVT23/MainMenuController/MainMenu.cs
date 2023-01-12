@@ -13,7 +13,7 @@ public class MainMenu
         Console.Clear();
         var endAlternative = 3;
         Console.ForegroundColor = ConsoleColor.DarkYellow;
-        Console.WriteLine(" START MENU");
+        Console.WriteLine(" MAIN MENU");
         Line.LineThreeStar();
         Console.WriteLine(" 1. Shapes");
         Console.WriteLine(" 2. Calculator");
@@ -40,7 +40,7 @@ public class MainMenu
                 }
                 case 2:
                 {
-                    var calculatorMenu = new CalculatorMenu();
+                    var calculatorMenu = new CalculatorMenu(dbContext);
                     var inputFromCalculatorMenu = calculatorMenu.ReturnSelectionFromMenu();
                     if (inputFromCalculatorMenu == 0) loop = false;
                     else calculatorMenu.LoopMenu(inputFromCalculatorMenu, dbContext);

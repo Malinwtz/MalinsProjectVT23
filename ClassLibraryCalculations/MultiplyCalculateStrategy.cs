@@ -2,7 +2,7 @@
 
 namespace ClassLibraryCalculations;
 
-public class MultiplicateCalculateStrategy : ICalculateStrategy
+public class MultiplyCalculateStrategy : ICalculateStrategy
 {
     public string CalculationMethod { get; set; } = "*";
 
