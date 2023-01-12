@@ -29,7 +29,7 @@ public class CalculatorMenu
 
     public void LoopMenu(int selectedFromMenu, ApplicationDbContext dbContext)
     {
-        MathServices mathServices = new MathServices();
+        MathServices mathServices = new MathServices(); // Gör till interface - sätta som property och skicka med - se richards projekt
         var loop = true;
         while (loop)
             switch (selectedFromMenu)
@@ -43,7 +43,7 @@ public class CalculatorMenu
                         Console.Write(" Write number 2 to add: ");
                         var userInputNumberToAdd2 = ErrorHandling.TryInt();
                         var resultAddedNumbers = mathServices.Addition(userInputNumberToAdd1, userInputNumberToAdd2);
-                        Console.Write($" Result: {resultAddedNumbers}");
+                        Console.Write($" Result: 1 + 2 = {resultAddedNumbers}");
                         break;
                     }
                 case 2:
