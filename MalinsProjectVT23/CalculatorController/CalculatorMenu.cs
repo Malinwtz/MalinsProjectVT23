@@ -1,13 +1,17 @@
-﻿using MalinsProjectVT23.Data;
-using MalinsProjectVT23.MainMenuController;
-using ClassLibraryCalculations;
+﻿using ClassLibraryCalculations;
+using ClassLibraryCalculations.Interface;
 using ClassLibraryErrorHandling;
 using ClassLibraryStrings;
+using MalinsProjectVT23.Data;
+using MalinsProjectVT23.MainMenuController;
 
 namespace MalinsProjectVT23.CalculatorController;
 
 public class CalculatorMenu
 {
+    public ICalculateStrategy CalculateStrategy { get; set; }
+    public decimal CalculatedResult { get; set; }
+
     public int ReturnSelectionFromMenu()
     {
         Console.Clear();
@@ -29,43 +33,61 @@ public class CalculatorMenu
 
     public void LoopMenu(int selectedFromMenu, ApplicationDbContext dbContext)
     {
-        MathServices mathServices = new MathServices(); // Gör till interface - sätta som property och skicka med - se richards projekt
-        var loop = true;
-        while (loop)
-            switch (selectedFromMenu)
+        Console.Clear();
+        Console.Write(" Write number to calculate: ");
+        var userInputNumberToAdd1 = ErrorHandling.TryInt();
+        var userInputNumberToAdd2 = 0;
+        if (selectedFromMenu != 5)
+        {
+            Console.Write(" Write number 2 to calculate: ");
+            userInputNumberToAdd2 = ErrorHandling.TryInt();
+        }
+
+        switch (selectedFromMenu)
+        {
+            case 1:
             {
-                case 1:
-                    {
-                        //add
-                        Console.Clear();
-                        Console.Write(" Write number 1 to add: ");
-                        var userInputNumberToAdd1 = ErrorHandling.TryInt();
-                        Console.Write(" Write number 2 to add: ");
-                        var userInputNumberToAdd2 = ErrorHandling.TryInt();
-                        var resultAddedNumbers = mathServices.Addition(userInputNumberToAdd1, userInputNumberToAdd2);
-                        Console.Write($" Result: 1 + 2 = {resultAddedNumbers}");
-                        break;
-                    }
-                case 2:
-                    {
-                        //subtract
-                        break;
-                    }
-                case 3:
-                    {
-                        //multi
-                        break;
-                    }
-                case 4:
-                    {
-                        //divide
-                        break;
-                    }
-                case 5:
-                    {
-                        //modulus
-                        break;
-                    }
+                CalculateStrategy = new AdditionCalculateStrategy();
+                break;
             }
+            case 2:
+            {
+                CalculateStrategy = new SubtractCalculateStrategy();
+                break;
+            }
+            case 3:
+            {
+                CalculateStrategy = new MultiplicateCalculateStrategy();
+                break;
+            }
+            case 4:
+            {
+                CalculateStrategy = new DivideCalculateStrategy();
+                break;
+            }
+            case 5:
+            {
+                CalculateStrategy = new SquareRootCalculateStrategy();
+                break;
+            }
+            case 6:
+            {
+                CalculateStrategy = new ModulusCalculateStrategy();
+                break;
+            }
+        }
+
+        if (selectedFromMenu == 5)
+        {
+            CalculatedResult = CalculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);
+            Console.Write($" Result: {CalculateStrategy.CalculationMethod} {userInputNumberToAdd1} " +
+                          $"= {CalculatedResult}");
+        }
+        else
+        {
+            CalculatedResult = CalculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);
+            Console.Write($" Result: {userInputNumberToAdd1} {CalculateStrategy.CalculationMethod} {userInputNumberToAdd2} " +
+                          $"= {CalculatedResult}");
+        }
     }
 }
