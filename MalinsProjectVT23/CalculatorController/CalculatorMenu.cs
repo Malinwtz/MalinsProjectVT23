@@ -1,8 +1,4 @@
-﻿using ClassLibraryCalculations;
-using ClassLibraryCalculations.Interface;
-using ClassLibraryErrorHandling;
-using ClassLibraryStrings;
-using MalinsProjectVT23.Data;
+﻿using ClassLibraryStrings;
 using MalinsProjectVT23.MainMenuController;
 
 namespace MalinsProjectVT23.CalculatorController;

@@ -1,4 +1,5 @@
-﻿using ClassLibraryStrings;
+﻿using ClassLibraryCalculations.Interface;
+using ClassLibraryStrings;
 using MalinsProjectVT23.CalculatorController;
 using MalinsProjectVT23.Data;
 using MalinsProjectVT23.RockScissorPaperGameController;
@@ -24,36 +25,35 @@ public class MainMenu
         return sel;
     }
 
+    public IMenu Menu { get; set; }
     public void LoopMenu(int selectedFromMenu, ApplicationDbContext dbContext)
     {
+        var chosenMenu = new ShapeMenu();
         var loop = true;
         while (loop)
             switch (selectedFromMenu)
             {
                 case 1:
                 {
-                    var shapesMenu = new ShapeMenu();
-                    var inputFromShapeMenu = shapesMenu.ReturnSelectionFromMenu();
-                    if (inputFromShapeMenu == 0) loop = false;
-                    else shapesMenu.LoopMenu(inputFromShapeMenu, dbContext);
+                    chosenMenu = new ShapeMenu();
                     break;
                 }
                 case 2:
                 {
-                    var calculatorMenu = new CalculatorMenu(dbContext);
+                    var calculatorMenu = new CalculatorMenu();
                     var inputFromCalculatorMenu = calculatorMenu.ReturnSelectionFromMenu();
                     if (inputFromCalculatorMenu == 0) loop = false;
-                    else calculatorMenu.LoopMenu(inputFromCalculatorMenu, dbContext);
+                    else Menu.RunMenuOptions(inputFromCalculatorMenu, dbContext);
                     break;
                 }
                 case 3:
                 {
-                    var rockScissorPaperMenu = new RockScissorPaperMenu();
-                    var selectedFromRockScissorPaperMenu = rockScissorPaperMenu.ReturnSelectionFromMenu();
-                    if (selectedFromRockScissorPaperMenu == 0) loop = false;
-                    else rockScissorPaperMenu.LoopMenu(selectedFromRockScissorPaperMenu, dbContext);
+                    chosenMenu = new RockScissorPaperMenu();
                     break;
                 }
             }
+        var inputFromChosenMenu = chosenMenu.ReturnSelectionFromMenu();
+        if (inputFromChosenMenu == 0) loop = false;
+        else chosenMenu.RunMenuOptions(inputFromChosenMenu, dbContext);
     }
 }

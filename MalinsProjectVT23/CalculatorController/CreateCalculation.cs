@@ -5,7 +5,7 @@ using MalinsProjectVT23.Data;
 
 namespace MalinsProjectVT23.CalculatorController;
 
-public class CreateCalculation
+public class CreateCalculation : ICrud
 {
     public CreateCalculation(ApplicationDbContext dbContext)
     {
@@ -16,7 +16,7 @@ public class CreateCalculation
     public decimal CalculatedResult { get; set; }
     public ApplicationDbContext DbContext { get; set; }
 
-    public void LoopMenu(int selectedFromMenu, ApplicationDbContext dbContext)
+    public void RunMenuOptions(int selectedFromMenu, ApplicationDbContext dbContext)
     {
         Console.Clear();
         Console.Write(" Write number to calculate: ");

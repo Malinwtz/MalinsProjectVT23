@@ -1,10 +1,11 @@
 ﻿using ClassLibraryStrings;
+using MalinsProjectVT23.CalculatorController;
 using MalinsProjectVT23.Data;
 using MalinsProjectVT23.MainMenuController;
 
 namespace MalinsProjectVT23.ShapeController;
 
-public class ShapeMenu
+public class ShapeMenu : IMenu
 {
     public int ReturnSelectionFromMenu()
     {
@@ -23,39 +24,30 @@ public class ShapeMenu
         return sel;
     }
 
-    public void LoopMenu(int selectedFromMenu, ApplicationDbContext dbContext)
+    public void RunMenuOptions(int selectedFromMenu, ApplicationDbContext dbContext)
     {
-        var crudShape =
-            new CrudShapeMenu(); //Skickar in en IShape i varje menyalternativ för att det ska skapas olika former.
+        var crudShape = new CrudShapeMenu(); 
         var inputFromCrudShapeMenu = crudShape.ReturnSelectionFromMenu();
         if (inputFromCrudShapeMenu != 0)
             switch (selectedFromMenu)
             {
                 case 1:
                 {
-                    //var inputFromCrudShapeMenu = crudShape.ReturnSelectionFromMenu(); //flytta kod till innan switch?
-                    //if (inputFromCrudShapeMenu != 0)
                     crudShape.LoopMenu(inputFromCrudShapeMenu, dbContext, new Rectangle());
                     break;
                 }
                 case 2:
                 {
-                    //var inputFromCrudShapeMenu = crudShape.ReturnSelectionFromMenu();
-                    //if (inputFromCrudShapeMenu != 0)
                     crudShape.LoopMenu(inputFromCrudShapeMenu, dbContext, new Parallelogram());
                     break;
                 }
                 case 3:
                 {
-                    //var inputFromCrudShapeMenu = crudShape.ReturnSelectionFromMenu();
-                    //if (inputFromCrudShapeMenu != 0)
                     crudShape.LoopMenu(inputFromCrudShapeMenu, dbContext, new Triangle());
                     break;
                 }
                 case 4:
                 {
-                    //var inputFromCrudShapeMenu = crudShape.ReturnSelectionFromMenu();
-                    //if (inputFromCrudShapeMenu != 0)
                     crudShape.LoopMenu(inputFromCrudShapeMenu, dbContext, new Rhombus());
                     break;
                 }
