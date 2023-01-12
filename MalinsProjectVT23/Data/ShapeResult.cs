@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MalinsProjectVT23.Data
+namespace MalinsProjectVT23.Data;
+
+public class ShapeResult
 {
-    public class ShapeResult
-    {
-        [Key] public int ShapeResultId { get; set; }
-        [Required] public decimal Height { get; set; }
-        [Required] public decimal Length { get; set; }
-        [Required] public decimal Circumference { get; set; }
-        [Required] public decimal Area { get; set; }
-        [Required] public Shape Shape { get; set; }
-    }
+    [Key] public int ShapeResultId { get; set; }
+    [Required][Column] public decimal Height { get; set; }
+    [Required][Column] public decimal Length { get; set; }
+    [Required][Column] public decimal Circumference { get; set; }
+    [Required][Column] public decimal Area { get; set; }
+    [Required] public Shape Shape { get; set; }
 }

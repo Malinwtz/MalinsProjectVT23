@@ -4,6 +4,7 @@ using MalinsProjectVT23.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MalinsProjectVT23.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230112083549_Added column in ShapeResult")]
+    partial class AddedcolumninShapeResult
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,22 +54,19 @@ namespace MalinsProjectVT23.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GameId"), 1L, 1);
 
-                    b.Property<bool>("ComputerWin")
+                    b.Property<bool>("Looser")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("NumberOfComputerWins")
+                    b.Property<int>("NumberOfLosses")
                         .HasColumnType("int");
 
-                    b.Property<int>("NumberOfUserWins")
+                    b.Property<int>("NumberOfWins")
                         .HasColumnType("int");
 
                     b.Property<bool>("Tie")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("UserWin")
+                    b.Property<bool>("Winner")
                         .HasColumnType("bit");
 
                     b.HasKey("GameId");
@@ -88,8 +87,7 @@ namespace MalinsProjectVT23.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ShapeId");
 

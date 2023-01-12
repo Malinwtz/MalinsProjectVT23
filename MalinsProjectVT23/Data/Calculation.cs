@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MalinsProjectVT23.Data
+namespace MalinsProjectVT23.Data;
+
+public class Calculation
 {
-    public class Calculation
-    {
-        [Key] public int CalculationId { get; set; }
-        [Required] public decimal Input1 { get; set; }
-        [Required] public decimal Input2 { get; set; }
-        [Required] public decimal Result { get; set; }
-    }
+    [Key] public int CalculationId { get; set; }
+    [Required] [Column] public decimal Input1 { get; set; }
+    [Required] [Column] public decimal Input2 { get; set; }
+    [Required] [Column] public decimal Result { get; set; }
 }
