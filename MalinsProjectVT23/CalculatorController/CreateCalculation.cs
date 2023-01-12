@@ -1,94 +1,88 @@
-﻿using ClassLibraryCalculations.Interface;
-using ClassLibraryCalculations;
+﻿using ClassLibraryCalculations;
+using ClassLibraryCalculations.Interface;
 using ClassLibraryErrorHandling;
-using ClassLibraryStrings;
 using MalinsProjectVT23.Data;
-using MalinsProjectVT23.MainMenuController;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MalinsProjectVT23.CalculatorController
+namespace MalinsProjectVT23.CalculatorController;
+
+public class CreateCalculation
 {
-    public class CreateCalculation
+    public CreateCalculation(ApplicationDbContext dbContext)
     {
-        public ICalculateStrategy CalculateStrategy { get; set; }
-        public decimal CalculatedResult { get; set; }
-        public ApplicationDbContext DbContext { get; set; }
-        public CreateCalculation(ApplicationDbContext dbContext)
+        DbContext = dbContext;
+    }
+
+    public ICalculateStrategy CalculateStrategy { get; set; }
+    public decimal CalculatedResult { get; set; }
+    public ApplicationDbContext DbContext { get; set; }
+
+    public void LoopMenu(int selectedFromMenu, ApplicationDbContext dbContext)
+    {
+        Console.Clear();
+        Console.Write(" Write number to calculate: ");
+        var userInputNumberToAdd1 = ErrorHandling.TryInt();
+        var userInputNumberToAdd2 = 0;
+        if (selectedFromMenu != 5)
         {
-            DbContext = dbContext;
+            Console.Write(" Write number 2 to calculate: ");
+            userInputNumberToAdd2 = ErrorHandling.TryInt();
         }
 
-        public void LoopMenu(int selectedFromMenu, ApplicationDbContext dbContext)
+        switch (selectedFromMenu)
         {
-            Console.Clear();
-            Console.Write(" Write number to calculate: ");
-            var userInputNumberToAdd1 = ErrorHandling.TryInt();
-            var userInputNumberToAdd2 = 0;
-            if (selectedFromMenu != 5)
+            case 1:
             {
-                Console.Write(" Write number 2 to calculate: ");
-                userInputNumberToAdd2 = ErrorHandling.TryInt();
+                CalculateStrategy = new AdditionCalculateStrategy();
+                break;
             }
-
-            switch (selectedFromMenu)
+            case 2:
             {
-                case 1:
-                    {
-                        CalculateStrategy = new AdditionCalculateStrategy();
-                        break;
-                    }
-                case 2:
-                    {
-                        CalculateStrategy = new SubtractCalculateStrategy();
-                        break;
-                    }
-                case 3:
-                    {
-                        CalculateStrategy = new MultiplyCalculateStrategy();
-                        break;
-                    }
-                case 4:
-                    {
-                        CalculateStrategy = new DivideCalculateStrategy();
-                        break;
-                    }
-                case 5:
-                    {
-                        CalculateStrategy = new SquareRootCalculateStrategy();
-                        break;
-                    }
-                case 6:
-                    {
-                        CalculateStrategy = new ModulusCalculateStrategy();
-                        break;
-                    }
+                CalculateStrategy = new SubtractCalculateStrategy();
+                break;
             }
-
-            if (selectedFromMenu == 5)
+            case 3:
             {
-                CalculatedResult = CalculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);
-                Console.Write($" Result: {CalculateStrategy.CalculationMethod} {userInputNumberToAdd1} " +
-                              $"= {CalculatedResult}");
+                CalculateStrategy = new MultiplyCalculateStrategy();
+                break;
             }
-            else
+            case 4:
             {
-                CalculatedResult = CalculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);
-                Console.Write($" Result: {userInputNumberToAdd1} {CalculateStrategy.CalculationMethod} {userInputNumberToAdd2} " +
-                              $"= {CalculatedResult}");
+                CalculateStrategy = new DivideCalculateStrategy();
+                break;
             }
-
-            DbContext.Calculations.Add(new Calculation
+            case 5:
             {
-                Input1 = userInputNumberToAdd1,
-                Input2 = userInputNumberToAdd2,
-                Result = CalculatedResult,
-                Date = DateTime.Now
-            });
-            DbContext.SaveChanges();
+                CalculateStrategy = new SquareRootCalculateStrategy();
+                break;
+            }
+            case 6:
+            {
+                CalculateStrategy = new ModulusCalculateStrategy();
+                break;
+            }
         }
+
+        if (selectedFromMenu == 5)
+        {
+            CalculatedResult = CalculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);
+            Console.Write($" Result: {CalculateStrategy.CalculationMethod} {userInputNumberToAdd1} " +
+                          $"= {CalculatedResult}");
+        }
+        else
+        {
+            CalculatedResult = CalculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);
+            Console.Write(
+                $" Result: {userInputNumberToAdd1} {CalculateStrategy.CalculationMethod} {userInputNumberToAdd2} " +
+                $"= {CalculatedResult}");
+        }
+
+        DbContext.Calculations.Add(new Calculation
+        {
+            Input1 = userInputNumberToAdd1,
+            Input2 = userInputNumberToAdd2,
+            Result = CalculatedResult,
+            Date = DateTime.Now
+        });
+        DbContext.SaveChanges();
     }
 }
