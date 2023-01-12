@@ -31,6 +31,7 @@ public class CreateShape
             case Parallelogram:
             {
                 Console.WriteLine("Create Parallelogram");
+                //flytta inmatningen eftersom det är för alla shapes
                 Console.WriteLine(" Write length");
                 var pLength = ErrorHandling.TryDecimal();
                 Console.WriteLine(" Write height");
