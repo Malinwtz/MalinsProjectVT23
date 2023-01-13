@@ -1,6 +1,6 @@
 ﻿using MalinsProjectVT23.Data;
 
-namespace MalinsProjectVT23.CalculatorController;
+namespace MalinsProjectVT23.Interface;
 
 public interface ICrud
 {

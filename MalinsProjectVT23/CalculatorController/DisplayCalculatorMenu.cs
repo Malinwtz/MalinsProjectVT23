@@ -1,16 +1,17 @@
 ﻿using ClassLibraryStrings;
+using MalinsProjectVT23.Interface;
 using MalinsProjectVT23.MainMenuController;
 
 namespace MalinsProjectVT23.CalculatorController;
 
-public class CalculatorMenu
+public class DisplayCalculatorMenu : IDisplayMenu
 {
     public int ReturnSelectionFromMenu()
     {
         Console.Clear();
         var endAlternative = 6;
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine(" Calculator Menu");
+        Console.WriteLine(" Calculator RunMenu");
         Line.LineThreeStar();
         Console.WriteLine(" 1. Add two numbers");
         Console.WriteLine(" 2. Subtract two numbers");

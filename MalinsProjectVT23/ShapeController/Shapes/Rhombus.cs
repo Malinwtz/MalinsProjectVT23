@@ -1,6 +1,6 @@
 ﻿using MalinsProjectVT23.Interface;
 
-namespace MalinsProjectVT23.ShapeController;
+namespace MalinsProjectVT23.ShapeController.Shapes;
 
 public class Rhombus : IShape
 {

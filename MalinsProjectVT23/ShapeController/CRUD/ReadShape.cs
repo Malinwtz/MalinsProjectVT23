@@ -8,7 +8,7 @@ using ClassLibraryStrings;
 using Microsoft.EntityFrameworkCore;
 using Action = ClassLibraryStrings.Action;
 
-namespace MalinsProjectVT23.ShapeController
+namespace MalinsProjectVT23.ShapeController.CRUD
 {
     public class ReadShape
     {
@@ -36,12 +36,12 @@ namespace MalinsProjectVT23.ShapeController
 
         private void View()
         {
-            Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}{5,-10}{6,-10}", 
+            Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}{5,-10}{6,-10}",
                 "ShapeResultId", "Name", "Height", "Length", "Area", "Circumference", "CreatedDate");
-            foreach (var shape in DbContext.ShapeResults.Include(s=>s.Shape))
+            foreach (var shape in DbContext.ShapeResults.Include(s => s.Shape))
             {
-                Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}{5,-10}{6,-10}", 
-                    $"{shape.ShapeResultId}", $"{shape.Shape.Name}", $"{shape.Height}", 
+                Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}{5,-10}{6,-10}",
+                    $"{shape.ShapeResultId}", $"{shape.Shape.Name}", $"{shape.Height}",
                     $"{shape.Length}", $"{shape.Area}", $"{shape.Circumference}", $"{shape.Shape.Date}");
             }
         }

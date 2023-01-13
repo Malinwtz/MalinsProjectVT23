@@ -2,8 +2,9 @@
 using ClassLibraryCalculations.Interface;
 using ClassLibraryErrorHandling;
 using MalinsProjectVT23.Data;
+using MalinsProjectVT23.Interface;
 
-namespace MalinsProjectVT23.CalculatorController;
+namespace MalinsProjectVT23.CalculatorController.CRUD;
 
 public class CreateCalculation : ICrud
 {
@@ -31,35 +32,35 @@ public class CreateCalculation : ICrud
         switch (selectedFromMenu)
         {
             case 1:
-            {
-                CalculateStrategy = new AdditionCalculateStrategy();
-                break;
-            }
+                {
+                    CalculateStrategy = new AdditionCalculateStrategy();
+                    break;
+                }
             case 2:
-            {
-                CalculateStrategy = new SubtractCalculateStrategy();
-                break;
-            }
+                {
+                    CalculateStrategy = new SubtractCalculateStrategy();
+                    break;
+                }
             case 3:
-            {
-                CalculateStrategy = new MultiplyCalculateStrategy();
-                break;
-            }
+                {
+                    CalculateStrategy = new MultiplyCalculateStrategy();
+                    break;
+                }
             case 4:
-            {
-                CalculateStrategy = new DivideCalculateStrategy();
-                break;
-            }
+                {
+                    CalculateStrategy = new DivideCalculateStrategy();
+                    break;
+                }
             case 5:
-            {
-                CalculateStrategy = new SquareRootCalculateStrategy();
-                break;
-            }
+                {
+                    CalculateStrategy = new SquareRootCalculateStrategy();
+                    break;
+                }
             case 6:
-            {
-                CalculateStrategy = new ModulusCalculateStrategy();
-                break;
-            }
+                {
+                    CalculateStrategy = new ModulusCalculateStrategy();
+                    break;
+                }
         }
 
         if (selectedFromMenu == 5)

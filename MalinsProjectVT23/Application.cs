@@ -17,7 +17,10 @@ public class Application
             var mainMenu = new MainMenu();
             var selectionFromMainMenu = mainMenu.ReturnSelectionFromMenu();
             if (selectionFromMainMenu == 0) break;
-            mainMenu.LoopMenu(selectionFromMainMenu, dbContext);
+            {
+                var runMainMenu = new RunMainMenu();
+                runMainMenu.LoopMenu(selectionFromMainMenu, dbContext);
+            }
         }
     }
 }

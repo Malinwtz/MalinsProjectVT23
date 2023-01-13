@@ -1,8 +1,8 @@
 ﻿using MalinsProjectVT23.Data;
 
-namespace MalinsProjectVT23.CalculatorController;
+namespace MalinsProjectVT23.Interface;
 
-public interface IMenu
+public interface IRunMenu
 {
     void RunMenuOptions(int selectedFromMenu, ApplicationDbContext dbContext);
 }
