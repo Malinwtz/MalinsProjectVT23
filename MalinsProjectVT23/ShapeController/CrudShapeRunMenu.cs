@@ -16,31 +16,32 @@ public class CrudShapeRunMenu
     }
     public void RunMenuOptions(int selectedFromMenu, ApplicationDbContext dbContext, IShape shape)
     {
-        switch (selectedFromMenu)
-        {
-            case 1:
+        
+            switch (selectedFromMenu)
             {
-                CrudShape = new CreateShape(dbContext);
-                break;
+                case 1:
+                {
+                    CrudShape = new CreateShape(dbContext);
+                    break;
+                }
+                case 2:
+                {
+                    Console.Clear();
+                    CrudShape = ReadShape;
+                    break;
+                }
+                case 3:
+                {
+                    CrudShape = new UpdateShape(dbContext, ReadShape);
+                    break;
+                }
+                case 4:
+                {
+                    CrudShape = new DeleteShape(dbContext, ReadShape);
+                    break;
+                }
             }
-            case 2:
-            {
-                Console.Clear();
-                CrudShape = ReadShape;
-                break;
-            }
-            case 3:
-            {
-                CrudShape = new UpdateShape(dbContext, ReadShape);
-                break;
-            }
-            case 4:
-            {
-                CrudShape = new DeleteShape(dbContext, ReadShape);
-                break;
-            }
-        }
-
-        CrudShape.RunCrud(shape);
+            CrudShape.RunCrud(shape);
+        
     }
 }
