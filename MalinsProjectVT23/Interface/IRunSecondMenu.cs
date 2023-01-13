@@ -1,8 +1,9 @@
-﻿using MalinsProjectVT23.Data;
+﻿using ClassLibraryCalculations.Interface;
+using MalinsProjectVT23.Data;
 
 namespace MalinsProjectVT23.Interface;
 
-public interface ICrud
+public interface IRunSecondMenu
 {
     void RunMenuOptions(int selectedFromMenu, ApplicationDbContext dbContext);
 }

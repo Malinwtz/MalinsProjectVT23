@@ -4,16 +4,19 @@ using MalinsProjectVT23.Interface;
 
 namespace MalinsProjectVT23.CalculatorController.CRUD
 {
-    public class DeleteCalculation : ICrud
+    public class DeleteCalculation : ICrudCalculation
     {
         public DeleteCalculation(ApplicationDbContext dbContext)
         {
             DbContext = dbContext;
         }
         public ApplicationDbContext DbContext { get; set; }
-        public void RunMenuOptions(int selectedFromMenu, ApplicationDbContext dbContext)
+       
+
+        public void RunCrud(int selectedFromMenu, ApplicationDbContext dbContext, ICalculateStrategy calculateStrategy)
         {
-            throw new NotImplementedException();
+            Console.WriteLine(" Delete Calculation");
+            Console.ReadKey();
         }
     }
 }

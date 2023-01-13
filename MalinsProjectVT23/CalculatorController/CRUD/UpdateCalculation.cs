@@ -1,18 +1,21 @@
-﻿using MalinsProjectVT23.Data;
+﻿using ClassLibraryCalculations.Interface;
+using MalinsProjectVT23.Data;
 using MalinsProjectVT23.Interface;
 
 namespace MalinsProjectVT23.CalculatorController.CRUD
 {
-    public class UpdateCalculation : ICrud
+    public class UpdateCalculation : ICrudCalculation
     {
         public UpdateCalculation(ApplicationDbContext dbContext)
         {
             DbContext = dbContext;
         }
         public ApplicationDbContext DbContext { get; set; }
-        public void RunMenuOptions(int selectedFromMenu, ApplicationDbContext dbContext)
+       
+        public void RunCrud(int selectedFromMenu, ApplicationDbContext dbContext, ICalculateStrategy calculateStrategy)
         {
-            throw new NotImplementedException();
+            Console.WriteLine(" Update Calculation");
+            Console.ReadKey();
         }
     }
 }

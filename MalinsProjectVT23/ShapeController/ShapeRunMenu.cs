@@ -6,7 +6,7 @@ using MalinsProjectVT23.ShapeController.Shapes;
 
 namespace MalinsProjectVT23.ShapeController;
 
-public class ShapeRunMenu : IRunMenu
+public class ShapeRunMenu : IRunSecondMenu
 {
     public void RunMenuOptions(int selectedFromMenu, ApplicationDbContext dbContext)
     {

@@ -8,7 +8,7 @@ namespace MalinsProjectVT23.MainMenuController;
 
 public class RunMainMenu
 {
-    public IRunMenu RunMenu { get; set; }
+    public IRunSecondMenu RunMenu { get; set; }
     public IDisplayMenu DisplayMenu { get; set; }
 
     public void LoopMenu(int selectedFromMenu, ApplicationDbContext dbContext)
@@ -24,7 +24,7 @@ public class RunMainMenu
             case 2:
             {
                 DisplayMenu = new DisplayCalculatorMenu();
-                //RunMenu = new 
+                RunMenu = new CalculatorRunMenu();
                 break;
             }
             case 3:
@@ -37,7 +37,7 @@ public class RunMainMenu
 
         while (true)
         {
-            var inputFromChosenMenu = DisplayMenu.ReturnSelectionFromMenu();
+            var inputFromChosenMenu = DisplayMenu.ReturnSelectionFromMenu(); //visar räknesätt
             if (inputFromChosenMenu == 0) break;
             RunMenu.RunMenuOptions(inputFromChosenMenu, dbContext);
         }

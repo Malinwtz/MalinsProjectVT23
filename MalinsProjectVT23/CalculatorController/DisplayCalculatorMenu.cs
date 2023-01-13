@@ -11,7 +11,7 @@ public class DisplayCalculatorMenu : IDisplayMenu
         Console.Clear();
         var endAlternative = 6;
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine(" Calculator RunMenu");
+        Console.WriteLine(" Calculator Menu - Choose calculation method");
         Line.LineThreeStar();
         Console.WriteLine(" 1. Add two numbers");
         Console.WriteLine(" 2. Subtract two numbers");

@@ -5,7 +5,7 @@ using MalinsProjectVT23.MainMenuController;
 
 namespace MalinsProjectVT23.RockScissorPaperGameController;
 
-public class RockScissorPaperRunMenu : IRunMenu
+public class RockScissorPaperRunMenu : IRunSecondMenu
 {
     public void RunMenuOptions(int selectedFromMenu, ApplicationDbContext dbContext)
     {
