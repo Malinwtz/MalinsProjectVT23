@@ -1,6 +1,8 @@
 ﻿using ClassLibraryErrorHandling;
+using ClassLibraryStrings;
 using MalinsProjectVT23.Data;
 using MalinsProjectVT23.Interface;
+using MalinsProjectVT23.MainMenuController;
 using Microsoft.EntityFrameworkCore;
 using Action = ClassLibraryStrings.Action;
 
@@ -18,6 +20,7 @@ public class UpdateShape : ICrudShape
     public ReadShape Read { get; set; }
     public void RunCrud(IShape shape)
     {
+        Console.Clear();
         if (!DbContext.ShapeResults.Where(s => s.Shape.Name == shape.Name)
                 .Include(s => s.Shape)
                 .Any())
@@ -32,15 +35,46 @@ public class UpdateShape : ICrudShape
         else if (DbContext.ShapeResults.Any())
         {
             Read.View(shape);
-            //linje
+            Line.LineOneHyphen();
             Console.Write(" Select shape by Id: ");
             var shapeIdToFind = ErrorHandling.TryInt();
             var shapeFoundById = DbContext.ShapeResults
                     .Include(s => s.Shape)
                     .FirstOrDefault(s => s.ShapeResultId == shapeIdToFind);
 
-            Console.WriteLine($" Vald shape är: Id {shapeFoundById.ShapeResultId}");
-            Console.ReadLine();
+            Action.Successful($"\n Chosen shape:\n Id {shapeFoundById.ShapeResultId}, {shapeFoundById.Shape.Name} " +
+                              $"\n Height: {shapeFoundById.Height}\n Length: {shapeFoundById.Length}\n");
+
+            var endAlternative = 2;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(" Select what you want to change ");
+            Console.WriteLine(" 1. Height");
+            Console.WriteLine($" {endAlternative}. Length");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            ReturnFromMenuClass.ExitMenu();
+            var sel = ReturnFromMenuClass.ReturnFromMenu(endAlternative);
+            Console.Write(" Set a new value: ");
+            var newValue = ErrorHandling.TryDecimal();
+            if (sel != 0)
+            {
+                switch (sel)
+                {
+                    case 1:
+                    {
+                        shapeFoundById.Height = newValue;
+                        break;
+                    }
+                    case 2:
+                    {
+                        shapeFoundById.Length = newValue;
+                        break;
+                    }
+                }
+
+                DbContext.SaveChanges();
+                Action.Successful(" Value changed!");
+                Action.PressEnterToContinue();
+            }
         }
     }
 }
