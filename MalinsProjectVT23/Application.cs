@@ -12,16 +12,16 @@ public class Application
     {
         var builder = new Builder();
         builder.BuildProject();
-        var dbContext = builder.ConnectProject(); //Här skapas dbContext  - ska skickas med i hela programmet
+        var dbContext = builder.ConnectProject(); 
         var readShape = new ReadShape(dbContext);
-        
+        var mainMenu = new MainMenu();
+        var runMainMenu = new RunMainMenu(dbContext, readShape);
+
         while (true)
         {
-            var mainMenu = new MainMenu();
             var selectionFromMainMenu = mainMenu.ReturnSelectionFromMenu();
             if (selectionFromMainMenu == 0) break;
             {
-                var runMainMenu = new RunMainMenu(dbContext, readShape);
                 runMainMenu.LoopMenu(selectionFromMainMenu, dbContext);
             }
         }
