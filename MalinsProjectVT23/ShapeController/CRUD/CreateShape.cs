@@ -22,52 +22,42 @@ public class CreateShape : ICrudShape
         var length = ErrorHandling.TryDecimal();
         Console.WriteLine(" Write height");
         var height = ErrorHandling.TryDecimal();
+
         switch (shape)
         {
             case Rectangle:
-                {
-                    var pCircumference = shape.CalculateCircumference(length, height);
-                    var pArea = shape.CalculateArea(length, height);
-                    AddShapeResultAndShapeToDatabase(pArea, pCircumference, height, length, "Rectangle"); //gör om till enum
-                    DbContext.SaveChanges();
-                    Action.Successful(" Saved");
-                    Action.PressEnterToContinue();
-                    break;
-                }
+            {
+                shape = new Rectangle();
+                break;
+            }
             case Triangle:
-                {
-                    var pCircumference = shape.CalculateCircumference(length, height);
-                    var pArea = shape.CalculateArea(length, height);
-                    AddShapeResultAndShapeToDatabase(pArea, pCircumference, height, length, "Triangle"); //gör om till enum
-                    DbContext.SaveChanges();
-                    Action.Successful(" Saved");
-                    Action.PressEnterToContinue();
-                    break;
-                }
+            {
+                shape = new Triangle();
+                break;
+            }
             case Parallelogram:
-                {
-                    var pCircumference = shape.CalculateCircumference(length, height);
-                    var pArea = shape.CalculateArea(length, height);
-                    AddShapeResultAndShapeToDatabase(pArea, pCircumference, height, length, "Parallelogram"); //gör om till enum
-                    DbContext.SaveChanges();
-                    Action.Successful(" Saved");
-                    Action.PressEnterToContinue();
-                    break;
-                }
+            {
+                shape = new Parallelogram();
+                break;
+            }
             case Rhombus:
-                {
-                    var pCircumference = shape.CalculateCircumference(length, height);
-                    var pArea = shape.CalculateArea(length, height);
-                    AddShapeResultAndShapeToDatabase(pArea, pCircumference, height, length, "Rhombus"); //gör om till enum
-                    DbContext.SaveChanges();
-                    Action.Successful(" Saved");
-                    Action.PressEnterToContinue();
-                    break;
-                }
+            {
+                shape = new Rhombus();
+
+                break;
+            }
         }
+
+        var pCircumference = shape.CalculateCircumference(length, height);
+        var pArea = shape.CalculateArea(length, height);
+        AddShapeResultAndShapeToDatabase(pArea, pCircumference, height, length, shape.Name);
+        DbContext.SaveChanges();
+        Action.Successful(" Saved");
+        Action.PressEnterToContinue();
     }
 
-    private void AddShapeResultAndShapeToDatabase(decimal pArea, decimal pCircumference, decimal height, decimal length, string shapeName)
+    private void AddShapeResultAndShapeToDatabase(decimal pArea, decimal pCircumference, decimal height, decimal length,
+        string shapeName)
     {
         DbContext.ShapeResults.Add(new ShapeResult
         {
