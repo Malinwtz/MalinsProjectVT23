@@ -17,6 +17,7 @@ public class CreateShape : ICrudShape
 
     public void RunCrud(IShape shape)
     {
+        Console.Clear();
         Console.WriteLine($" Create shape: {shape.Name}");
         Console.WriteLine(" Write length");
         var length = ErrorHandling.TryDecimal();

@@ -56,28 +56,30 @@ public class UpdateShape : ICrudShape
             Console.ForegroundColor = ConsoleColor.Gray;
             ReturnFromMenuClass.ExitMenu();
             var sel = ReturnFromMenuClass.ReturnFromMenu(endAlternative);
+
+            if (sel == 0) return;
+
             Console.Write(" Set a new value: ");
             var newValue = ErrorHandling.TryDecimal();
-            if (sel != 0)
+            switch (sel)
             {
-                switch (sel)
+                case 1:
                 {
-                    case 1:
-                    {
-                        shapeFoundById.Height = newValue;
-                        break;
-                    }
-                    case 2:
-                    {
-                        shapeFoundById.Length = newValue;
-                        break;
-                    }
+                    shapeFoundById.Height = newValue;
+                    break;
                 }
-
-                DbContext.SaveChanges();
-                Action.Successful(" Value changed!");
-                Action.PressEnterToContinue();
+                case 2:
+                {
+                    shapeFoundById.Length = newValue;
+                    break;
+                }
             }
+
+            shapeFoundById.Circumference = shape.CalculateCircumference(shapeFoundById.Length, shapeFoundById.Height);
+            shapeFoundById.Area = shape.CalculateArea(shapeFoundById.Length, shapeFoundById.Height);
+            DbContext.SaveChanges();
+            Action.Successful(" Value changed!");
+            Action.PressEnterToContinue();
         }
     }
 }
