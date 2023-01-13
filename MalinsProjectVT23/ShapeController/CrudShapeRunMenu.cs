@@ -36,9 +36,7 @@ public class CrudShapeRunMenu
             }
             case 4:
             {
-                //CrudShape = new DeleteShape(dbContext);
-                Console.WriteLine("Delete shape not finished");
-                Console.ReadKey();
+                CrudShape = new DeleteShape(dbContext, ReadShape);
                 break;
             }
         }
