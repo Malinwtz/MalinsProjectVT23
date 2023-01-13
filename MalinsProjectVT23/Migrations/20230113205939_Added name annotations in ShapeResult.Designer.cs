@@ -4,6 +4,7 @@ using MalinsProjectVT23.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MalinsProjectVT23.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230113205939_Added name annotations in ShapeResult")]
+    partial class AddednameannotationsinShapeResult
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,13 +40,13 @@ namespace MalinsProjectVT23.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Input1")
-                        .HasColumnType("decimal(38,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Input2")
-                        .HasColumnType("decimal(38,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Result")
-                        .HasColumnType("decimal(38,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("CalculationId");
 
@@ -109,19 +111,19 @@ namespace MalinsProjectVT23.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShapeResultId"), 1L, 1);
 
                     b.Property<decimal>("Area")
-                        .HasColumnType("decimal(38,2)")
+                        .HasColumnType("decimal(18,2)")
                         .HasColumnName("AreaInSquareCentimeter");
 
                     b.Property<decimal>("Circumference")
-                        .HasColumnType("decimal(38,2)")
+                        .HasColumnType("decimal(18,2)")
                         .HasColumnName("CircumferenceInCentimeter");
 
                     b.Property<decimal>("Height")
-                        .HasColumnType("decimal(38,2)")
+                        .HasColumnType("decimal(18,2)")
                         .HasColumnName("HeightInCentimeter");
 
                     b.Property<decimal>("Length")
-                        .HasColumnType("decimal(38,2)")
+                        .HasColumnType("decimal(18,2)")
                         .HasColumnName("LengthInCentimeter");
 
                     b.Property<DateTime>("ResultDate")
