@@ -26,6 +26,7 @@ namespace MalinsProjectVT23.ShapeController
                 }
                 case 2:
                 {
+                    Console.Clear();
                     read.Read();
                     break;
                 }

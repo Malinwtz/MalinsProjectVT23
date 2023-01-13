@@ -27,7 +27,7 @@ namespace MalinsProjectVT23.ShapeController.CRUD
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Action.PressEnterToContinue();
             }
-            else if (!DbContext.ShapeResults.Any())
+            else if (DbContext.ShapeResults.Any())
             {
                 View();
                 Action.PressEnterToContinue();
