@@ -38,7 +38,7 @@ public class CreateCalculation : ICrudCalculation
         }
         else
         {
-            CalculatedResult = CalculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);//object not set to an instance
+            CalculatedResult = CalculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);
             Console.Write(
                 $" Result: {userInputNumberToAdd1} {CalculateStrategy.CalculationMethod} {userInputNumberToAdd2} " +
                 $"= {CalculatedResult}");
