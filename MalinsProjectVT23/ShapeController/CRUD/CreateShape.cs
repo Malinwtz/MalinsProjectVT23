@@ -17,7 +17,7 @@ public class CreateShape : ICrudShape
 
     public void RunCrud(IShape shape)
     {
-        Console.WriteLine($" Create shape: {shape}");
+        Console.WriteLine($" Create shape: {shape.Name}");
         Console.WriteLine(" Write length");
         var length = ErrorHandling.TryDecimal();
         Console.WriteLine(" Write height");
@@ -68,7 +68,7 @@ public class CreateShape : ICrudShape
             Shape = new Shape
             {
                 Date = DateTime.Now,
-                Name = shapeName // - enum?
+                Name = shapeName 
             }
         });
     }
