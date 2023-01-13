@@ -4,6 +4,8 @@ namespace MalinsProjectVT23.ShapeController.Shapes;
 
 public class Triangle : IShape
 {
+    public string Name { get; set; } = "Triangle";
+
     public decimal CalculateArea(decimal length, decimal height)
     {
         var tArea = length * height / 2;
