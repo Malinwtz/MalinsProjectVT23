@@ -10,15 +10,16 @@ namespace MalinsProjectVT23.CalculatorController.CRUD
 {
     public class DeleteCalculation : ICrudCalculation
     {
-        public DeleteCalculation(ApplicationDbContext dbContext, ReadCalculation readCalculation)
+        public DeleteCalculation(ApplicationDbContext dbContext, ReadCalculation readCalculation, ICalculateStrategy calculateStrategy)
         {
             DbContext = dbContext;
             ReadCalculation = readCalculation;
+            CalculateStrategy = calculateStrategy;
         }
         public ApplicationDbContext DbContext { get; set; }
         public ReadCalculation ReadCalculation { get; set; }
-
-        public void RunCrud(int selectedFromMenu, ApplicationDbContext dbContext, ICalculateStrategy calculateStrategy)
+        public ICalculateStrategy CalculateStrategy { get; set; }
+        public void RunCrud(int selectedFromMenu)
         {
             Console.Clear();
             if (!DbContext.Calculations.Any())

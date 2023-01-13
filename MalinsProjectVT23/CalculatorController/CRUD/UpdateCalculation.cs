@@ -6,13 +6,14 @@ namespace MalinsProjectVT23.CalculatorController.CRUD
 {
     public class UpdateCalculation : ICrudCalculation
     {
-        public UpdateCalculation(ApplicationDbContext dbContext)
+        public UpdateCalculation(ApplicationDbContext dbContext, ICalculateStrategy calculateStrategy)
         {
             DbContext = dbContext;
+            CalculateStrategy = calculateStrategy;
         }
         public ApplicationDbContext DbContext { get; set; }
-       
-        public void RunCrud(int selectedFromMenu, ApplicationDbContext dbContext, ICalculateStrategy calculateStrategy)
+        public ICalculateStrategy CalculateStrategy { get; set; }
+        public void RunCrud(int selectedFromMenu)
         {
             Console.WriteLine(" Update Calculation");
             Console.ReadKey();

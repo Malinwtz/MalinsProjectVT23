@@ -1,4 +1,5 @@
 ﻿using MalinsProjectVT23.CalculatorController;
+using MalinsProjectVT23.CalculatorController.CRUD;
 using MalinsProjectVT23.Data;
 using MalinsProjectVT23.Interface;
 using MalinsProjectVT23.RockScissorPaperGameController;
@@ -11,7 +12,7 @@ public class RunMainMenu
 {
     public ApplicationDbContext DbContext { get; set; }
     public ReadShape ReadShape { get; set; }
-
+    public ReadCalculation ReadCalculation { get; set; }
     public RunMainMenu(ApplicationDbContext dbContext, ReadShape readShape)
     {
         DbContext = dbContext;
@@ -33,7 +34,7 @@ public class RunMainMenu
             case 2:
             {
                 DisplayMenu = new DisplayCalculatorMenu();
-                RunMenu = new CalculatorRunMenu();
+                RunMenu = new CalculatorRunMenu(DbContext, ReadCalculation);
                 break;
             }
             case 3:

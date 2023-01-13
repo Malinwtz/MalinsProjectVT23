@@ -1,48 +1,51 @@
-﻿using MalinsProjectVT23.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ClassLibraryCalculations;
-using ClassLibraryCalculations.Interface;
+﻿using ClassLibraryCalculations.Interface;
 using MalinsProjectVT23.CalculatorController.CRUD;
 using MalinsProjectVT23.Data;
+using MalinsProjectVT23.Interface;
 
-namespace MalinsProjectVT23.CalculatorController
+namespace MalinsProjectVT23.CalculatorController;
+
+public class CrudCalculatorRunMenu
 {
-    public class CrudCalculatorRunMenu 
+    public CrudCalculatorRunMenu(ApplicationDbContext dbContext, ReadCalculation readCalculation, ICalculateStrategy calculateStrategy)
     {
-        public ReadCalculation ReadCalculation { get; set; }
-        public ICalculateStrategy CalculateStrategy { get; set; }
-        public ICrudCalculation CrudCalculation { get; set; }
-        public void RunMenuOptions(int selectedFromMenu, ApplicationDbContext dbContext, ICalculateStrategy calculateStrategy)
+        DbContext = dbContext;
+        CalculateStrategy = calculateStrategy;
+        ReadCalculation = readCalculation;
+    }
+
+    public ApplicationDbContext DbContext { get; set; }
+    public ReadCalculation ReadCalculation { get; set; }
+    public ICalculateStrategy CalculateStrategy { get; set; }
+    public ICrudCalculation CrudCalculation { get; set; } //set to an instance?
+
+    public void RunMenuOptions(int selectedFromMenu)
+    {
+        switch (selectedFromMenu)
         {
-            switch (selectedFromMenu)
+            case 1:
             {
-                case 1:
-                {
-                    CrudCalculation = new CreateCalculation(dbContext);
-                    break;
-                }
-                case 2:
-                {
-                    CrudCalculation = ReadCalculation;
-                    break;
-                }
-                case 3:
-                {
-                    CrudCalculation = new UpdateCalculation(dbContext);
-                    break;
-                }
-                case 4:
-                {
-                    CrudCalculation = new DeleteCalculation(dbContext, ReadCalculation);
-                    break;
-                }
+                CrudCalculation = new CreateCalculation(DbContext, CalculateStrategy);
+                break;
             }
-            //ta med räknesätt och typ av crud och gå vidare till cruddandet av uträkningen
-            CrudCalculation.RunCrud(selectedFromMenu, dbContext, CalculateStrategy);
+            case 2:
+            {
+                CrudCalculation = new ReadCalculation(DbContext, CalculateStrategy);
+                break;
+            }
+            case 3:
+            {
+                CrudCalculation = new UpdateCalculation(DbContext, CalculateStrategy);
+                break;
+            }
+            case 4:
+            {
+                CrudCalculation = new DeleteCalculation(DbContext, ReadCalculation, CalculateStrategy);
+                break;
+            }
         }
+
+        // gå vidare till cruddandet av uträkningen
+        CrudCalculation.RunCrud(selectedFromMenu);
     }
 }

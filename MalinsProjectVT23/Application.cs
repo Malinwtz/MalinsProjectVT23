@@ -1,6 +1,7 @@
 ﻿using MalinsProjectVT23.Data;
 using MalinsProjectVT23.MainMenuController;
 using ClassLibraryCalculations;
+using MalinsProjectVT23.CalculatorController.CRUD;
 using MalinsProjectVT23.ShapeController.CRUD;
 
 namespace MalinsProjectVT23;

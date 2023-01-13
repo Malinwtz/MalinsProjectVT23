@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ClassLibraryCalculations;
 using ClassLibraryCalculations.Interface;
+using MalinsProjectVT23.CalculatorController.CRUD;
 using MalinsProjectVT23.Data;
 using MalinsProjectVT23.Interface;
 
@@ -12,6 +13,14 @@ namespace MalinsProjectVT23.CalculatorController
 {
     public class CalculatorRunMenu : IRunSecondMenu 
     {
+        public CalculatorRunMenu(ApplicationDbContext dbContext, ReadCalculation readCalculation)
+        {
+            DbContext = dbContext;
+            ReadCalculation = readCalculation;
+        }
+
+        public ApplicationDbContext DbContext { get; set; }
+        public ReadCalculation ReadCalculation { get; set; }
         public ICalculateStrategy CalculateStrategy { get; set; }
         public void RunMenuOptions(int selectedFromMenu, ApplicationDbContext dbContext)
         {
@@ -48,14 +57,14 @@ namespace MalinsProjectVT23.CalculatorController
                     break;
                 }
             }
-            //ta med räknesättet och gå vidare och välj crudtyp  - Runcrudmenu
+            // gå vidare och välj crudtyp  - Runcrudmenu
             while (true)
             {
                 var displayCrudCalculatorMenu = new DisplayCrudCalculatorMenu();
                 var selectedFromCrudCalculationMenu = displayCrudCalculatorMenu.ReturnSelectionFromMenu();
                 if (selectedFromCrudCalculationMenu == 0) break;
-                var crudCalculatorRunMenu = new CrudCalculatorRunMenu();
-                crudCalculatorRunMenu.RunMenuOptions(selectedFromCrudCalculationMenu, dbContext, CalculateStrategy);
+                var crudCalculatorRunMenu = new CrudCalculatorRunMenu(DbContext, ReadCalculation, CalculateStrategy);
+                crudCalculatorRunMenu.RunMenuOptions(selectedFromCrudCalculationMenu);
             }
         }
     }

@@ -8,15 +8,17 @@ namespace MalinsProjectVT23.CalculatorController.CRUD;
 
 public class CreateCalculation : ICrudCalculation
 {
-    public CreateCalculation(ApplicationDbContext dbContext)
+    public CreateCalculation(ApplicationDbContext dbContext, ICalculateStrategy calculateStrategy)
     {
         DbContext = dbContext;
+        CalculateStrategy = calculateStrategy;
     }
 
+    public ICalculateStrategy CalculateStrategy { get; set; }
     public decimal CalculatedResult { get; set; }
     public ApplicationDbContext DbContext { get; set; }
 
-    public void RunCrud(int selectedFromCalculateMenu, ApplicationDbContext dbContext, ICalculateStrategy calculateStrategy)
+    public void RunCrud(int selectedFromCalculateMenu) //tagit bort calcstrategy
     {
         Console.Clear();
         Console.Write(" Write number to calculate: ");
@@ -30,15 +32,15 @@ public class CreateCalculation : ICrudCalculation
 
         if (selectedFromCalculateMenu == 5)
         {
-            CalculatedResult = calculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);
-            Console.Write($" Result: {calculateStrategy.CalculationMethod} {userInputNumberToAdd1} " +
+            CalculatedResult = CalculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);
+            Console.Write($" Result: {CalculateStrategy.CalculationMethod} {userInputNumberToAdd1} " +
                           $"= {CalculatedResult}");
         }
         else
         {
-            CalculatedResult = calculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);//object not set to an instance
+            CalculatedResult = CalculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);//object not set to an instance
             Console.Write(
-                $" Result: {userInputNumberToAdd1} {calculateStrategy.CalculationMethod} {userInputNumberToAdd2} " +
+                $" Result: {userInputNumberToAdd1} {CalculateStrategy.CalculationMethod} {userInputNumberToAdd2} " +
                 $"= {CalculatedResult}");
         }
 
