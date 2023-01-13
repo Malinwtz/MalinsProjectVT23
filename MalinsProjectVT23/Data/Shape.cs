@@ -11,6 +11,5 @@ namespace MalinsProjectVT23.Data
     {
         [Key] public int ShapeId { get; set; }
         [Required][MaxLength(100)] public string Name { get; set; }
-        [Required] public DateTime Date { get; set; }
     }
 }

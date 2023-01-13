@@ -10,5 +10,6 @@ public class ShapeResult
     [Required][Column] public decimal Length { get; set; }
     [Required][Column] public decimal Circumference { get; set; }
     [Required][Column] public decimal Area { get; set; }
+    [Required] public DateTime ResultDate { get; set; }
     [Required] public Shape Shape { get; set; }
 }

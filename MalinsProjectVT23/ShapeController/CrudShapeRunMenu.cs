@@ -7,7 +7,13 @@ namespace MalinsProjectVT23.ShapeController;
 public class CrudShapeRunMenu
 {
     public ICrudShape CrudShape { get; set; }
-
+    public ApplicationDbContext DbContext { get; set; }
+    public ReadShape ReadShape { get; set; }
+    public CrudShapeRunMenu(ApplicationDbContext dbContext, ReadShape read)
+    {
+        DbContext = dbContext;
+        ReadShape = read;
+    }
     public void RunMenuOptions(int selectedFromMenu, ApplicationDbContext dbContext, IShape shape)
     {
         switch (selectedFromMenu)
@@ -20,14 +26,12 @@ public class CrudShapeRunMenu
             case 2:
             {
                 Console.Clear();
-                CrudShape = new ReadShape(dbContext);
+                CrudShape = ReadShape;
                 break;
             }
             case 3:
             {
-                //CrudShape = new UpdateShape(dbContext);
-                Console.WriteLine("Update shape not finished");
-                Console.ReadKey();
+                CrudShape = new UpdateShape(dbContext, ReadShape);
                 break;
             }
             case 4:

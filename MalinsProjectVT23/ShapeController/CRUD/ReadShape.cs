@@ -34,7 +34,7 @@ public class ReadShape : ICrudShape
         }
     }
 
-    private void View(IShape shapeToShow)
+    public void View(IShape shapeToShow)
     {
         Console.WriteLine("{0,-10}{1,-15}{2,-15}{3,-15}{4,-15}{5,-15}{6,-15}",
             "ShapeResultId", "Name", "Height", "Length", "Area", "Circumference", "CreatedDate");
@@ -44,7 +44,7 @@ public class ReadShape : ICrudShape
         {
             Console.WriteLine("{0,-10}{1,-15}{2,-15}{3,-15}{4,-15}{5,-15}{6,-15}",
                 $"{shape.ShapeResultId}", $"{shape.Shape.Name}", $"{shape.Height}",
-                $"{shape.Length}", $"{shape.Area}", $"{shape.Circumference}", $"{shape.Shape.Date}");
+                $"{shape.Length}", $"{shape.Area}", $"{shape.Circumference}", $"{shape.ResultDate}");
         }
     }
 }

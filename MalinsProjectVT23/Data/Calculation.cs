@@ -9,5 +9,5 @@ public class Calculation
     [Required] [Column] public decimal Input1 { get; set; }
     [Required] [Column] public decimal Input2 { get; set; }
     [Required] [Column] public decimal Result { get; set; }
-    [Required] public DateTime Date { get; set; }
+    [Required] public DateTime CalculationDate { get; set; }
 }

@@ -47,7 +47,7 @@ public class CreateCalculation : ICrudCalculation
             Input1 = userInputNumberToAdd1,
             Input2 = userInputNumberToAdd2,
             Result = CalculatedResult,
-            Date = DateTime.Now
+            CalculationDate = DateTime.Now
         });
         DbContext.SaveChanges();
     }

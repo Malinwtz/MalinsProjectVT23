@@ -65,9 +65,9 @@ public class CreateShape : ICrudShape
             Circumference = pCircumference,
             Height = height,
             Length = length,
+            ResultDate = DateTime.Now,
             Shape = new Shape
             {
-                Date = DateTime.Now,
                 Name = shapeName 
             }
         });

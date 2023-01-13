@@ -16,25 +16,15 @@ public class DataInitializer
     {
         if (!dbContext.Shapes.Any())
         {
-            dbContext.Shapes.Add(new Shape
-            {
-                Name = "Rectangle",
-                Date = DateTime.Now
-            });
-            dbContext.Shapes.Add(new Shape
-            {
-                Name = "Rhombus",
-                Date = DateTime.Now
-            });
             dbContext.ShapeResults.Add(new ShapeResult
             {
                 Area = (48*50)/2,
                 Circumference = 50*3,
                 Height = 48,
                 Length = 50,
+                ResultDate = DateTime.Now,
                 Shape = new Shape
                 {
-                    Date = DateTime.Now,
                     Name = "Triangle" //parallelogram - enum?
                 }
             });
@@ -44,9 +34,9 @@ public class DataInitializer
                 Circumference = (48+50)*2,
                 Height = 48,
                 Length = 50,
+                ResultDate = DateTime.Now,
                 Shape = new Shape 
                 {
-                    Date = DateTime.Now,
                     Name = "Parallelogram" //parallelogram - enum?
                 }
             });
