@@ -23,13 +23,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ShapeResultController\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ClassLibraryCalculations\ClassLibraryCalculations.csproj" />
     <ProjectReference Include="..\ClassLibraryErrorHandling\ClassLibraryErrorHandling.csproj" />
     <ProjectReference Include="..\ClassLibraryStrings\ClassLibraryStrings.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ShapeResultController\" />
   </ItemGroup>
 
 </Project>

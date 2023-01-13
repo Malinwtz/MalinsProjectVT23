@@ -1,9 +1,11 @@
 ﻿using MalinsProjectVT23.Interface;
 
-namespace MalinsProjectVT23.ShapeController;
+namespace MalinsProjectVT23.ShapeController.Shapes;
 
 public class Parallelogram : IShape
 {
+    public string Name { get; set; } = "Parallelogram";
+
     public decimal CalculateArea(decimal length, decimal height)
     {
         var areaOfParallelogram = length * height;

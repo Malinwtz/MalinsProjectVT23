@@ -1,18 +1,20 @@
 ﻿using MalinsProjectVT23.Interface;
 
-namespace MalinsProjectVT23.ShapeController;
+namespace MalinsProjectVT23.ShapeController.Shapes;
 
 public class Triangle : IShape
 {
+    public string Name { get; set; } = "Triangle";
+
     public decimal CalculateArea(decimal length, decimal height)
     {
-        var tArea = (length * height)/2;
+        var tArea = length * height / 2;
         return tArea;
     }
 
     public decimal CalculateCircumference(decimal length, decimal height)
     {
-        var tCircumference = length * 3; 
+        var tCircumference = length * 3;
         return tCircumference;
     }
 }
