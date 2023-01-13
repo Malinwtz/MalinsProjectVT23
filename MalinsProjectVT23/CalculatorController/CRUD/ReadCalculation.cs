@@ -21,6 +21,7 @@ public class ReadCalculation : ICrudCalculation
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write(" The list of calculations is empty ");
+            Console.ForegroundColor = ConsoleColor.Gray;
             Action.PressEnterToContinue();
         }
         else if (DbContext.Calculations.Any()) //specifik calc
@@ -32,7 +33,7 @@ public class ReadCalculation : ICrudCalculation
 
     public void View() //visa utifrån calcstrategy . lägg till calcstrategy i calculation
     {
-        Console.WriteLine("{0,-15}{1,-15}{2,-15}{3,-15}{4,-15}{5,-15}{6,-15}",
+        Console.WriteLine("{0,-15}{1,-15}{2,-15}{3,-15}{4,-15}",
             "CalculationId", "Input1", "Input2", "Result", "Date");
 
         foreach (var calculation in DbContext.Calculations)

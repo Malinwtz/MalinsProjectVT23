@@ -1,7 +1,9 @@
-﻿using ClassLibraryCalculations.Interface;
+﻿using ClassLibraryCalculations;
+using ClassLibraryCalculations.Interface;
 using ClassLibraryErrorHandling;
 using MalinsProjectVT23.Data;
 using MalinsProjectVT23.Interface;
+using Action = ClassLibraryStrings.Action;
 
 namespace MalinsProjectVT23.CalculatorController.CRUD;
 
@@ -17,39 +19,42 @@ public class CreateCalculation : ICrudCalculation
     public decimal CalculatedResult { get; set; }
     public ApplicationDbContext DbContext { get; set; }
 
-    public void RunCrud(int selectedFromCalculateMenu) //tagit bort calcstrategy
+    public void RunCrud(int selectedFromCalculateMenu) 
     {
         Console.Clear();
         Console.Write(" Write number to calculate: ");
         var userInputNumberToAdd1 = ErrorHandling.TryInt();
         var userInputNumberToAdd2 = 0;
-        if (selectedFromCalculateMenu != 5)
+
+        if (CalculateStrategy.CalculationMethod == "Square root of")
+        {
+            CalculatedResult = CalculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);
+            Console.Write($"\n Result: {CalculateStrategy.CalculationMethod} {userInputNumberToAdd1} " +
+                          $"= {CalculatedResult}\n");
+        }
+        else if (CalculateStrategy.CalculationMethod != "Square root of")
         {
             Console.Write(" Write number 2 to calculate: ");
             userInputNumberToAdd2 = ErrorHandling.TryInt();
-        }
-
-        if (selectedFromCalculateMenu == 5)
-        {
-            CalculatedResult = CalculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);
-            Console.Write($" Result: {CalculateStrategy.CalculationMethod} {userInputNumberToAdd1} " +
-                          $"= {CalculatedResult}");
-        }
-        else
-        {
+            
             CalculatedResult = CalculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);
             Console.Write(
-                $" Result: {userInputNumberToAdd1} {CalculateStrategy.CalculationMethod} {userInputNumberToAdd2} " +
-                $"= {CalculatedResult}");
+                $"\n Result: {userInputNumberToAdd1} {CalculateStrategy.CalculationMethod} {userInputNumberToAdd2} " +
+                $"= {CalculatedResult}\n");
         }
+
+        Action.PressEnterToContinue();
 
         DbContext.Calculations.Add(new Calculation
         {
             Input1 = userInputNumberToAdd1,
             Input2 = userInputNumberToAdd2,
             Result = CalculatedResult,
-            CalculationDate = DateTime.Now
+            CalculationDate = DateTime.Now,
+            CalculationStrategy = CalculateStrategy.CalculationMethod
         });
         DbContext.SaveChanges();
+        Action.Successful(" Saved");
+        Action.PressEnterToContinue();
     }
 }

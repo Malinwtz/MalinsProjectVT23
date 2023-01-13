@@ -17,6 +17,7 @@ namespace MalinsProjectVT23.CalculatorController.CRUD
         {
             Console.WriteLine(" Update Calculation");
             Console.ReadKey();
+            //om det är roten ur blir det en annan beräkning. Annars är det bara att räkna om
         }
     }
 }
