@@ -13,6 +13,7 @@ namespace MalinsProjectVT23.CalculatorController
 {
     public class CrudCalculatorRunMenu 
     {
+        public ReadCalculation ReadCalculation { get; set; }
         public ICalculateStrategy CalculateStrategy { get; set; }
         public ICrudCalculation CrudCalculation { get; set; }
         public void RunMenuOptions(int selectedFromMenu, ApplicationDbContext dbContext, ICalculateStrategy calculateStrategy)
@@ -26,7 +27,7 @@ namespace MalinsProjectVT23.CalculatorController
                 }
                 case 2:
                 {
-                    CrudCalculation = new ReadCalculation(dbContext);
+                    CrudCalculation = ReadCalculation;
                     break;
                 }
                 case 3:
@@ -36,7 +37,7 @@ namespace MalinsProjectVT23.CalculatorController
                 }
                 case 4:
                 {
-                    CrudCalculation = new DeleteCalculation(dbContext);
+                    CrudCalculation = new DeleteCalculation(dbContext, ReadCalculation);
                     break;
                 }
             }
