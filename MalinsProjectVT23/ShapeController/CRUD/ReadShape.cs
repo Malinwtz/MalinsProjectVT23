@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClassLibraryStrings;
+using MalinsProjectVT23.Interface;
 using Microsoft.EntityFrameworkCore;
 using Action = ClassLibraryStrings.Action;
 
 namespace MalinsProjectVT23.ShapeController.CRUD
 {
-    public class ReadShape
+    public class ReadShape : ICrudShape
     {
         public ReadShape(ApplicationDbContext dbContext)
         {
@@ -18,7 +19,7 @@ namespace MalinsProjectVT23.ShapeController.CRUD
         }
         public ApplicationDbContext DbContext { get; set; }
 
-        public void Read()
+        public void RunCrud(IShape shape)
         {
             if (!DbContext.ShapeResults.Any())
             {
@@ -36,11 +37,11 @@ namespace MalinsProjectVT23.ShapeController.CRUD
 
         private void View()
         {
-            Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}{5,-10}{6,-10}",
+            Console.WriteLine("{0,-15}{1,-15}{2,-15}{3,-15}{4,-15}{5,-15}{6,-15}",
                 "ShapeResultId", "Name", "Height", "Length", "Area", "Circumference", "CreatedDate");
             foreach (var shape in DbContext.ShapeResults.Include(s => s.Shape))
             {
-                Console.WriteLine("{0,-10}{1,-10}{2,-10}{3,-10}{4,-10}{5,-10}{6,-10}",
+                Console.WriteLine("{0,-15}{1,-15}{2,-15}{3,-15}{4,-15}{5,-15}{6,-15}",
                     $"{shape.ShapeResultId}", $"{shape.Shape.Name}", $"{shape.Height}",
                     $"{shape.Length}", $"{shape.Area}", $"{shape.Circumference}", $"{shape.Shape.Date}");
             }

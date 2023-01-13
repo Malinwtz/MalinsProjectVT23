@@ -17,7 +17,7 @@ namespace MalinsProjectVT23.ShapeController
             Console.Clear();
             var endAlternative = 4;
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(" Crud Shape RunMenu");
+            Console.WriteLine(" Crud Shape Menu");
             Line.LineThreeStar();
             Console.WriteLine(" 1. Create shape");
             Console.WriteLine(" 2. Show list of saved shapes");

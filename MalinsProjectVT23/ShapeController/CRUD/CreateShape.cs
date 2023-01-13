@@ -6,7 +6,7 @@ using Action = ClassLibraryStrings.Action;
 
 namespace MalinsProjectVT23.ShapeController.CRUD;
 
-public class CreateShape
+public class CreateShape : ICrudShape
 {
     public CreateShape(ApplicationDbContext dbContext)
     {
@@ -15,7 +15,7 @@ public class CreateShape
 
     public ApplicationDbContext DbContext { get; set; }
 
-    public void Create(IShape shape)
+    public void RunCrud(IShape shape)
     {
         Console.WriteLine($" Create shape: {shape}");
         Console.WriteLine(" Write length");

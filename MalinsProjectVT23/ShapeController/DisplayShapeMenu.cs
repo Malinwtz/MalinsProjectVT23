@@ -16,7 +16,7 @@ namespace MalinsProjectVT23.ShapeController
             Console.Clear();
             var endAlternative = 4;
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(" Shape RunMenu");
+            Console.WriteLine(" Shape Menu");
             Line.LineThreeStar();
             Console.WriteLine(" 1. Rectangle");
             Console.WriteLine(" 2. Parallelogram");
