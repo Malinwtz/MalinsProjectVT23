@@ -46,13 +46,13 @@ public class UpdateShape : ICrudShape
 
 
             Action.Successful($"\n Chosen shape:\n Id {shapeFoundById.ShapeResultId}, {shapeFoundById.Shape.Name} " +
-                              $"\n Height: {shapeFoundById.Height}\n Length: {shapeFoundById.Length}\n");
+                              $"\n Height: {shapeFoundById.Height}cm\n Length: {shapeFoundById.Length}cm\n");
 
             var endAlternative = 2;
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(" Select what you want to change ");
-            Console.WriteLine(" 1. Height");
-            Console.WriteLine($" {endAlternative}. Length");
+            Console.WriteLine(" 1. Height (cm)");
+            Console.WriteLine($" {endAlternative}. Length (cm)");
             Console.ForegroundColor = ConsoleColor.Gray;
             ReturnFromMenuClass.ExitMenu();
             var sel = ReturnFromMenuClass.ReturnFromMenu(endAlternative);

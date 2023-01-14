@@ -19,9 +19,9 @@ public class CreateShape : ICrudShape
     {
         Console.Clear();
         Console.WriteLine($" Create shape: {shape.Name}");
-        Console.WriteLine(" Write length");
+        Console.WriteLine(" Write length (cm)");
         var length = ErrorHandling.TryDecimal();
-        Console.WriteLine(" Write height");
+        Console.WriteLine(" Write height (cm)");
         var height = ErrorHandling.TryDecimal();
 
         switch (shape)

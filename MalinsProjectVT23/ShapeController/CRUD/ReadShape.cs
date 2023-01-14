@@ -36,13 +36,13 @@ public class ReadShape : ICrudShape
 
     public void View(IShape shapeToShow)
     {
-        Console.WriteLine("{0,-10}{1,-15}{2,-15}{3,-15}{4,-15}{5,-15}{6,-15}",
-            "ShapeResultId", "Name", "Height", "Length", "Area", "Circumference", "CreatedDate");
+        Console.WriteLine("{0,-15}{1,-15}{2,-12}{3,-12}{4,-12}{5,-20}{6,-20}",
+            "ShapeResultId", "Name", "Height cm", "Length cm", "Area cm2", "Circumference cm", "CreatedDate");
 
         foreach (var shape in DbContext.ShapeResults.Where(s => s.Shape.Name == shapeToShow.Name)
                                                     .Include(s => s.Shape))
         {
-            Console.WriteLine("{0,-10}{1,-15}{2,-15}{3,-15}{4,-15}{5,-15}{6,-15}",
+            Console.WriteLine("{0,-15}{1,-15}{2,-12}{3,-12}{4,-12}{5,-20}{6,-20}",
                 $"{shape.ShapeResultId}", $"{shape.Shape.Name}", $"{shape.Height}",
                 $"{shape.Length}", $"{shape.Area}", $"{shape.Circumference}", $"{shape.ResultDate}");
         }
