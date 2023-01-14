@@ -1,5 +1,4 @@
-﻿using ClassLibraryCalculations;
-using ClassLibraryCalculations.Interface;
+﻿using ClassLibraryCalculations.Interface;
 using ClassLibraryErrorHandling;
 using MalinsProjectVT23.Data;
 using MalinsProjectVT23.Interface;
@@ -19,7 +18,7 @@ public class CreateCalculation : ICrudCalculation
     public decimal CalculatedResult { get; set; }
     public ApplicationDbContext DbContext { get; set; }
 
-    public void RunCrud(int selectedFromCalculateMenu) 
+    public void RunCrud(int selectedFromCalculateMenu)
     {
         Console.Clear();
         Console.Write(" Write number to calculate: ");
@@ -36,7 +35,7 @@ public class CreateCalculation : ICrudCalculation
         {
             Console.Write(" Write number 2 to calculate: ");
             userInputNumberToAdd2 = ErrorHandling.TryInt();
-            
+
             CalculatedResult = CalculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);
             Console.Write(
                 $"\n Result: {userInputNumberToAdd1} {CalculateStrategy.CalculationMethod} {userInputNumberToAdd2} " +
