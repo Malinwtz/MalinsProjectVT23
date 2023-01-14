@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace MalinsProjectVT23.Data
+namespace MalinsProjectVT23.Data;
+
+public class Shape
 {
-    public class Shape
-    {
-        [Key] public int ShapeId { get; set; }
-        [Required][MaxLength(100)] public string Name { get; set; }
-    }
+    [Key] public int ShapeId { get; set; }
+    [Required] [MaxLength(100)] public string Name { get; set; }
 }
