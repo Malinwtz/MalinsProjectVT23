@@ -35,7 +35,7 @@ public class CrudCalculatorRunMenu
             }
             case 3:
             {
-                CrudCalculation = new UpdateCalculation(DbContext, CalculateStrategy);
+                CrudCalculation = new UpdateCalculation(DbContext, ReadCalculation, CalculateStrategy);
                 break;
             }
             case 4:

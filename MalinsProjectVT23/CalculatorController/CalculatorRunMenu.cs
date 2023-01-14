@@ -8,14 +8,12 @@ namespace MalinsProjectVT23.CalculatorController;
 
 public class CalculatorRunMenu : IRunSecondMenu
 {
-    public CalculatorRunMenu(ApplicationDbContext dbContext, ReadCalculation readCalculation)
+    public CalculatorRunMenu(ApplicationDbContext dbContext)
     {
         DbContext = dbContext;
-        ReadCalculation = readCalculation;
     }
 
     public ApplicationDbContext DbContext { get; set; }
-    public ReadCalculation ReadCalculation { get; set; }
     public ICalculateStrategy CalculateStrategy { get; set; }
 
     public void RunMenuOptions(int selectedFromMenu, ApplicationDbContext dbContext)
@@ -60,7 +58,9 @@ public class CalculatorRunMenu : IRunSecondMenu
             var displayCrudCalculatorMenu = new DisplayCrudCalculatorMenu();
             var selectedFromCrudCalculationMenu = displayCrudCalculatorMenu.ReturnSelectionFromMenu();
             if (selectedFromCrudCalculationMenu == 0) break;
-            var crudCalculatorRunMenu = new CrudCalculatorRunMenu(DbContext, ReadCalculation, CalculateStrategy);
+
+            var readCalculation = new ReadCalculation(DbContext, CalculateStrategy);
+            var crudCalculatorRunMenu = new CrudCalculatorRunMenu(DbContext, readCalculation, CalculateStrategy);
             crudCalculatorRunMenu.RunMenuOptions(selectedFromCrudCalculationMenu);
         }
     }

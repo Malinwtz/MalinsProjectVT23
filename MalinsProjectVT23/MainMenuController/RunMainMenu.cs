@@ -12,7 +12,6 @@ public class RunMainMenu
 {
     public ApplicationDbContext DbContext { get; set; }
     public ReadShape ReadShape { get; set; }
-    public ReadCalculation ReadCalculation { get; set; }
     public RunMainMenu(ApplicationDbContext dbContext, ReadShape readShape)
     {
         DbContext = dbContext;
@@ -34,7 +33,7 @@ public class RunMainMenu
             case 2:
             {
                 DisplayMenu = new DisplayCalculatorMenu();
-                RunMenu = new CalculatorRunMenu(DbContext, ReadCalculation);
+                RunMenu = new CalculatorRunMenu(DbContext);
                 break;
             }
             case 3:
@@ -47,7 +46,7 @@ public class RunMainMenu
 
         while (true)
         {
-            var inputFromChosenMenu = DisplayMenu.ReturnSelectionFromMenu(); //visar räknesätt
+            var inputFromChosenMenu = DisplayMenu.ReturnSelectionFromMenu(); 
             if (inputFromChosenMenu == 0) break;
             RunMenu.RunMenuOptions(inputFromChosenMenu, dbContext);
         }
