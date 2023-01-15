@@ -21,6 +21,7 @@ public class CreateShape : ICrudShape
         Console.WriteLine($" Create shape: {shape.Name}");
         Console.WriteLine(" Write length (cm)");
         var length = ErrorHandling.TryDecimal();
+        //om triangel - räkna ut höjd?
         Console.WriteLine(" Write height (cm)");
         var height = ErrorHandling.TryDecimal();
 

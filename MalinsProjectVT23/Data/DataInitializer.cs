@@ -21,10 +21,11 @@ public class DataInitializer
     }
     private void SeedShape(ApplicationDbContext dbContext)
     {
-
-        dbContext.Shapes.Add(new Shape
+        if (!dbContext.Shapes.Any())
+        {
+            dbContext.Shapes.Add(new Shape
             {
-                Name = ShapeEnum.TypeOfShape.Parallelogram.ToString(),  
+                Name = ShapeEnum.TypeOfShape.Parallelogram.ToString(),
             });
             dbContext.Shapes.Add(new Shape
             {
@@ -32,14 +33,14 @@ public class DataInitializer
             });
             dbContext.Shapes.Add(new Shape
             {
-                Name =  ShapeEnum.TypeOfShape.Rhombus.ToString(),
+                Name = ShapeEnum.TypeOfShape.Rhombus.ToString(),
             });
 
             dbContext.Shapes.Add(new Shape
             {
                 Name = ShapeEnum.TypeOfShape.Triangle.ToString(),
             });
-
+        }
     }
     private void SeedShapeResult(ApplicationDbContext dbContext)
     {
@@ -56,7 +57,6 @@ public class DataInitializer
                 Shape = new Shape 
                 {
                     Name = ShapeEnum.TypeOfShape.Triangle.ToString(),
-                    // Convert.ToInt32(ShapeEnum.TypeOfShape.Parallelogram).ToString() - visar enumens siffra!
                 }
             });
             dbContext.ShapeResults.Add(new ShapeResult

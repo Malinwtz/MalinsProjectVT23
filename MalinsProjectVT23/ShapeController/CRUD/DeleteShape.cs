@@ -43,14 +43,13 @@ namespace MalinsProjectVT23.ShapeController.CRUD
             {
                 Read.View(shape);
                 Line.LineOneHyphen();
-                Console.Write(" Select shape by Id: ");
+                Console.WriteLine(" Select shape by Id \n ");
                 var shapeFound = Update.FindShapeById(shape);
 
                 DbContext.ShapeResults.Remove(shapeFound);
                 DbContext.SaveChanges();
                 Action.Successful(" Shape deleted");
                 Action.PressEnterToContinue();
-
             }
         }
     }
