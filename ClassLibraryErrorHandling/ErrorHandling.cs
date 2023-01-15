@@ -7,7 +7,7 @@ public class ErrorHandling
     public static void WrongInputMessage()
     {
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine(" Felaktig input");
+        Console.WriteLine(" Wrong input");
         Console.ForegroundColor = ConsoleColor.Gray;
     }
 
@@ -18,7 +18,7 @@ public class ErrorHandling
             {
                 var date = DateTime.ParseExact(Console.ReadLine(), "yyyy-MM-dd", CultureInfo.CurrentCulture);
                 if (date > DateTime.Now) return date;
-                Console.Write(" Felaktigt datum. Försök igen: ");
+                Console.Write(" Incorrect date, try again ");
             }
             catch
             {
