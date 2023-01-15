@@ -1,4 +1,6 @@
-﻿namespace MalinsProjectVT23.MainMenuController;
+﻿using ClassLibraryErrorHandling;
+
+namespace MalinsProjectVT23.MainMenuController;
 
 public class ReturnFromMenuClass
 {
@@ -11,18 +13,17 @@ public class ReturnFromMenuClass
             {
                 sel = Convert.ToInt32(Console.ReadLine());
             }
-            catch
+            catch (Exception ex)
             {
-                Console.WriteLine("Fel");
-            } //ErrorHandling.WrongInputMessage(); }
+                Console.WriteLine(ex.Message);
+            }
 
             if (sel >= 0 && sel <= max) return sel;
-            Console.WriteLine("Fel");
-            //ErrorHandling.WrongInputMessage();
+            ErrorHandling.WrongInputMessage();
         }
     }
     public static void ExitMenu()
     {
-        Console.WriteLine("\n 0 = Avbryt");
+        Console.WriteLine("\n 0 = Exit");
     }
 }
