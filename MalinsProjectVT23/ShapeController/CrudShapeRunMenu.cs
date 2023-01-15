@@ -9,10 +9,12 @@ public class CrudShapeRunMenu
     public ICrudShape CrudShape { get; set; }
     public ApplicationDbContext DbContext { get; set; }
     public ReadShape ReadShape { get; set; }
-    public CrudShapeRunMenu(ApplicationDbContext dbContext, ReadShape read)
+    public UpdateShape UpdateShape { get; set; }
+    public CrudShapeRunMenu(ApplicationDbContext dbContext, ReadShape read, UpdateShape updateShape)
     {
         DbContext = dbContext;
         ReadShape = read;
+        UpdateShape = updateShape;
     }
     public void RunMenuOptions(int selectedFromMenu, ApplicationDbContext dbContext, IShape shape)
     {
@@ -32,12 +34,12 @@ public class CrudShapeRunMenu
                 }
                 case 3:
                 {
-                    CrudShape = new UpdateShape(dbContext, ReadShape);
+                    CrudShape = UpdateShape;
                     break;
                 }
                 case 4:
                 {
-                    CrudShape = new DeleteShape(dbContext, ReadShape);
+                    CrudShape = new DeleteShape(dbContext, ReadShape, UpdateShape);
                     break;
                 }
             }

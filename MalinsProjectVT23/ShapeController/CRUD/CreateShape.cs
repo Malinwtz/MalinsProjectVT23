@@ -69,7 +69,7 @@ public class CreateShape : ICrudShape
             ResultDate = DateTime.Now,
             Shape = new Shape
             {
-                Name = shapeName 
+                Name = shapeName,
             }
         });
     }

@@ -19,7 +19,6 @@ public class Action
 
     public static void NotSuccessful(string text)
     {
-        Console.Clear();
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine(text);
         Console.ForegroundColor = ConsoleColor.Gray;

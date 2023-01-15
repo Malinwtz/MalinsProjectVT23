@@ -14,14 +14,16 @@ namespace MalinsProjectVT23.ShapeController.CRUD
 {
     public class DeleteShape : ICrudShape
     {
-        public DeleteShape(ApplicationDbContext dbContext, ReadShape readShape)
+        public DeleteShape(ApplicationDbContext dbContext, ReadShape readShape, UpdateShape updateShape)
         {
             DbContext = dbContext;
             Read = readShape;
+            Update = updateShape;
         }
 
         public ApplicationDbContext DbContext { get; set; }
         public ReadShape Read { get; set; }
+        public UpdateShape Update { get; set; }
 
         public void RunCrud(IShape shape)
         {
@@ -42,12 +44,9 @@ namespace MalinsProjectVT23.ShapeController.CRUD
                 Read.View(shape);
                 Line.LineOneHyphen();
                 Console.Write(" Select shape by Id: ");
-                var shapeIdToFind = ErrorHandling.TryInt();
-                var shapeFoundById = DbContext.ShapeResults
-                    .Include(s => s.Shape)
-                    .FirstOrDefault(s => s.ShapeResultId == shapeIdToFind);
+                var shapeFound = Update.FindShapeById(shape);
 
-                DbContext.ShapeResults.Remove(shapeFoundById);
+                DbContext.ShapeResults.Remove(shapeFound);
                 DbContext.SaveChanges();
                 Action.Successful(" Shape deleted");
                 Action.PressEnterToContinue();

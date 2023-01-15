@@ -12,10 +12,12 @@ public class RunMainMenu
 {
     public ApplicationDbContext DbContext { get; set; }
     public ReadShape ReadShape { get; set; }
-    public RunMainMenu(ApplicationDbContext dbContext, ReadShape readShape)
+    public UpdateShape UpdateShape { get; set; }
+    public RunMainMenu(ApplicationDbContext dbContext, ReadShape readShape, UpdateShape updateShape)
     {
         DbContext = dbContext;
         ReadShape = readShape;
+        UpdateShape = updateShape;
     }
     public IRunSecondMenu RunMenu { get; set; }
     public IDisplayMenu DisplayMenu { get; set; }
@@ -27,7 +29,7 @@ public class RunMainMenu
             case 1:
             {
                 DisplayMenu = new DisplayShapeMenu();
-                RunMenu = new ShapeRunMenu(DbContext, ReadShape);
+                RunMenu = new ShapeRunMenu(DbContext, ReadShape, UpdateShape);
                 break;
             }
             case 2:

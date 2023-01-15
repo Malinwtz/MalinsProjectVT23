@@ -7,19 +7,20 @@ namespace MalinsProjectVT23.ShapeController;
 
 public class ShapeRunMenu : IRunSecondMenu
 {
-    public ShapeRunMenu(ApplicationDbContext dbContext, ReadShape readShape)
+    public ShapeRunMenu(ApplicationDbContext dbContext, ReadShape readShape, UpdateShape updateShape)
     {
         DbContext = dbContext;
         ReadShape = readShape;
+        UpdateShape = updateShape;
     }
 
     public ApplicationDbContext DbContext { get; set; }
     public ReadShape ReadShape { get; set; }
-
+    public UpdateShape UpdateShape { get; set; }
     public void RunMenuOptions(int selectedFromMenu, ApplicationDbContext dbContext)
     {
         var displayCrudShapeMenu = new DisplayCrudShapeMenu();
-        var runCrudShapeMenu = new CrudShapeRunMenu(DbContext, ReadShape);
+        var runCrudShapeMenu = new CrudShapeRunMenu(DbContext, ReadShape, UpdateShape);
         while (true)
         {
             var inputFromCrudShapeMenu = displayCrudShapeMenu.ReturnSelectionFromMenu();

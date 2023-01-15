@@ -53,7 +53,7 @@ public class DataInitializer
                 Height = 4,
                 Length = 5,
                 ResultDate = DateTime.Now,
-                Shape = new Shape ///skriv formens siffra istället.
+                Shape = new Shape 
                 {
                     Name = ShapeEnum.TypeOfShape.Triangle.ToString(),
                     // Convert.ToInt32(ShapeEnum.TypeOfShape.Parallelogram).ToString() - visar enumens siffra!

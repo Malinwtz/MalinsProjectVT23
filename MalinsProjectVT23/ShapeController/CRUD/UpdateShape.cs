@@ -16,6 +16,7 @@ public class UpdateShape : ICrudShape
         Read = readShape;
     }
 
+    public ShapeResult ShapeFoundById { get; set; }
     public ApplicationDbContext DbContext { get; set; }
     public ReadShape Read { get; set; }
     public void RunCrud(IShape shape)
@@ -36,17 +37,11 @@ public class UpdateShape : ICrudShape
         {
             Read.View(shape);
             Line.LineOneHyphen();
-            Console.Write(" Select shape by Id: ");
-            var shapeIdToFind = ErrorHandling.TryInt();
-            var shapeFoundById = DbContext.ShapeResults
-                    .Include(s => s.Shape)
-                    .FirstOrDefault(s => s.ShapeResultId == shapeIdToFind);
+            Console.WriteLine(" Select shape by Id \n");
+            FindShapeById(shape);
 
-
-
-
-            Action.Successful($"\n Chosen shape:\n Id {shapeFoundById.ShapeResultId}, {shapeFoundById.Shape.Name} " +
-                              $"\n Height: {shapeFoundById.Height}cm\n Length: {shapeFoundById.Length}cm\n");
+            Action.Successful($"\n Chosen shape:\n Id {ShapeFoundById.ShapeResultId}, {ShapeFoundById.Shape.Name} " +
+                              $"\n Height: {ShapeFoundById.Height}cm\n Length: {ShapeFoundById.Length}cm\n");
 
             var endAlternative = 2;
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -65,21 +60,41 @@ public class UpdateShape : ICrudShape
             {
                 case 1:
                 {
-                    shapeFoundById.Height = newValue;
+                    ShapeFoundById.Height = newValue;
                     break;
                 }
                 case 2:
                 {
-                    shapeFoundById.Length = newValue;
+                    ShapeFoundById.Length = newValue;
                     break;
                 }
             }
 
-            shapeFoundById.Circumference = shape.CalculateCircumference(shapeFoundById.Length, shapeFoundById.Height);
-            shapeFoundById.Area = shape.CalculateArea(shapeFoundById.Length, shapeFoundById.Height);
+            ShapeFoundById.Circumference = shape.CalculateCircumference(ShapeFoundById.Length, ShapeFoundById.Height);
+            ShapeFoundById.Area = shape.CalculateArea(ShapeFoundById.Length, ShapeFoundById.Height);
             DbContext.SaveChanges();
             Action.Successful(" Value changed!");
             Action.PressEnterToContinue();
         }
+    }
+
+    public ShapeResult FindShapeById(IShape shape)
+    {
+        while (true)
+            try
+            {
+                Console.Write(" Write id:");
+                var shapeIdToFind = Convert.ToInt32(Console.ReadLine());
+                ShapeFoundById = DbContext.ShapeResults.Where(s=>s.Shape.Name == shape.Name)
+                    .Include(s => s.Shape)
+                    .FirstOrDefault(s => s.ShapeResultId == shapeIdToFind);
+
+                if (ShapeFoundById != null) return ShapeFoundById;
+                Action.NotSuccessful(" Id does not exist");
+            }
+            catch 
+            {
+                Action.NotSuccessful(" Wrong input");
+            }
     }
 }

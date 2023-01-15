@@ -17,8 +17,9 @@ public class Application
         builder.BuildProject();
         var dbContext = builder.ConnectProject(); 
         var readShape = new ReadShape(dbContext);
+        var updateShape = new UpdateShape(dbContext, readShape);
         var mainMenu = new MainMenu();
-        var runMainMenu = new RunMainMenu(dbContext, readShape);
+        var runMainMenu = new RunMainMenu(dbContext, readShape, updateShape);
 
         while (true)
         {
