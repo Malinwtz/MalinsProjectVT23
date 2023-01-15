@@ -22,6 +22,7 @@ namespace MalinsProjectVT23.CalculatorController.CRUD
         public ApplicationDbContext DbContext { get; set; }
         public ICalculateStrategy CalculateStrategy { get; set; }
         public ReadCalculation ReadCalculation { get; set; }
+        public decimal CalculatedResult { get; set; }
 
         public void RunCrud(int selectedFromMenu)
         {
@@ -46,7 +47,8 @@ namespace MalinsProjectVT23.CalculatorController.CRUD
                 var calculationFoundById = DbContext.Calculations
                     .FirstOrDefault(s => s.CalculationId == calculationIdToFind);
 
-                var selectionFromUser = 0;
+                decimal newValue;
+                int selectionFromUser = 0;
                 if (CalculateStrategy.CalculationMethod != "Square root of")
                 {
                     Action.Successful($"\n Chosen calculation Id {calculationFoundById.CalculationId}: " +
@@ -60,42 +62,57 @@ namespace MalinsProjectVT23.CalculatorController.CRUD
                     Console.ForegroundColor = ConsoleColor.Gray;
                     ReturnFromMenuClass.ExitMenu();
                     selectionFromUser = ReturnFromMenuClass.ReturnFromMenu(endAlternative);
+                    
+                    if (selectionFromUser == 0) return;
+                    newValue = SetANewValueToCalculation();
+
+                    switch (selectionFromUser)
+                    {
+                        case 1:
+                        {
+                            calculationFoundById.Input1 = newValue;
+                            break;
+                        }
+                        case 2:
+                        {
+                            calculationFoundById.Input2 = newValue;
+                            break;
+                        }
+                    }
+
+                    CalculatedResult = CalculateStrategy.Calculate(calculationFoundById.Input1, calculationFoundById.Input2);
+                    Console.Write(
+                        $"\n New result: {calculationFoundById.Input1} {CalculateStrategy.CalculationMethod} {calculationFoundById.Input2} = {CalculatedResult}\n");
                 }
                 else if (CalculateStrategy.CalculationMethod == "Square root of")
                 {
                     Action.Successful($"\n Chosen calculation Id {calculationFoundById.CalculationId}: " +
                                       $" {calculationFoundById.CalculationStrategy} {calculationFoundById.Input1} = {calculationFoundById.Result}\n");
 
-                    Console.Write(" Write new number: ");
-                    Console.WriteLine(" 0 = Exit");
-                    selectionFromUser = Convert.ToInt32(ErrorHandling.TryDecimal());
+                    Console.WriteLine("1. Set a new value");
+                    ReturnFromMenuClass.ExitMenu();
+                    selectionFromUser = ReturnFromMenuClass.ReturnFromMenu(1);
+                    
+                    if (selectionFromUser == 0) return;
+                    newValue = SetANewValueToCalculation();
+                    calculationFoundById.Input1 = newValue;
+                    
+                    CalculatedResult = CalculateStrategy.Calculate(calculationFoundById.Input1, 0);
+                    Console.Write(
+                        $"\n New result: {CalculateStrategy.CalculationMethod} {calculationFoundById.Input1} = {CalculatedResult}\n");
                 }
 
-                if (selectionFromUser == 0) return;
-                //
-
-                //Console.Write(" Set a new value: ");
-                //var newValue = ErrorHandling.TryDecimal();
-                //switch (sel)
-                //{
-                //    case 1:
-                //    {
-                //        shapeFoundById.Height = newValue;
-                //        break;
-                //    }
-                //    case 2:
-                //    {
-                //        shapeFoundById.Length = newValue;
-                //        break;
-                //    }
-                //}
-
-                //shapeFoundById.Circumference = shape.CalculateCircumference(shapeFoundById.Length, shapeFoundById.Height);
-                //shapeFoundById.Area = shape.CalculateArea(shapeFoundById.Length, shapeFoundById.Height);
-                //DbContext.SaveChanges();
+                DbContext.SaveChanges();
                 Action.Successful(" Value changed!");
                 Action.PressEnterToContinue();
             }
+        }
+
+        private static decimal SetANewValueToCalculation()
+        {
+            Console.Write(" Set a new value: ");
+            var newValue = ErrorHandling.TryDecimal();
+            return newValue;
         }
     }
 }
