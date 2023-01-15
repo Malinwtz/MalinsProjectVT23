@@ -5,12 +5,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MalinsProjectVT23.ShapeController.Shapes;
 
 namespace MalinsProjectVT23.Data
 {
     public class Builder
     {
+        public Builder(ShapeEnum shapeEnum)
+        {
+            ShapeEnum = shapeEnum;
+        }
         public IConfigurationRoot config { get; set; }
+        public ShapeEnum ShapeEnum { get; set; }
 
         public void BuildProject()
         {
@@ -26,7 +32,7 @@ namespace MalinsProjectVT23.Data
 
             using (var dbContext = new ApplicationDbContext(options.Options))
             {
-                var dataInitiaizer = new DataInitializer();
+                var dataInitiaizer = new DataInitializer(ShapeEnum);
                 dataInitiaizer.MigrateAndSeed(dbContext);
 
                 var dbContextReturned = new ApplicationDbContext(options.Options);

@@ -4,7 +4,7 @@ namespace MalinsProjectVT23.ShapeController.Shapes;
 
 public class Rhombus : IShape
 {
-    public string Name { get; set; } = "Rhombus";
+    public string Name { get; set; } = ShapeEnum.TypeOfShape.Rhombus.ToString();
 
     public decimal CalculateArea(decimal length, decimal height)
     {

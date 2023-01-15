@@ -4,7 +4,7 @@ namespace MalinsProjectVT23.ShapeController.Shapes;
 
 public class Rectangle : IShape
 {
-    public string Name { get; set; } = "Rectangle";
+    public string Name { get; set; } = ShapeEnum.TypeOfShape.Rectangle.ToString();
 
     public decimal CalculateArea(decimal length, decimal height)
     {

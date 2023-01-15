@@ -4,7 +4,7 @@ namespace MalinsProjectVT23.ShapeController.Shapes;
 
 public class Parallelogram : IShape
 {
-    public string Name { get; set; } = "Parallelogram";
+    public string Name { get; set; } = ShapeEnum.TypeOfShape.Parallelogram.ToString();
 
     public decimal CalculateArea(decimal length, decimal height)
     {

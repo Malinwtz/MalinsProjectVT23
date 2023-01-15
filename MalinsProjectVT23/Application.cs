@@ -3,6 +3,7 @@ using MalinsProjectVT23.MainMenuController;
 using ClassLibraryCalculations;
 using MalinsProjectVT23.CalculatorController.CRUD;
 using MalinsProjectVT23.ShapeController.CRUD;
+using MalinsProjectVT23.ShapeController.Shapes;
 
 namespace MalinsProjectVT23;
 
@@ -11,7 +12,8 @@ public class Application
 
     public void Run()
     {
-        var builder = new Builder();
+        var shapeEnum = new ShapeEnum();
+        var builder = new Builder(shapeEnum);
         builder.BuildProject();
         var dbContext = builder.ConnectProject(); 
         var readShape = new ReadShape(dbContext);
