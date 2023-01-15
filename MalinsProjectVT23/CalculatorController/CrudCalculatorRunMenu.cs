@@ -44,8 +44,6 @@ public class CrudCalculatorRunMenu
                 break;
             }
         }
-
-        // gå vidare till cruddandet av uträkningen
         CrudCalculation.RunCrud(selectedFromMenu);
     }
 }

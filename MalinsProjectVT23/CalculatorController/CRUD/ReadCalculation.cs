@@ -10,6 +10,7 @@ public class ReadCalculation : ICrudCalculation
     public ReadCalculation(ApplicationDbContext dbContext, ICalculateStrategy calculateStrategy)
     {
         DbContext = dbContext;
+        CalculateStrategy = calculateStrategy;
     }
 
     public ApplicationDbContext DbContext { get; set; }

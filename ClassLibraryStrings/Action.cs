@@ -4,7 +4,8 @@ public class Action
 {
     public static void PressEnterToContinue()
     {
-        Console.Write("\n Tryck på enter för att fortsätta...");
+        Console.ForegroundColor = ConsoleColor.Gray;
+        Console.Write("\n\n Tryck på enter för att fortsätta...");
         Console.ReadKey();
     }
 

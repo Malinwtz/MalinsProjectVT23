@@ -51,8 +51,7 @@ public class CalculatorRunMenu : IRunSecondMenu
                 break;
             }
         }
-
-        // gå vidare och välj crudtyp  - Runcrudmenu
+        
         while (true)
         {
             var displayCrudCalculatorMenu = new DisplayCrudCalculatorMenu();
@@ -61,6 +60,8 @@ public class CalculatorRunMenu : IRunSecondMenu
 
             var readCalculation = new ReadCalculation(DbContext, CalculateStrategy);
             var crudCalculatorRunMenu = new CrudCalculatorRunMenu(DbContext, readCalculation, CalculateStrategy);
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             crudCalculatorRunMenu.RunMenuOptions(selectedFromCrudCalculationMenu);
         }
     }
