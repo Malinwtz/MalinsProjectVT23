@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace MalinsProjectVT23.RockScissorPaperGameController
 {
-    public class Player
+    public class Game
     {
         private int userPoints { get; set; }
         private int computerPoints { get; set; }
 
-        public Player()
+        public Game()
         {
             userPoints = 0;
             computerPoints = 0;

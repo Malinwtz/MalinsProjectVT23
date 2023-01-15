@@ -15,7 +15,7 @@ namespace MalinsProjectVT23.RockScissorPaperGameController
         {
             Console.Clear();
             var endAlternative = 2;
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(" Rock Scissor Paper RunMenu");
             Line.LineThreeStar();
             Console.WriteLine(" 1. Play game");

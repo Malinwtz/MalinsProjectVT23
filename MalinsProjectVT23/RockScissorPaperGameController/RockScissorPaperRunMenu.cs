@@ -14,8 +14,8 @@ public class RockScissorPaperRunMenu : IRunSecondMenu
         {
             case 1:
             {
-                var playGameMenu = new PlayGame();
-                playGameMenu.LoopGame(dbContext);
+                var playGameMenu = new PlayGame(dbContext);
+                playGameMenu.LoopGame();
                 break;
             }
             case 2:
