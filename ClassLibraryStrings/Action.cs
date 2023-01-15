@@ -30,5 +30,10 @@ public class Action
         Console.WriteLine(text);
         Console.ForegroundColor = ConsoleColor.Gray;
     }
-
+    public static void Input(string text)
+    {
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.Write(text);
+        Console.ForegroundColor = ConsoleColor.Gray;
+    }
 }

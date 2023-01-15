@@ -42,10 +42,13 @@ namespace MalinsProjectVT23.CalculatorController.CRUD
             {
                 ReadCalculation.View();
                 Line.LineOneHyphen();
-                Console.Write(" Select calculation by Id: ");
+                Console.Write(" Select calculation by Id ");
+
+                //kopiera från findShapebyId
                 var calculationIdToFind = ErrorHandling.TryInt();
                 var calculationFoundById = DbContext.Calculations
                     .FirstOrDefault(s => s.CalculationId == calculationIdToFind);
+
 
                 decimal newValue;
                 int selectionFromUser = 0;
@@ -110,7 +113,7 @@ namespace MalinsProjectVT23.CalculatorController.CRUD
 
         private static decimal SetANewValueToCalculation()
         {
-            Console.Write(" Set a new value: ");
+            Action.Input(" Set a new value: ");
             var newValue = ErrorHandling.TryDecimal();
             return newValue;
         }

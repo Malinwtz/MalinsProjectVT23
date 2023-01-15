@@ -10,7 +10,7 @@ public class DisplayCrudCalculatorMenu : IDisplayMenu
     {
         Console.Clear();
         var endAlternative = 4;
-        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.ForegroundColor = ConsoleColor.Magenta;
         Console.WriteLine(" Calculator Crud Menu - Choose CRUD operation");
         Line.LineThreeStar();
         Console.WriteLine(" 1. Create calculation");

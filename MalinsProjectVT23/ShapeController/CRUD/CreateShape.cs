@@ -19,10 +19,11 @@ public class CreateShape : ICrudShape
     {
         Console.Clear();
         Console.WriteLine($" Create shape: {shape.Name}");
-        Console.WriteLine(" Write length (cm)");
+        Action.Input(" Write length (cm)");
         var length = ErrorHandling.TryDecimal();
-        //om triangel - räkna ut höjd?
-        Console.WriteLine(" Write height (cm)");
+        //om triangel - skriv in tre sidor? räkna ut höjd?
+        // om romb - skriv in sida1 sida2 höjd
+        Action.Input(" Write height (cm)");
         var height = ErrorHandling.TryDecimal();
 
         switch (shape)

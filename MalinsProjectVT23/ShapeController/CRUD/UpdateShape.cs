@@ -54,7 +54,7 @@ public class UpdateShape : ICrudShape
 
             if (sel == 0) return;
 
-            Console.Write(" Set a new value: ");
+            Action.Input(" Set a new value: ");
             var newValue = ErrorHandling.TryDecimal();
             switch (sel)
             {
@@ -83,7 +83,7 @@ public class UpdateShape : ICrudShape
         while (true)
             try
             {
-                Console.Write(" Write id:");
+                Action.Input(" Write id:");
                 var shapeIdToFind = Convert.ToInt32(Console.ReadLine());
                 ShapeFoundById = DbContext.ShapeResults.Where(s=>s.Shape.Name == shape.Name)
                     .Include(s => s.Shape)
