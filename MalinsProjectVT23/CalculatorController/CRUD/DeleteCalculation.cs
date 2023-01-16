@@ -34,7 +34,7 @@ public class DeleteCalculation : ICrudCalculation
         {
             // ReadCalculation.View();
             Line.LineOneHyphen();
-            Action.Input(" Select calculation by Id: ");
+            Action.White(" Select calculation by Id: ");
             var calculationIdToFind = ErrorHandling.TryInt();
             var calculationFoundById =
                 DbContext.Calculations.FirstOrDefault(s => s.CalculationId == calculationIdToFind);

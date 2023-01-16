@@ -24,15 +24,51 @@ public class Action
         Console.ForegroundColor = ConsoleColor.Gray;
     }
 
-    public static void Winner(string text)
+    public static void Blue(string text)
+    {
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.Write(text);
+        Console.ForegroundColor = ConsoleColor.Gray;
+    }
+    public static void DarkCyan(string text)
+    {
+        Console.ForegroundColor = ConsoleColor.DarkCyan;
+        Console.Write(text);
+        Console.ForegroundColor = ConsoleColor.Gray;
+    }
+    public static void Cyan(string text)
     {
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine(text);
         Console.ForegroundColor = ConsoleColor.Gray;
     }
-    public static void Input(string text)
+    public static void White(string text)
     {
         Console.ForegroundColor = ConsoleColor.White;
+        Console.Write(text);
+        Console.ForegroundColor = ConsoleColor.Gray;
+    }
+    public static void DarkYellow(string text)
+    {
+        Console.ForegroundColor = ConsoleColor.DarkYellow;
+        Console.Write(text);
+        Console.ForegroundColor = ConsoleColor.Gray;
+    }
+    public static void Yellow(string text)
+    {
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.Write(text);
+        Console.ForegroundColor = ConsoleColor.Gray;
+    }
+    public static void DarkMagenta(string text)
+    {
+        Console.ForegroundColor = ConsoleColor.DarkMagenta;
+        Console.Write(text);
+        Console.ForegroundColor = ConsoleColor.Gray;
+    }
+    public static void Magenta(string text)
+    {
+        Console.ForegroundColor = ConsoleColor.Magenta;
         Console.Write(text);
         Console.ForegroundColor = ConsoleColor.Gray;
     }

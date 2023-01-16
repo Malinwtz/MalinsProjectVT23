@@ -2,6 +2,7 @@
 using MalinsProjectVT23.Data;
 using MalinsProjectVT23.Interface;
 using MalinsProjectVT23.MainMenuController;
+using Action = ClassLibraryStrings.Action;
 
 namespace MalinsProjectVT23.RockScissorPaperGameController;
 
@@ -9,6 +10,7 @@ public class RockScissorPaperRunMenu : IRunSecondMenu
 {
     public void RunMenuOptions(int selectedFromMenu, ApplicationDbContext dbContext)
     {
+        Console.Clear();
         var loop = true;
         switch (selectedFromMenu)
         {
@@ -20,7 +22,9 @@ public class RockScissorPaperRunMenu : IRunSecondMenu
             }
             case 2:
             {
-                //stats
+                var gameResults = new ShowGameResult(dbContext);
+                gameResults.GameResults();
+                Action.PressEnterToContinue();
                 break;
             }
         }

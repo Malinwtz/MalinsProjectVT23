@@ -21,7 +21,7 @@ public class CreateCalculation : ICrudCalculation
     public void RunCrud(int selectedFromCalculateMenu)
     {
         Console.Clear();
-        Action.Input(" Write number to calculate: ");
+        Action.White(" Write number to calculate: ");
         var userInputNumberToAdd1 = ErrorHandling.TryInt();
         var userInputNumberToAdd2 = 0;
 
@@ -33,7 +33,7 @@ public class CreateCalculation : ICrudCalculation
         }
         else if (CalculateStrategy.CalculationMethod != "Square root of")
         {
-            Action.Input(" Write number 2 to calculate: ");
+            Action.White(" Write number 2 to calculate: ");
             userInputNumberToAdd2 = ErrorHandling.TryInt();
 
             CalculatedResult = CalculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);

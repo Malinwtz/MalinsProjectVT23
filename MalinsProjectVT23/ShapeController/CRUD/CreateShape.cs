@@ -47,7 +47,7 @@ public class CreateShape : ICrudShape
         decimal height = 0;
         if (shape.Name != ShapeEnum.TypeOfShape.Triangle.ToString())
         {
-            Action.Input(" Write height (cm): ");
+            Action.White(" Write height (cm): ");
             height = ErrorHandling.TryDecimal();
 
         }
@@ -56,7 +56,7 @@ public class CreateShape : ICrudShape
         decimal pArea = 0;
         while (true)
         {
-            Action.Input(" Write length (cm): ");
+            Action.White(" Write length (cm): ");
             try
             {
                 length = ErrorHandling.TryDecimal();

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Action = ClassLibraryStrings.Action;
 
 namespace MalinsProjectVT23.RockScissorPaperGameController
 {
@@ -15,12 +16,10 @@ namespace MalinsProjectVT23.RockScissorPaperGameController
         {
             Console.Clear();
             var endAlternative = 2;
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine(" Rock Scissor Paper RunMenu");
+            Action.DarkCyan(" Rock Scissor Paper Menu\n");
             Line.LineThreeStar();
-            Console.WriteLine(" 1. Play game");
-            Console.WriteLine($" {endAlternative}. Show statistics");
-            Console.ForegroundColor = ConsoleColor.Gray;
+            Action.Cyan("\n 1. Play game");
+            Action.Cyan($" {endAlternative}. Show statistics\n\n");
             ReturnFromMenuClass.ExitMenu();
             var sel = ReturnFromMenuClass.ReturnFromMenu(endAlternative);
             return sel;

@@ -1,122 +1,134 @@
 ﻿using ClassLibraryStrings;
 using MalinsProjectVT23.Data;
 using MalinsProjectVT23.MainMenuController;
-using Microsoft.EntityFrameworkCore;
 using Action = ClassLibraryStrings.Action;
 
 namespace MalinsProjectVT23.RockScissorPaperGameController;
 
 public class PlayGame
 {
-    public PlayGame(ApplicationDbContext dbContext)
+    public enum GameResult
     {
-        _dbContext = dbContext;
+        Computer = 1,
+        User = 2,
+        Tie = 3
     }
 
-    public ApplicationDbContext _dbContext { get; set; }
+    public PlayGame(ApplicationDbContext dbContext)
+    {
+        DbContext = dbContext;
+    }
+
+    private int ComputerPoints { get; set; }
+    private int UserPoints { get; set; }
+    private string[] gameOptions { get; } = { "Rock", "Scissor", "Paper" };
+    public ApplicationDbContext DbContext { get; set; }
+
     public void LoopGame()
     {
-        var game = new Game();
-        var gameOptions = new[] { "Rock", "Scissor", "Paper" };
-        Console.Clear();
-        Console.ForegroundColor = ConsoleColor.Blue;
-        Console.WriteLine("{0, 190}", " Rock, Scissor, Paper Game");
-        Line.LineThreeStar();
-        Console.ForegroundColor = ConsoleColor.Gray;
-        Action.PressEnterToContinue();
-
         while (true)
         {
-            var rnd = new Random();
-            var randomizedOption = rnd.Next(gameOptions.Length);
+            var randomizedOption = GetRandomizedOption();
+            GameHeader();
             var userOption = ReturnSelectionFromMenu();
             if (userOption == -1) break;
 
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine($" User: {gameOptions[userOption]} \n Computer: {gameOptions[randomizedOption]}\n");
+            GameHeader();
+            Action.Blue($" User: {gameOptions[userOption]} \n Computer: {gameOptions[randomizedOption]}\n");
 
             if (randomizedOption == userOption)
-                Action.Winner(" It's a tie!");
-            if ((randomizedOption == 0 && userOption > randomizedOption && userOption != gameOptions.Length - 1)
-                || (randomizedOption == 1 && userOption > randomizedOption)
-                || (randomizedOption == 2 && userOption < randomizedOption && userOption != 0))
             {
-                Action.Winner($" Winner: Computer with {gameOptions[randomizedOption]}!");
-                game.ComputerPoints++;
+                Action.Cyan(" It's a tie!");
             }
-            else if ((userOption == 0 && randomizedOption > userOption && randomizedOption != gameOptions.Length - 1)
-                     || (userOption == 1 && randomizedOption > userOption)
-                     || (userOption == 2 && randomizedOption < userOption && randomizedOption != 0))
+            else if ((randomizedOption == 0 && userOption > randomizedOption && userOption != gameOptions.Length - 1)
+                     || (randomizedOption == 1 && userOption > randomizedOption) || (randomizedOption == 2 &&
+                         userOption < randomizedOption && userOption != 0))
             {
-                Action.Winner($" Winner: User with {gameOptions[userOption]}!");
-                game.UserPoints++;
+                Action.Cyan($" Winner: Computer with {gameOptions[randomizedOption]}!");
+                ComputerPoints++;
+            }
+            else
+            {
+                Action.Cyan($" Winner: User with {gameOptions[userOption]}!");
+                UserPoints++;
             }
 
-            Console.WriteLine($"\n Points\n User: {game.UserPoints}\n Computer: {game.ComputerPoints}");
-            Console.ReadKey();
+            Action.Cyan($"\n Points\n User: {UserPoints}\n Computer: {ComputerPoints}");
+            Action.PressEnterToContinue();
         }
 
-        var isTie = IsTie(game);
-
-        var isComputerWinner = IsComputerWinner(game, out var isUserWinner);
-
         Console.Clear();
-        Console.WriteLine(" Game finished!\n");
-        Console.ForegroundColor = ConsoleColor.Blue;
-        Console.WriteLine($" Tie: {isTie}, ComputerWin: {isComputerWinner}, numberofwins: {game.ComputerPoints}");
-        Console.WriteLine($" User: {isUserWinner}, pts {game.UserPoints}");
-        Console.ForegroundColor = ConsoleColor.Gray;
-        Console.ReadKey();
+        Action.Blue("\n Game finished!\n\n");
 
-        _dbContext.RockScissorPaperGameResults.Add(new RockScissorPaperGameResult
+        var isTie = false;
+        var resultString = "";
+        if (ComputerPoints == UserPoints)
         {
-            Date = DateTime.Now,
-            ComputerWin = isComputerWinner,
-            NumberOfComputerWins = game.ComputerPoints,
-            UserWin = isUserWinner,
-            NumberOfUserWins = game.UserPoints,
-            Tie = isTie
-        });
+            isTie = true;
+            resultString = GameResult.Tie.ToString();
+            Action.Cyan("\n It's a tie!");
+        }
+        else if (ComputerPoints > UserPoints)
+        {
+            resultString = GameResult.Computer.ToString();
+            ShowWinner(resultString);
+        }
+        else if (ComputerPoints < UserPoints)
+        {
+            resultString = GameResult.User.ToString();
+            ShowWinner(resultString);
+        }
 
-        _dbContext.SaveChanges();
+        Action.PressEnterToContinue();
+        AddNewGameResult(resultString, isTie);
+        DbContext.SaveChanges();
         Action.Successful(" Game results saved to database");
         Action.PressEnterToContinue();
     }
 
-    private static bool IsComputerWinner(Game game, out bool isUserWinner)
+    private void AddNewGameResult(string resultString, bool isTie)
     {
-        var isComputerWinner = false;
-        isUserWinner = true;
-        if (game.ComputerPoints > game.UserPoints)
+        DbContext.RockScissorPaperGameResults.Add(new RockScissorPaperGameResult
         {
-            isComputerWinner = true;
-            isUserWinner = false;
-        }
-
-        return isComputerWinner;
+            Date = DateTime.Now,
+            Winner = resultString,
+            NumberOfComputerWins = ComputerPoints,
+            NumberOfUserWins = UserPoints,
+            Tie = isTie
+        });
     }
 
-    private static bool IsTie(Game game)
+    private int GetRandomizedOption()
     {
-        var isTie = false;
-        if (game.ComputerPoints == game.UserPoints) isTie = true;
-        return isTie;
+        var rnd = new Random();
+        var randomizedOption = rnd.Next(gameOptions.Length);
+        return randomizedOption;
+    }
+
+    private static void GameHeader()
+    {
+        Console.Clear();
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.WriteLine("{0, 190}", " Rock, Scissor, Paper Game");
+        Line.LineThreeStar();
+    }
+
+    private void ShowWinner(string resultString)
+    {
+        Action.Cyan($"\n Winner: {resultString} " +
+                    $"\n UserPoints: {UserPoints}, " +
+                    $"\n ComputerPoints: {ComputerPoints}");
     }
 
     public int ReturnSelectionFromMenu()
     {
-        Console.Clear();
         var endAlternative = 3;
-        Console.ForegroundColor = ConsoleColor.Cyan;
-        Console.WriteLine(" Select option: ");
-        Line.LineOneHyphen();
-        Console.WriteLine(" 1. Rock");
-        Console.WriteLine(" 2. Scissor");
-        Console.WriteLine($" {endAlternative}. Paper");
-        Console.ForegroundColor = ConsoleColor.Gray;
+        Action.Cyan(" Select option: \n");
+        Action.Cyan(" 1. Rock");
+        Action.Cyan(" 2. Scissor");
+        Action.Cyan($" {endAlternative}. Paper");
         ReturnFromMenuClass.ExitMenu();
         var sel = ReturnFromMenuClass.ReturnFromMenu(endAlternative);
-        return sel-1;
+        return sel - 1;
     }
 }

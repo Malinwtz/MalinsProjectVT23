@@ -24,6 +24,7 @@ public class ReturnFromMenuClass
     }
     public static void ExitMenu()
     {
+        Console.ForegroundColor = ConsoleColor.Gray;
         Console.WriteLine("\n 0 = Exit");
     }
 }

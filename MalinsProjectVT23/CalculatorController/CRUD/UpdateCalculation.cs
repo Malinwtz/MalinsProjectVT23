@@ -113,7 +113,7 @@ namespace MalinsProjectVT23.CalculatorController.CRUD
 
         private static decimal SetANewValueToCalculation()
         {
-            Action.Input(" Set a new value: ");
+            Action.White(" Set a new value: ");
             var newValue = ErrorHandling.TryDecimal();
             return newValue;
         }

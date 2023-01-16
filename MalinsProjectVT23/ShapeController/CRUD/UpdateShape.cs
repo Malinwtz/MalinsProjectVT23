@@ -50,7 +50,7 @@ public class UpdateShape : ICrudShape
                 var sel = ChangeHeightOrLengthMenu();
                 if (sel == 0) return;
 
-                Action.Input(" Set a new value: ");
+                Action.White(" Set a new value: ");
                 var newValue = ErrorHandling.TryDecimal();
                 switch (sel)
                 {
@@ -68,7 +68,7 @@ public class UpdateShape : ICrudShape
             }
             else if (shape.Name == ShapeEnum.TypeOfShape.Triangle.ToString())
             {
-                Action.Input(" Set a new length value: ");
+                Action.White(" Set a new length value: ");
                 ShapeFoundById.Length = ErrorHandling.TryDecimal();
                 ShapeFoundById.Height = shape.CalculateHeight(ShapeFoundById.Length);
             }
@@ -99,7 +99,7 @@ public class UpdateShape : ICrudShape
         while (true)
             try
             {
-                Action.Input(" Write id:");
+                Action.White(" Write id:");
                 var shapeIdToFind = Convert.ToInt32(Console.ReadLine());
                 if (shapeIdToFind == 0) return null;
                 ShapeFoundById = DbContext.ShapeResults.Where(s=>s.Shape.Name == shape.Name).Include(s => s.Shape)
