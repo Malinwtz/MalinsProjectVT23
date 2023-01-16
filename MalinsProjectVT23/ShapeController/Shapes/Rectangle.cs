@@ -17,4 +17,9 @@ public class Rectangle : IShape
         var circumferenceOfRectangle = (length + height) * 2;
         return circumferenceOfRectangle;
     }
+
+    public decimal CalculateHeight(decimal length)
+    {
+        throw new NotImplementedException();
+    }
 }

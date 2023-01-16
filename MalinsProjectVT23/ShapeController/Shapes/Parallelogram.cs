@@ -17,4 +17,9 @@ public class Parallelogram : IShape
         var circumferenceOfParallelogram = (length + height) * 2;
         return circumferenceOfParallelogram;
     }
+
+    public decimal CalculateHeight(decimal length)
+    {
+        throw new NotImplementedException();
+    }
 }

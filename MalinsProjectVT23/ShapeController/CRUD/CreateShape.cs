@@ -19,13 +19,7 @@ public class CreateShape : ICrudShape
     {
         Console.Clear();
         Console.WriteLine($" Create shape: {shape.Name}");
-        Action.Input(" Write length (cm)");
-        var length = ErrorHandling.TryDecimal();
-        //om triangel - skriv in tre sidor? räkna ut höjd?
-        // om romb - skriv in sida1 sida2 höjd
-        Action.Input(" Write height (cm)");
-        var height = ErrorHandling.TryDecimal();
-
+        
         switch (shape)
         {
             case Rectangle:
@@ -46,16 +40,44 @@ public class CreateShape : ICrudShape
             case Rhombus:
             {
                 shape = new Rhombus();
-
                 break;
             }
         }
 
+        decimal height = 0;
+        if (shape.Name != ShapeEnum.TypeOfShape.Triangle.ToString())
+        {
+            Action.Input(" Write height (cm): ");
+            height = ErrorHandling.TryDecimal();
+
+        }
+        
+        decimal length = 0;
+        decimal pArea = 0;
+        while (true)
+        {
+            Action.Input(" Write length (cm): ");
+            try
+            {
+                length = ErrorHandling.TryDecimal();
+                if(shape.Name == ShapeEnum.TypeOfShape.Triangle.ToString()) height = shape.CalculateHeight(length);
+                pArea = shape.CalculateArea(length, height);
+                break;
+            }
+            catch (Exception e)
+            {
+                Action.NotSuccessful(e.Message);
+                throw;
+            }
+           
+        }
+
         var pCircumference = shape.CalculateCircumference(length, height);
-        var pArea = shape.CalculateArea(length, height);
+        
         AddShapeResultAndShapeToDatabase(pArea, pCircumference, height, length, shape.Name);
         DbContext.SaveChanges();
-        Action.Successful(" Saved");
+        Action.Successful($"Saved!\n\n {shape.Name}\n Height: {height}cm,\n Length: {length}cm" +
+                          $"\n Area: {pArea}cm2,\n Circumference: {pCircumference}cm");
         Action.PressEnterToContinue();
     }
 

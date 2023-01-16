@@ -17,4 +17,9 @@ public class Rhombus : IShape
         var rCircumference = length * 4;
         return rCircumference;
     }
+
+    public decimal CalculateHeight(decimal length)
+    {
+        throw new NotImplementedException();
+    }
 }

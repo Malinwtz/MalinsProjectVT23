@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibraryStrings\ClassLibraryStrings.csproj" />
+  </ItemGroup>
+
 </Project>

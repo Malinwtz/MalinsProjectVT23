@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using Action = ClassLibraryStrings.Action;
 
 namespace ClassLibraryErrorHandling;
 
@@ -6,9 +7,7 @@ public class ErrorHandling
 {
     public static void WrongInputMessage()
     {
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine(" Wrong input");
-        Console.ForegroundColor = ConsoleColor.Gray;
+        Action.NotSuccessful(" Wrong input");
     }
 
     public static DateTime TryDate()
@@ -18,7 +17,8 @@ public class ErrorHandling
             {
                 var date = DateTime.ParseExact(Console.ReadLine(), "yyyy-MM-dd", CultureInfo.CurrentCulture);
                 if (date > DateTime.Now) return date;
-                Console.Write(" Incorrect date, try again ");
+
+                Action.NotSuccessful(" Incorrect date, try again ");
             }
             catch
             {
@@ -49,6 +49,7 @@ public class ErrorHandling
                 decimal.TryParse(Console.ReadLine(), out var decimalNumber);
                 if (decimalNumber > 0)
                     return decimalNumber;
+                Action.NotSuccessful(" Wrong input");
             }
             catch
             {
