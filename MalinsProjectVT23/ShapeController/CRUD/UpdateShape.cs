@@ -3,6 +3,7 @@ using ClassLibraryStrings;
 using MalinsProjectVT23.Data;
 using MalinsProjectVT23.Interface;
 using MalinsProjectVT23.MainMenuController;
+using MalinsProjectVT23.ShapeController.Shapes;
 using Microsoft.EntityFrameworkCore;
 using Action = ClassLibraryStrings.Action;
 
@@ -38,36 +39,38 @@ public class UpdateShape : ICrudShape
             Read.View(shape);
             Line.LineOneHyphen();
             Console.WriteLine(" Select shape by Id \n");
-            FindShapeById(shape);
+
+            ShapeFoundById = FindShapeById(shape);
 
             Action.Successful($"\n Chosen shape:\n Id {ShapeFoundById.ShapeResultId}, {ShapeFoundById.Shape.Name} " +
                               $"\n Height: {ShapeFoundById.Height}cm\n Length: {ShapeFoundById.Length}cm\n");
-
-            var endAlternative = 2;
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(" Select what you want to change ");
-            Console.WriteLine(" 1. Height (cm)");
-            Console.WriteLine($" {endAlternative}. Length (cm)");
-            Console.ForegroundColor = ConsoleColor.Gray;
-            ReturnFromMenuClass.ExitMenu();
-            var sel = ReturnFromMenuClass.ReturnFromMenu(endAlternative);
-
-            if (sel == 0) return;
-
-            Action.Input(" Set a new value: ");
-            var newValue = ErrorHandling.TryDecimal();
-            switch (sel)
+          
+            if (shape.Name != ShapeEnum.TypeOfShape.Triangle.ToString())
             {
-                case 1:
+                var sel = ChangeHeightOrLengthMenu();
+                if (sel == 0) return;
+
+                Action.Input(" Set a new value: ");
+                var newValue = ErrorHandling.TryDecimal();
+                switch (sel)
                 {
-                    ShapeFoundById.Height = newValue;
-                    break;
+                    case 1:
+                    {
+                        ShapeFoundById.Height = newValue;
+                        break;
+                    }
+                    case 2:
+                    {
+                        ShapeFoundById.Length = newValue;
+                        break;
+                    }
                 }
-                case 2:
-                {
-                    ShapeFoundById.Length = newValue;
-                    break;
-                }
+            }
+            else if (shape.Name == ShapeEnum.TypeOfShape.Triangle.ToString())
+            {
+                Action.Input(" Set a new length value: ");
+                ShapeFoundById.Length = ErrorHandling.TryDecimal();
+                ShapeFoundById.Height = shape.CalculateHeight(ShapeFoundById.Length);
             }
 
             ShapeFoundById.Circumference = shape.CalculateCircumference(ShapeFoundById.Length, ShapeFoundById.Height);
@@ -78,6 +81,19 @@ public class UpdateShape : ICrudShape
         }
     }
 
+    private static int ChangeHeightOrLengthMenu()
+    {
+        var endAlternative = 2;
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine(" Select what you want to change ");
+        Console.WriteLine(" 1. Height (cm)");
+        Console.WriteLine($" {endAlternative}. Length (cm)");
+        Console.ForegroundColor = ConsoleColor.Gray;
+        ReturnFromMenuClass.ExitMenu();
+        var sel = ReturnFromMenuClass.ReturnFromMenu(endAlternative);
+        return sel;
+    }
+
     public ShapeResult FindShapeById(IShape shape)
     {
         while (true)
@@ -85,8 +101,8 @@ public class UpdateShape : ICrudShape
             {
                 Action.Input(" Write id:");
                 var shapeIdToFind = Convert.ToInt32(Console.ReadLine());
-                ShapeFoundById = DbContext.ShapeResults.Where(s=>s.Shape.Name == shape.Name)
-                    .Include(s => s.Shape)
+                if (shapeIdToFind == 0) return null;
+                ShapeFoundById = DbContext.ShapeResults.Where(s=>s.Shape.Name == shape.Name).Include(s => s.Shape)
                     .FirstOrDefault(s => s.ShapeResultId == shapeIdToFind);
 
                 if (ShapeFoundById != null) return ShapeFoundById;
