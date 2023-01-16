@@ -18,7 +18,7 @@ public class CreateShape : ICrudShape
     public void RunCrud(IShape shape)
     {
         Console.Clear();
-        Console.WriteLine($" Create shape: {shape.Name}");
+        Action.Yellow($" Create shape: {shape.Name}\n");
         
         switch (shape)
         {
@@ -76,7 +76,8 @@ public class CreateShape : ICrudShape
         
         AddShapeResultAndShapeToDatabase(pArea, pCircumference, height, length, shape.Name);
         DbContext.SaveChanges();
-        Action.Successful($"Saved!\n\n {shape.Name}\n Height: {height:0.###}cm,\n Length: {length}cm" +
+        Action.Successful($" Saved!\n\n");
+        Action.Yellow($" {shape.Name}\n Height: {height:0.###}cm,\n Length: {length}cm" +
                           $"\n Area: {pArea:0.###}cm2,\n Circumference: {pCircumference:0.###}cm");
         Action.PressEnterToContinue();
     }

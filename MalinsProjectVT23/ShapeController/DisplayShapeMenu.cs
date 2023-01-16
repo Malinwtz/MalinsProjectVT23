@@ -1,31 +1,23 @@
 ﻿using ClassLibraryStrings;
 using MalinsProjectVT23.Interface;
 using MalinsProjectVT23.MainMenuController;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Action = ClassLibraryStrings.Action;
 
-namespace MalinsProjectVT23.ShapeController
+namespace MalinsProjectVT23.ShapeController;
+
+public class DisplayShapeMenu : IDisplayMenu
 {
-    public class DisplayShapeMenu : IDisplayMenu
+    public int ReturnSelectionFromMenu()
     {
-        public int ReturnSelectionFromMenu()
-        {
-            Console.Clear();
-            var endAlternative = 4;
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(" Shape Menu");
-            Line.LineThreeStar();
-            Console.WriteLine(" 1. Rectangle");
-            Console.WriteLine(" 2. Parallelogram");
-            Console.WriteLine(" 3. Equilateral triangle");
-            Console.WriteLine($" {endAlternative}. Rhombus");
-            Console.ForegroundColor = ConsoleColor.Gray;
-            ReturnFromMenuClass.ExitMenu();
-            var sel = ReturnFromMenuClass.ReturnFromMenu(endAlternative);
-            return sel;
-        }
+        var endAlternative = 4;
+        Action.DarkYellow(" Shape Menu\n");
+        Line.LineThreeStar();
+        Action.Yellow(" 1. Rectangle\n");
+        Action.Yellow(" 2. Parallelogram\n");
+        Action.Yellow(" 3. Equilateral triangle\n");
+        Action.Yellow($" {endAlternative}. Rhombus\n");
+        ReturnFromMenuClass.ExitMenu();
+        var sel = ReturnFromMenuClass.ReturnFromMenu(endAlternative);
+        return sel;
     }
 }

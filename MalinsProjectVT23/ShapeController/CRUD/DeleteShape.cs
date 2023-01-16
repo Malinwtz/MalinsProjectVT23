@@ -32,20 +32,16 @@ namespace MalinsProjectVT23.ShapeController.CRUD
                     .Include(s => s.Shape)
                     .Any())
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write(" The list of shapes does not contain ");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write($"{shape.Name}\n");
-                Console.ForegroundColor = ConsoleColor.Gray;
+                Action.NotSuccessful(" The list of shapes does not contain");
+                Action.Yellow($" {shape.Name}\n");
                 Action.PressEnterToContinue();
             }
             else if (DbContext.ShapeResults.Any())
             {
                 Read.View(shape);
                 Line.LineOneHyphen();
-                Console.WriteLine(" Select shape by Id \n ");
+                Action.Yellow(" Select shape by Id \n ");
                 var shapeFound = Update.FindShapeById(shape);
-
                 DbContext.ShapeResults.Remove(shapeFound);
                 DbContext.SaveChanges();
                 Action.Successful(" Shape deleted");

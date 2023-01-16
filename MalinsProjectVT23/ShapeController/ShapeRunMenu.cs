@@ -23,7 +23,9 @@ public class ShapeRunMenu : IRunSecondMenu
         var runCrudShapeMenu = new CrudShapeRunMenu(DbContext, ReadShape, UpdateShape);
         while (true)
         {
+            Console.Clear();
             var inputFromCrudShapeMenu = displayCrudShapeMenu.ReturnSelectionFromMenu();
+            Console.Clear();
             if (inputFromCrudShapeMenu == 0) break;
 
                 switch (selectedFromMenu)

@@ -18,6 +18,7 @@ public class CalculatorRunMenu : IRunSecondMenu
 
     public void RunMenuOptions(int selectedFromMenu, ApplicationDbContext dbContext)
     {
+        Console.Clear();
         switch (selectedFromMenu)
         {
             case 1:
@@ -59,9 +60,9 @@ public class CalculatorRunMenu : IRunSecondMenu
             if (selectedFromCrudCalculationMenu == 0) break;
 
             var readCalculation = new ReadCalculation(DbContext, CalculateStrategy);
-            var crudCalculatorRunMenu = new CrudCalculatorRunMenu(DbContext, readCalculation, CalculateStrategy);
+            var updateCalculation = new UpdateCalculation(DbContext, readCalculation, CalculateStrategy);
+            var crudCalculatorRunMenu = new CrudCalculatorRunMenu(DbContext, readCalculation, updateCalculation, CalculateStrategy);
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
             crudCalculatorRunMenu.RunMenuOptions(selectedFromCrudCalculationMenu);
         }
     }

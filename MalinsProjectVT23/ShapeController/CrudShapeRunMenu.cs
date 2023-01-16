@@ -18,7 +18,7 @@ public class CrudShapeRunMenu
     }
     public void RunMenuOptions(int selectedFromMenu, ApplicationDbContext dbContext, IShape shape)
     {
-        
+        Console.Clear();
             switch (selectedFromMenu)
             {
                 case 1:
@@ -28,7 +28,6 @@ public class CrudShapeRunMenu
                 }
                 case 2:
                 {
-                    Console.Clear();
                     CrudShape = ReadShape;
                     break;
                 }
@@ -44,6 +43,5 @@ public class CrudShapeRunMenu
                 }
             }
             CrudShape.RunCrud(shape);
-        
     }
 }

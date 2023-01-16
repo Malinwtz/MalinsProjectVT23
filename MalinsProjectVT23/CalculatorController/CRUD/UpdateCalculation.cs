@@ -23,18 +23,13 @@ namespace MalinsProjectVT23.CalculatorController.CRUD
         public ICalculateStrategy CalculateStrategy { get; set; }
         public ReadCalculation ReadCalculation { get; set; }
         public decimal CalculatedResult { get; set; }
-
         public void RunCrud(int selectedFromMenu)
         {
-            //om det är roten ur blir det en annan beräkning. Annars är det bara att räkna om
             Console.Clear();
             if (!DbContext.Calculations.Where(c => c.CalculationStrategy == CalculateStrategy.CalculationMethod).Any())
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write(" The list of calculation does not contain ");
-                Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.Write($"{CalculateStrategy.CalculationMethod}\n");
-                Console.ForegroundColor = ConsoleColor.Gray;
+                Action.NotSuccessful(" The list of calculation does not contain ");
+                Action.Magenta($"{CalculateStrategy.CalculationMethod}\n");
                 Action.PressEnterToContinue();
             }
             else if (DbContext.Calculations.Where(c => c.CalculationStrategy == CalculateStrategy.CalculationMethod)
@@ -42,13 +37,9 @@ namespace MalinsProjectVT23.CalculatorController.CRUD
             {
                 ReadCalculation.View();
                 Line.LineOneHyphen();
-                Console.Write(" Select calculation by Id ");
+                Action.Magenta(" Select calculation by Id \n");
 
-                //kopiera från findShapebyId
-                var calculationIdToFind = ErrorHandling.TryInt();
-                var calculationFoundById = DbContext.Calculations
-                    .FirstOrDefault(s => s.CalculationId == calculationIdToFind);
-
+                var calculationFoundById = FindCalculationById(CalculateStrategy);
 
                 decimal newValue;
                 int selectionFromUser = 0;
@@ -58,11 +49,9 @@ namespace MalinsProjectVT23.CalculatorController.CRUD
                                       $"{calculationFoundById.Input1} {calculationFoundById.CalculationStrategy} {calculationFoundById.Input2} = {calculationFoundById.Result}\n");
 
                     var endAlternative = 2;
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine(" Select what you want to change ");
-                    Console.WriteLine(" 1. Input 1");
-                    Console.WriteLine($" {endAlternative}. Input 2");
-                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Action.Magenta(" Select what you want to change ");
+                    Action.Magenta(" 1. Input 1");
+                    Action.Magenta($" {endAlternative}. Input 2");
                     ReturnFromMenuClass.ExitMenu();
                     selectionFromUser = ReturnFromMenuClass.ReturnFromMenu(endAlternative);
                     
@@ -84,7 +73,7 @@ namespace MalinsProjectVT23.CalculatorController.CRUD
                     }
 
                     CalculatedResult = CalculateStrategy.Calculate(calculationFoundById.Input1, calculationFoundById.Input2);
-                    Console.Write(
+                    Action.Magenta(
                         $"\n New result: {calculationFoundById.Input1} {CalculateStrategy.CalculationMethod} {calculationFoundById.Input2} = {CalculatedResult}\n");
                 }
                 else if (CalculateStrategy.CalculationMethod == "Square root of")
@@ -92,7 +81,7 @@ namespace MalinsProjectVT23.CalculatorController.CRUD
                     Action.Successful($"\n Chosen calculation Id {calculationFoundById.CalculationId}: " +
                                       $" {calculationFoundById.CalculationStrategy} {calculationFoundById.Input1} = {calculationFoundById.Result}\n");
 
-                    Console.WriteLine("1. Set a new value");
+                    Action.Magenta(" 1. Set a new value");
                     ReturnFromMenuClass.ExitMenu();
                     selectionFromUser = ReturnFromMenuClass.ReturnFromMenu(1);
                     
@@ -101,7 +90,7 @@ namespace MalinsProjectVT23.CalculatorController.CRUD
                     calculationFoundById.Input1 = newValue;
                     
                     CalculatedResult = CalculateStrategy.Calculate(calculationFoundById.Input1, 0);
-                    Console.Write(
+                    Action.Magenta(
                         $"\n New result: {CalculateStrategy.CalculationMethod} {calculationFoundById.Input1} = {CalculatedResult}\n");
                 }
 
@@ -109,6 +98,28 @@ namespace MalinsProjectVT23.CalculatorController.CRUD
                 Action.Successful(" Value changed!");
                 Action.PressEnterToContinue();
             }
+        }
+
+        public Calculation FindCalculationById(ICalculateStrategy calculateStrategy)
+        {
+            while (true)
+                try
+                {
+                    Action.White(" Write id:");
+                    var calculationIdToFind = Convert.ToInt32(Console.ReadLine());
+                    if (calculationIdToFind == 0) return null;
+
+                    var calculationFoundById = DbContext.Calculations
+                        .Where(c=>c.CalculationStrategy == calculateStrategy.CalculationMethod)
+                        .FirstOrDefault(s => s.CalculationId == calculationIdToFind);
+
+                    if (calculationFoundById != null) return calculationFoundById;
+                    Action.NotSuccessful(" Id does not exist");
+                }
+                catch
+                {
+                    Action.NotSuccessful(" Wrong input");
+                }
         }
 
         private static decimal SetANewValueToCalculation()

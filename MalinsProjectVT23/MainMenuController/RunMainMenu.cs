@@ -24,6 +24,7 @@ public class RunMainMenu
 
     public void LoopMenu(int selectedFromMenu, ApplicationDbContext dbContext)
     {
+        Console.Clear();
         switch (selectedFromMenu)
         {
             case 1:
@@ -50,6 +51,7 @@ public class RunMainMenu
         {
             var inputFromChosenMenu = DisplayMenu.ReturnSelectionFromMenu(); 
             if (inputFromChosenMenu == 0) break;
+            Console.Clear();
             RunMenu.RunMenuOptions(inputFromChosenMenu, dbContext);
         }
     }

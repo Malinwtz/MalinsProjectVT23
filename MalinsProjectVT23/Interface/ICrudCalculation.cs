@@ -5,5 +5,5 @@ namespace MalinsProjectVT23.Interface;
 
 public interface ICrudCalculation
 {
-    void RunCrud(int selectedFromMenu); //tagit bort calcstrategy och dbcontext
+    void RunCrud(int selectedFromMenu); 
 }

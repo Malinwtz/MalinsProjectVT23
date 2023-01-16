@@ -28,8 +28,8 @@ public class CreateCalculation : ICrudCalculation
         if (CalculateStrategy.CalculationMethod == "Square root of")
         {
             CalculatedResult = CalculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);
-            Console.Write($"\n Result: {CalculateStrategy.CalculationMethod} {userInputNumberToAdd1} " +
-                          $"= {CalculatedResult}\n");
+            Action.Magenta($"\n Result: {CalculateStrategy.CalculationMethod} {userInputNumberToAdd1} " +
+                                 $"= {CalculatedResult}\n");
         }
         else if (CalculateStrategy.CalculationMethod != "Square root of")
         {
@@ -37,9 +37,9 @@ public class CreateCalculation : ICrudCalculation
             userInputNumberToAdd2 = ErrorHandling.TryInt();
 
             CalculatedResult = CalculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);
-            Console.Write(
+            Action.Magenta(
                 $"\n Result: {userInputNumberToAdd1} {CalculateStrategy.CalculationMethod} {userInputNumberToAdd2} " +
-                $"= {CalculatedResult}\n");
+                $"= {CalculatedResult:####,######}\n");
         }
 
         Action.PressEnterToContinue();

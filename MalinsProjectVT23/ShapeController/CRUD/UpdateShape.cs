@@ -27,23 +27,21 @@ public class UpdateShape : ICrudShape
                 .Include(s => s.Shape)
                 .Any())
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write(" The list of shapes does not contain ");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write($"{shape.Name}\n");
-            Console.ForegroundColor = ConsoleColor.Gray;
+            Action.NotSuccessful(" The list of shapes does not contain ");
+            Action.Yellow($"{shape.Name}\n");
             Action.PressEnterToContinue();
         }
         else if (DbContext.ShapeResults.Any())
         {
             Read.View(shape);
             Line.LineOneHyphen();
-            Console.WriteLine(" Select shape by Id \n");
+            Action.Yellow(" Select shape by Id \n");
 
             ShapeFoundById = FindShapeById(shape);
 
-            Action.Successful($"\n Chosen shape:\n Id {ShapeFoundById.ShapeResultId}, {ShapeFoundById.Shape.Name} " +
-                              $"\n Height: {ShapeFoundById.Height}cm\n Length: {ShapeFoundById.Length}cm\n");
+            Console.Clear();
+            Action.DarkYellow($"\n Chosen shape:\n Id {ShapeFoundById.ShapeResultId}, {ShapeFoundById.Shape.Name} " +
+                              $"\n Height: {ShapeFoundById.Height}cm\n Length: {ShapeFoundById.Length}cm\n\n");
           
             if (shape.Name != ShapeEnum.TypeOfShape.Triangle.ToString())
             {
@@ -68,7 +66,8 @@ public class UpdateShape : ICrudShape
             }
             else if (shape.Name == ShapeEnum.TypeOfShape.Triangle.ToString())
             {
-                Action.White(" Set a new length value: ");
+                Action.Yellow(" Set new length\n");
+                Action.White(" Value: ");
                 ShapeFoundById.Length = ErrorHandling.TryDecimal();
                 ShapeFoundById.Height = shape.CalculateHeight(ShapeFoundById.Length);
             }

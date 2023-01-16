@@ -1,6 +1,7 @@
 ﻿using ClassLibraryStrings;
 using MalinsProjectVT23.Interface;
 using MalinsProjectVT23.MainMenuController;
+using Action = ClassLibraryStrings.Action;
 
 namespace MalinsProjectVT23.CalculatorController;
 
@@ -10,14 +11,12 @@ public class DisplayCrudCalculatorMenu : IDisplayMenu
     {
         Console.Clear();
         var endAlternative = 4;
-        Console.ForegroundColor = ConsoleColor.Magenta;
-        Console.WriteLine(" Calculator Crud Menu - Choose CRUD operation");
+        Action.DarkMagenta(" Calculator Crud Menu - Choose CRUD operation\n");
         Line.LineThreeStar();
-        Console.WriteLine(" 1. Create calculation");
-        Console.WriteLine(" 2. Read calculations");
-        Console.WriteLine(" 3. Update calculation");
-        Console.WriteLine($" {endAlternative}. Delete calculation");
-        Console.ForegroundColor = ConsoleColor.Gray;
+        Action.Magenta("\n 1. Create calculation\n");
+        Action.Magenta(" 2. Read calculations\n");
+        Action.Magenta(" 3. Update calculation\n");
+        Action.Magenta($" {endAlternative}. Delete calculation\n\n");
         ReturnFromMenuClass.ExitMenu();
         var sel = ReturnFromMenuClass.ReturnFromMenu(endAlternative);
         return sel;
