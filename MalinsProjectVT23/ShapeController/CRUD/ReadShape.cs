@@ -43,8 +43,8 @@ public class ReadShape : ICrudShape
                                                     .Include(s => s.Shape))
         {
             Console.WriteLine("{0,-10}{1,-15}{2,-16}{3,-16}{4,-16}{5,-10}{6,-20}",
-                $"{shape.ShapeResultId}", $"{shape.Shape.Name}", $"{shape.Height:0.000}",
-                $"{shape.Length:0.000}", $"{shape.Area:0.000}", $"{shape.Circumference:0.000}", $"{shape.ResultDate}");
+                $"{shape.ShapeResultId}", $"{shape.Shape.Name}", $"{shape.Height:0.00##}",
+                $"{shape.Length:0.00##}", $"{shape.Area:0.00##}", $"{shape.Circumference:0.00##}", $"{shape.ResultDate}");
         }
     }
 }

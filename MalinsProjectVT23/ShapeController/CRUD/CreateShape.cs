@@ -76,8 +76,8 @@ public class CreateShape : ICrudShape
         
         AddShapeResultAndShapeToDatabase(pArea, pCircumference, height, length, shape.Name);
         DbContext.SaveChanges();
-        Action.Successful($"Saved!\n\n {shape.Name}\n Height: {height:0.000}cm,\n Length: {length}cm" +
-                          $"\n Area: {pArea:0.000}cm2,\n Circumference: {pCircumference:0.000}cm");
+        Action.Successful($"Saved!\n\n {shape.Name}\n Height: {height:0.###}cm,\n Length: {length}cm" +
+                          $"\n Area: {pArea:0.###}cm2,\n Circumference: {pCircumference:0.###}cm");
         Action.PressEnterToContinue();
     }
 
