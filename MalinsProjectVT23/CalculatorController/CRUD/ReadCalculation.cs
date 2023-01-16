@@ -40,6 +40,6 @@ public class ReadCalculation : ICrudCalculation
         foreach (var calculation in DbContext.Calculations.Where(c=>c.CalculationStrategy == CalculateStrategy.CalculationMethod))
             Console.WriteLine("{0,-20}{1,-15}{2,-20}{3,-15}{4,-15}{5,-15}",
                 $"{calculation.CalculationId}", $"{calculation.Input1}", $"{calculation.CalculationStrategy}", $"{calculation.Input2}",
-                $"{calculation.Result}", $"{calculation.CalculationDate}");
+                $"{calculation.Result:0.000000}", $"{calculation.CalculationDate}");
     }
 }

@@ -36,15 +36,15 @@ public class ReadShape : ICrudShape
 
     public void View(IShape shapeToShow)
     {
-        Console.WriteLine("{0,-15}{1,-15}{2,-12}{3,-12}{4,-12}{5,-20}{6,-20}",
-            "ShapeResultId", "Name", "Height cm", "Length cm", "Area cm2", "Circumference cm", "CreatedDate");
+        Console.WriteLine("{0,-10}{1,-15}{2,-16}{3,-16}{4,-16}{5,-10}{6,-20}",
+            "ResultId", "Name", "HeightCm", "LengthCm", "AreaCm2", "CircumCm", "CreatedDate");
 
         foreach (var shape in DbContext.ShapeResults.Where(s => s.Shape.Name == shapeToShow.Name)
                                                     .Include(s => s.Shape))
         {
-            Console.WriteLine("{0,-15}{1,-15}{2,-12}{3,-12}{4,-12}{5,-20}{6,-20}",
-                $"{shape.ShapeResultId}", $"{shape.Shape.Name}", $"{shape.Height}",
-                $"{shape.Length}", $"{shape.Area}", $"{shape.Circumference}", $"{shape.ResultDate}");
+            Console.WriteLine("{0,-10}{1,-15}{2,-16}{3,-16}{4,-16}{5,-10}{6,-20}",
+                $"{shape.ShapeResultId}", $"{shape.Shape.Name}", $"{shape.Height:0.000}",
+                $"{shape.Length:0.000}", $"{shape.Area:0.000}", $"{shape.Circumference:0.000}", $"{shape.ResultDate}");
         }
     }
 }
