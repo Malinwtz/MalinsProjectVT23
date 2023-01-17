@@ -21,7 +21,7 @@
         {
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("* * * * * * * * * * * * * * * * * * * * * * * * * * * " +
-                              "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *" +
+                              "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *" +
                               Environment.NewLine);
         }
     }
