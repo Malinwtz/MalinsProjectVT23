@@ -11,7 +11,13 @@ public class PlayGame
     {
         Computer = 1,
         User = 2,
-        Tie = 3
+        Draw = 3
+    }
+    public enum GameOptions
+    {
+        Rock = 1,
+        Scissor = 2,
+        Paper = 3
     }
 
     public PlayGame(ApplicationDbContext dbContext)
@@ -19,13 +25,15 @@ public class PlayGame
         DbContext = dbContext;
     }
 
-    private int ComputerPoints { get; set; }
-    private int UserPoints { get; set; }
+    private int _computerPoints { get; set; }
+    private int _userPoints { get; set; }
+    private decimal _averageUserWins { get; set; }
     private string[] gameOptions { get; } = { "Rock", "Scissor", "Paper" };
     public ApplicationDbContext DbContext { get; set; }
 
     public void LoopGame()
     {
+        var numberOfGames = 0;
         while (true)
         {
             var randomizedOption = GetRandomizedOption();
@@ -34,67 +42,84 @@ public class PlayGame
             if (userOption == -1) break;
 
             GameHeader();
-            Action.Blue($" User: {gameOptions[userOption]} \n Computer: {gameOptions[randomizedOption]}\n");
-
-            if (randomizedOption == userOption)
-            {
-                Action.Cyan(" It's a tie!");
-            }
-            else if ((randomizedOption == 0 && userOption > randomizedOption && userOption != gameOptions.Length - 1)
-                     || (randomizedOption == 1 && userOption > randomizedOption) || (randomizedOption == 2 &&
-                         userOption < randomizedOption && userOption != 0))
-            {
-                Action.Cyan($" Winner: Computer with {gameOptions[randomizedOption]}!");
-                ComputerPoints++;
-            }
-            else
-            {
-                Action.Cyan($" Winner: User with {gameOptions[userOption]}!");
-                UserPoints++;
-            }
-
-            Action.Cyan($"\n Points\n User: {UserPoints}\n Computer: {ComputerPoints}");
+            Action.Blue($" {GameResult.User.ToString()}: {gameOptions[userOption]} \n " +
+                        $"{GameResult.Computer.ToString()}: {gameOptions[randomizedOption]}\n");
+            ShowSingleGameResultMessage(randomizedOption, userOption);
+            numberOfGames++;
+            Action.Cyan($"\n Points\n {GameResult.User.ToString()}: {_userPoints}\n " +
+                        $"{GameResult.Computer.ToString()}: {_computerPoints}");
             Action.PressEnterToContinue();
         }
 
         Console.Clear();
         Action.Blue("\n Game finished!\n\n");
 
-        var isTie = false;
-        var resultString = "";
-        if (ComputerPoints == UserPoints)
-        {
-            isTie = true;
-            resultString = GameResult.Tie.ToString();
-            Action.Cyan("\n It's a tie!");
-        }
-        else if (ComputerPoints > UserPoints)
-        {
-            resultString = GameResult.Computer.ToString();
-            ShowWinner(resultString);
-        }
-        else if (ComputerPoints < UserPoints)
-        {
-            resultString = GameResult.User.ToString();
-            ShowWinner(resultString);
-        }
+        CalculateAverageNumberOfUserWins(numberOfGames);
+        
+        var resultString = ShowEndedGameResultMessage();
+        ShowWinner(resultString);
 
         Action.PressEnterToContinue();
-        AddNewGameResult(resultString, isTie);
+        AddNewGameResult(resultString);
         DbContext.SaveChanges();
         Action.Successful(" Game results saved to database");
         Action.PressEnterToContinue();
     }
 
-    private void AddNewGameResult(string resultString, bool isTie)
+    private string ShowEndedGameResultMessage()
+    {
+        var resultString = "";
+        if (_computerPoints == _userPoints)
+        {
+            resultString = GameResult.Draw.ToString();
+        }
+        else if (_computerPoints > _userPoints)
+        {
+            resultString = GameResult.Computer.ToString();
+        }
+        else if (_computerPoints < _userPoints)
+        {
+            resultString = GameResult.User.ToString();
+        }
+        return resultString;
+    }
+
+    private void ShowSingleGameResultMessage(int randomizedOption, int userOption)
+    {
+        if (randomizedOption == userOption)
+        {
+            Action.Cyan($"\n {GameResult.Draw.ToString()}!");
+        }
+        else if ((randomizedOption == 0 && userOption > randomizedOption && userOption != gameOptions.Length - 1)
+                 || (randomizedOption == 1 && userOption > randomizedOption) || (randomizedOption == 2 &&
+                     userOption < randomizedOption &&
+                     userOption != 0))
+        {
+            Action.Cyan($"\n WINNER: {GameResult.Draw.ToString()} with {gameOptions[randomizedOption]}!");
+            _computerPoints++;
+        }
+        else
+        {
+            Action.Cyan($"\n WINNER: {GameResult.User.ToString()} with {gameOptions[userOption]}!");
+            _userPoints++;
+        }
+    }
+
+    private void CalculateAverageNumberOfUserWins(int numberOfGames)
+    {
+        if (numberOfGames > 0)
+            _averageUserWins = (_userPoints / Convert.ToDecimal(numberOfGames))*10;
+    }
+
+    private void AddNewGameResult(string resultString)
     {
         DbContext.RockScissorPaperGameResults.Add(new RockScissorPaperGameResult
         {
             Date = DateTime.Now,
             Winner = resultString,
-            NumberOfComputerWins = ComputerPoints,
-            NumberOfUserWins = UserPoints,
-            Tie = isTie
+            NumberOfComputerWins = _computerPoints,
+            NumberOfUserWins = _userPoints,
+            AverageUserWins = Math.Round(_averageUserWins, 6, MidpointRounding.AwayFromZero)
         });
     }
 
@@ -116,8 +141,8 @@ public class PlayGame
     private void ShowWinner(string resultString)
     {
         Action.Cyan($"\n Winner: {resultString} " +
-                    $"\n UserPoints: {UserPoints}, " +
-                    $"\n ComputerPoints: {ComputerPoints}");
+                    $"\n UserPoints: {_userPoints}, " +
+                    $"\n ComputerPoints: {_computerPoints}");
     }
 
     public int ReturnSelectionFromMenu()

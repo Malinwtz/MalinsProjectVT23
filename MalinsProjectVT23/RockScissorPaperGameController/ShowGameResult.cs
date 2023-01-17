@@ -26,7 +26,7 @@ namespace MalinsProjectVT23.RockScissorPaperGameController
             {
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("{0,-20}{1,-15}{2,-20}{3,-15}{4,-15}{5,-20}",
-                    " GameId", "Winner", "ComputerPoints", "UserPoints", "Tie", "Date");
+                    " GameId", "Winner", "ComputerPoints", "UserPoints", "AvgUserWins%", "Date");
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Line.LineTwoEqual();
                 Console.ForegroundColor = ConsoleColor.Cyan;
@@ -42,7 +42,7 @@ namespace MalinsProjectVT23.RockScissorPaperGameController
                         $"{result.Winner}",
                         $"{result.NumberOfComputerWins}", 
                         $"{result.NumberOfUserWins}",
-                        $"{result.Tie}", 
+                        $"{result.AverageUserWins}", 
                         $"{result.Date}");
                 }
             }
