@@ -14,32 +14,32 @@ public class CreateShape : ICrudShape
     }
 
     public ApplicationDbContext DbContext { get; set; }
-
+    public Shape ShapeFoundInDatabase { get; set; }
     public void RunCrud(IShape shape)
     {
         Console.Clear();
         Action.Yellow($" Create shape: {shape.Name}\n");
-        
+
         switch (shape)
         {
             case Rectangle:
             {
-                shape = new Rectangle();
+                ShapeFoundInDatabase = DbContext.Shapes.First(s => s.Name == shape.Name);
                 break;
             }
             case Triangle:
             {
-                shape = new Triangle();
+                ShapeFoundInDatabase = DbContext.Shapes.First(s => s.Name == shape.Name); 
                 break;
             }
             case Parallelogram:
             {
-                shape = new Parallelogram();
+                ShapeFoundInDatabase = DbContext.Shapes.First(s => s.Name == shape.Name); 
                 break;
             }
             case Rhombus:
             {
-                shape = new Rhombus();
+                ShapeFoundInDatabase = DbContext.Shapes.First(s => s.Name == shape.Name); 
                 break;
             }
         }
@@ -49,7 +49,6 @@ public class CreateShape : ICrudShape
         {
             Action.White(" Write height (cm): ");
             height = ErrorHandling.TryDecimal();
-
         }
         
         decimal length = 0;
@@ -69,12 +68,11 @@ public class CreateShape : ICrudShape
                 Action.NotSuccessful(e.Message);
                 throw;
             }
-           
         }
 
         var pCircumference = shape.CalculateCircumference(length, height);
         
-        AddShapeResultAndShapeToDatabase(pArea, pCircumference, height, length, shape.Name);
+        AddShapeResultAndShapeToDatabase(pArea, pCircumference, height, length, ShapeFoundInDatabase); 
         DbContext.SaveChanges();
         Action.Successful($" Saved!\n\n");
         Action.Yellow($" {shape.Name}\n Height: {height:0.###}cm,\n Length: {length}cm" +
@@ -83,7 +81,7 @@ public class CreateShape : ICrudShape
     }
 
     private void AddShapeResultAndShapeToDatabase(decimal pArea, decimal pCircumference, decimal height, decimal length,
-        string shapeName)
+        Shape shape)
     {
         DbContext.ShapeResults.Add(new ShapeResult
         {
@@ -92,10 +90,7 @@ public class CreateShape : ICrudShape
             Height = height,
             Length = length,
             ResultDate = DateTime.Now,
-            Shape = new Shape
-            {
-                Name = shapeName,
-            }
+            Shape = shape
         });
     }
 }

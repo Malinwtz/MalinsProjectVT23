@@ -16,7 +16,7 @@ public class DataInitializer
         dbContext.Database.Migrate();
 
         SeedShape(dbContext);
-        SeedShapeResult(dbContext);
+        //SeedShapeResult(dbContext);
         dbContext.SaveChanges();
     }
     private void SeedShape(ApplicationDbContext dbContext)
@@ -42,35 +42,29 @@ public class DataInitializer
             });
         }
     }
-    private void SeedShapeResult(ApplicationDbContext dbContext)
-    {
+    //private void SeedShapeResult(ApplicationDbContext dbContext)
+    //{
 
-        if (!dbContext.ShapeResults.Any())
-        {
-            dbContext.ShapeResults.Add(new ShapeResult
-            {
-                Area = 4 * 5 / 2,
-                Circumference = 5 * 3,
-                Height = 4,
-                Length = 5,
-                ResultDate = DateTime.Now,
-                Shape = new Shape 
-                {
-                    Name = ShapeEnum.TypeOfShape.Triangle.ToString(),
-                }
-            });
-            dbContext.ShapeResults.Add(new ShapeResult
-            {
-                Area = 4 * 5,
-                Circumference = (4 + 5) * 2,
-                Height = 4,
-                Length = 5,
-                ResultDate = DateTime.Now,
-                Shape = new Shape
-                {
-                    Name = ShapeEnum.TypeOfShape.Parallelogram.ToString(),
-                }
-            });
-        }
-    }
+    //    if (!dbContext.ShapeResults.Any())
+    //    {
+    //        dbContext.ShapeResults.Add(new ShapeResult
+    //        {
+    //            Area = 4 * 5 / 2,
+    //            Circumference = 5 * 3,
+    //            Height = 4,
+    //            Length = 5,
+    //            ResultDate = DateTime.Now,
+    //            Shape = dbContext.Shapes.First(s=>s.Name == ShapeEnum.TypeOfShape.Triangle.ToString()),
+    //        });
+    //        dbContext.ShapeResults.Add(new ShapeResult
+    //        {
+    //            Area = 4 * 5,
+    //            Circumference = (4 + 5) * 2,
+    //            Height = 4,
+    //            Length = 5,
+    //            ResultDate = DateTime.Now,
+    //            Shape = dbContext.Shapes.First(s => s.Name == ShapeEnum.TypeOfShape.Parallelogram.ToString()),
+    //        });
+    //    }
+    //}
 }
