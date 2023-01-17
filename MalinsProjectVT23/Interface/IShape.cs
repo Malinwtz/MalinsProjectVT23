@@ -12,6 +12,5 @@ namespace MalinsProjectVT23.Interface
         decimal CalculateArea(decimal length, decimal height);
         decimal CalculateCircumference(decimal length, decimal height);
         public decimal CalculateHeight(decimal length);
-
     }
 }

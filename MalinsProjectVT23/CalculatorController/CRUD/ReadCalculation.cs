@@ -39,7 +39,7 @@ public class ReadCalculation : ICrudCalculation
         Console.ForegroundColor = ConsoleColor.Magenta;
         foreach (var calculation in DbContext.Calculations.Where(c=>c.CalculationStrategy == CalculateStrategy.CalculationMethod))
             Console.WriteLine("{0,-10} {1,-15} {2,-15} {3,-15} {4,-15} {5,-15}",
-                $"{calculation.CalculationId}", $"{calculation.Input1:#.###}", $"{calculation.CalculationStrategy}", 
-                $"{calculation.Input2:#.###}", $"{calculation.Result:0.00#####}", $"{calculation.CalculationDate}");
+                $"{calculation.CalculationId}", $"{calculation.Input1}", $"{calculation.CalculationStrategy}", 
+                $"{calculation.Input2}", $"{calculation.Result}", $"{calculation.CalculationDate}");
     }
 }

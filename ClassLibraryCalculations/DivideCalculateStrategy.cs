@@ -12,7 +12,7 @@ public class DivideCalculateStrategy : ICalculateStrategy
         while (true)
         {
             if (num2 != 0)
-                return num1 / num2;
+                return Math.Round(num1 / num2, 6, MidpointRounding.AwayFromZero);
 
             Console.WriteLine(" The number to divide with can not be zero. Try again");
             Console.Write(" Number to be divided: ");

@@ -9,13 +9,13 @@ public class Rhombus : IShape
     public decimal CalculateArea(decimal length, decimal height)
     {
         var rArea = length * height;
-        return rArea;
+        return Math.Round(rArea, 6, MidpointRounding.AwayFromZero);
     }
 
     public decimal CalculateCircumference(decimal length, decimal height)
     {
         var rCircumference = length * 4;
-        return rCircumference;
+        return Math.Round(rCircumference, 6, MidpointRounding.AwayFromZero);
     }
 
     public decimal CalculateHeight(decimal length)

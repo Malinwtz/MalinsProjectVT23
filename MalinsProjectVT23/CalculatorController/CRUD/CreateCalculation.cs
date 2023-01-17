@@ -39,7 +39,7 @@ public class CreateCalculation : ICrudCalculation
             CalculatedResult = CalculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);
             Action.Magenta(
                 $"\n Result: {userInputNumberToAdd1} {CalculateStrategy.CalculationMethod} {userInputNumberToAdd2} " +
-                $"= {CalculatedResult:####,######}\n");
+                $"= {CalculatedResult}\n");
         }
 
         Action.PressEnterToContinue();

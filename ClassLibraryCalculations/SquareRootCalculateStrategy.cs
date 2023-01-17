@@ -11,6 +11,6 @@ public class SquareRootCalculateStrategy : ICalculateStrategy
         var numberToSquareRoot = Convert.ToDouble(numberToCalculateSquareRoot);
         var calculatedSquareRoot = Math.Sqrt(numberToSquareRoot);
 
-        return Convert.ToInt32(calculatedSquareRoot);
+        return Convert.ToInt32(Math.Round(calculatedSquareRoot, 6, MidpointRounding.AwayFromZero));
     }
 }

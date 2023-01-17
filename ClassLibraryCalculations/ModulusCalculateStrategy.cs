@@ -11,7 +11,10 @@ public class ModulusCalculateStrategy : ICalculateStrategy
     {
         while (true)
         {
-            if (num2 != 0) return (Math.Abs(num1 + num2) + num1) % num2; ///trycatch?
+            if (num2 != 0) 
+            {
+                return num1 % num2;
+            }
 
             Console.WriteLine(" The number to divide with can not be zero. Try again");
             Console.Write(" Number to be divided: ");

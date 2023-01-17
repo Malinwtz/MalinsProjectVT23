@@ -10,7 +10,7 @@ public class Triangle : IShape
     public decimal CalculateCircumference(decimal length, decimal height)
     {
         var tCircumference = length * 3;
-        return tCircumference;
+        return Math.Round(tCircumference, 6, MidpointRounding.AwayFromZero);
     }
 
     public decimal CalculateArea(decimal length, decimal height)
@@ -19,7 +19,7 @@ public class Triangle : IShape
         {
             height = CalculateHeight(length);
             var tArea = length * height / 2;
-            return tArea;
+            return Math.Round(tArea, 6, MidpointRounding.AwayFromZero);
         }
         catch (Exception e)
         {
@@ -39,7 +39,7 @@ public class Triangle : IShape
 
             var tHeight = Math.Sqrt(sideA - sideB);
 
-            return Convert.ToDecimal(tHeight);
+            return Convert.ToDecimal(Math.Round(tHeight, 6, MidpointRounding.AwayFromZero));
         }
         catch (Exception e)
         {

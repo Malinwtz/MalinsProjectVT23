@@ -9,13 +9,13 @@ public class Parallelogram : IShape
     public decimal CalculateArea(decimal length, decimal height)
     {
         var areaOfParallelogram = length * height;
-        return areaOfParallelogram;
+        return Math.Round(areaOfParallelogram, 3, MidpointRounding.AwayFromZero);
     }
 
     public decimal CalculateCircumference(decimal length, decimal height)
     {
         var circumferenceOfParallelogram = (length + height) * 2;
-        return circumferenceOfParallelogram;
+        return Math.Round(circumferenceOfParallelogram,6, MidpointRounding.AwayFromZero);
     }
 
     public decimal CalculateHeight(decimal length)

@@ -9,13 +9,13 @@ public class Rectangle : IShape
     public decimal CalculateArea(decimal length, decimal height)
     {
         var rectangleArea = length * height;
-        return rectangleArea;
+        return Math.Round(rectangleArea, 6, MidpointRounding.AwayFromZero);
     }
 
     public decimal CalculateCircumference(decimal length, decimal height)
     {
         var circumferenceOfRectangle = (length + height) * 2;
-        return circumferenceOfRectangle;
+        return Math.Round(circumferenceOfRectangle,6, MidpointRounding.AwayFromZero);
     }
 
     public decimal CalculateHeight(decimal length)
