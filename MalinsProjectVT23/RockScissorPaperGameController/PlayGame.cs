@@ -13,12 +13,12 @@ public class PlayGame
         User = 2,
         Draw = 3
     }
-    public enum GameOptions
-    {
-        Rock = 1,
-        Scissor = 2,
-        Paper = 3
-    }
+    //public enum GameOptions
+    //{
+    //    Rock = 1,
+    //    Scissor = 2,
+    //    Paper = 3
+    //}
 
     public PlayGame(ApplicationDbContext dbContext)
     {
