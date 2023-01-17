@@ -20,8 +20,8 @@
         public static void LineThreeStar()
         {
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine("******************************************************" +
-                              "******************************************************************" +
+            Console.WriteLine("* * * * * * * * * * * * * * * * * * * * * * * * * * * " +
+                              "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *" +
                               Environment.NewLine);
         }
     }
