@@ -95,7 +95,7 @@ public class PlayGame
                      userOption < randomizedOption &&
                      userOption != 0))
         {
-            Action.Cyan($"\n WINNER: {GameResult.Draw.ToString()} with {gameOptions[randomizedOption]}!");
+            Action.Cyan($"\n WINNER: {GameResult.Computer.ToString()} with {gameOptions[randomizedOption]}!");
             _computerPoints++;
         }
         else
@@ -108,7 +108,10 @@ public class PlayGame
     private void CalculateAverageNumberOfUserWins(int numberOfGames)
     {
         if (numberOfGames > 0)
-            _averageUserWins = (_userPoints / Convert.ToDecimal(numberOfGames))*10;
+        {
+            var averageWinsInDecimal = _userPoints / Convert.ToDecimal(numberOfGames);
+            _averageUserWins = averageWinsInDecimal * 100;
+        }
     }
 
     private void AddNewGameResult(string resultString)
@@ -119,7 +122,7 @@ public class PlayGame
             Winner = resultString,
             NumberOfComputerWins = _computerPoints,
             NumberOfUserWins = _userPoints,
-            AverageUserWins = Math.Round(_averageUserWins, 6, MidpointRounding.AwayFromZero)
+            AverageUserWins = Math.Round(_averageUserWins, 1, MidpointRounding.AwayFromZero)
         });
     }
 
@@ -140,8 +143,8 @@ public class PlayGame
 
     private void ShowWinner(string resultString)
     {
-        Action.Cyan($"\n Winner: {resultString} " +
-                    $"\n UserPoints: {_userPoints}, " +
+        Action.Cyan($"\n > WINNER: {resultString} \n" +
+                    $"\n UserPoints: {_userPoints} " +
                     $"\n ComputerPoints: {_computerPoints}");
     }
 

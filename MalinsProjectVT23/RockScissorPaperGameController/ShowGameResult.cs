@@ -27,7 +27,7 @@ namespace MalinsProjectVT23.RockScissorPaperGameController
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("{0,-20}{1,-15}{2,-20}{3,-15}{4,-15}{5,-20}",
                     " GameId", "Winner", "ComputerPoints", "UserPoints", "AvgUserWins%", "Date");
-                Console.ForegroundColor = ConsoleColor.Gray;
+                
                 Line.LineTwoEqual();
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 foreach (var result in DbContext.RockScissorPaperGameResults)
