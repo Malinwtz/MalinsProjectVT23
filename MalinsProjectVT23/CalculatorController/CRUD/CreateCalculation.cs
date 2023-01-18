@@ -45,6 +45,14 @@ public class CreateCalculation : ICrudCalculation
 
         Action.PressEnterToContinue();
 
+        AddNewCalculationToDatabase(userInputNumberToAdd1, userInputNumberToAdd2);
+        DbContext.SaveChanges();
+        Action.Successful(" Saved");
+        Action.PressEnterToContinue();
+    }
+
+    private void AddNewCalculationToDatabase(decimal userInputNumberToAdd1, decimal userInputNumberToAdd2)
+    {
         DbContext.Calculations.Add(new Calculation
         {
             Input1 = userInputNumberToAdd1,
@@ -53,8 +61,5 @@ public class CreateCalculation : ICrudCalculation
             CalculationDate = DateTime.Now,
             CalculationStrategy = CalculateStrategy.CalculationMethod
         });
-        DbContext.SaveChanges();
-        Action.Successful(" Saved");
-        Action.PressEnterToContinue();
     }
 }
