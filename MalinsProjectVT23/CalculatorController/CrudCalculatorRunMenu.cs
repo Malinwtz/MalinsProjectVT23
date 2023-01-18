@@ -7,20 +7,22 @@ namespace MalinsProjectVT23.CalculatorController;
 
 public class CrudCalculatorRunMenu
 {
-    public CrudCalculatorRunMenu(ApplicationDbContext dbContext, ReadCalculation readCalculation, 
+    public CrudCalculatorRunMenu(ApplicationDbContext dbContext, CreateCalculation createCalculation, ReadCalculation readCalculation, 
         UpdateCalculation updateCalculation, ICalculateStrategy calculateStrategy)
     {
         DbContext = dbContext;
         CalculateStrategy = calculateStrategy;
+        CreateCalculation = createCalculation;
         ReadCalculation = readCalculation;
         UpdateCalculation = updateCalculation;
     }
 
     public ApplicationDbContext DbContext { get; set; }
+    public CreateCalculation CreateCalculation { get; set; }
     public ReadCalculation ReadCalculation { get; set; }
     public UpdateCalculation UpdateCalculation { get; set; }
     public ICalculateStrategy CalculateStrategy { get; set; }
-    public ICrudCalculation CrudCalculation { get; set; } 
+    public ICrudCalculation CrudCalculation { get; set; }
 
     public void RunMenuOptions(int selectedFromMenu)
     {
@@ -29,7 +31,7 @@ public class CrudCalculatorRunMenu
         {
             case 1:
             {
-                CrudCalculation = new CreateCalculation(DbContext, CalculateStrategy);
+                CrudCalculation = CreateCalculation;
                 break;
             }
             case 2:

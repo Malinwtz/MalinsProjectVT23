@@ -27,22 +27,19 @@ public class UpdateShape : ICrudShape
                 .Include(s => s.Shape)
                 .Any())
         {
-            Action.NotSuccessful(" The list of shapes does not contain ");
-            Action.Yellow($"{shape.Name}\n");
-            Action.PressEnterToContinue();
+
+            Read.ListOfShapeIsEmpty(shape);
         }
         else if (DbContext.ShapeResults.Any())
         {
             Read.View(shape);
             Line.LineOneHyphen();
-            Action.Yellow(" Select shape by Id \n");
 
+            Action.Yellow(" Select shape by Id \n");
             ShapeFoundById = FindShapeById(shape);
 
-            Console.Clear();
-            Action.DarkYellow($"\n Chosen shape:\n Id {ShapeFoundById.ShapeResultId}, {ShapeFoundById.Shape.Name} " +
-                              $"\n Height: {ShapeFoundById.Height}cm\n Length: {ShapeFoundById.Length}cm\n\n");
-          
+            ShowChosenShape();
+
             if (shape.Name != ShapeEnum.TypeOfShape.Triangle.ToString())
             {
                 var sel = ChangeHeightOrLengthMenu();
@@ -80,14 +77,19 @@ public class UpdateShape : ICrudShape
         }
     }
 
+    public void ShowChosenShape()
+    {
+        Console.Clear();
+        Action.DarkYellow($"\n Chosen shape:\n Id {ShapeFoundById.ShapeResultId}, {ShapeFoundById.Shape.Name}\n");
+        Action.Yellow($" Height: {ShapeFoundById.Height}cm\n Length: {ShapeFoundById.Length}cm\n\n");
+    }
+
     private static int ChangeHeightOrLengthMenu()
     {
         var endAlternative = 2;
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine(" Select what you want to change ");
-        Console.WriteLine(" 1. Height (cm)");
-        Console.WriteLine($" {endAlternative}. Length (cm)");
-        Console.ForegroundColor = ConsoleColor.Gray;
+        Action.Yellow(" Select what you want to change\n");
+        Action.Yellow(" 1. Height (cm)\n");
+        Action.Yellow($" {endAlternative}. Length (cm)\n");
         ReturnFromMenuClass.ExitMenu();
         var sel = ReturnFromMenuClass.ReturnFromMenu(endAlternative);
         return sel;
@@ -98,9 +100,9 @@ public class UpdateShape : ICrudShape
         while (true)
             try
             {
-                Action.White(" Write id:");
+                Action.White(" Write id: ");
                 var shapeIdToFind = Convert.ToInt32(Console.ReadLine());
-                if (shapeIdToFind == 0) return null;
+               
                 ShapeFoundById = DbContext.ShapeResults.Where(s=>s.Shape.Name == shape.Name).Include(s => s.Shape)
                     .FirstOrDefault(s => s.ShapeResultId == shapeIdToFind);
 

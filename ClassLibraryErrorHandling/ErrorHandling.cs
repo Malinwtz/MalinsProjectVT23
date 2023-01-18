@@ -10,7 +10,7 @@ public class ErrorHandling
         Action.NotSuccessful(" Wrong input");
     }
 
-    public static DateTime TryDate()
+    public static DateTime TryFutureDate()
     {
         while (true)
             try
@@ -26,7 +26,7 @@ public class ErrorHandling
             }
     }
 
-    public static int TryInt()
+    public static int TryIntAboveZero()
     {
         while (true)
             try
@@ -34,6 +34,20 @@ public class ErrorHandling
                 int.TryParse(Console.ReadLine(), out var integer);
                 if (integer > 0)
                     return integer;
+                Console.WriteLine(" The number must be higher than 0");
+            }
+            catch
+            {
+                WrongInputMessage();
+            }
+    }
+    public static int TryIntIncludeNegative()
+    {
+        while (true)
+            try
+            {
+                int.TryParse(Console.ReadLine(), out var integer);
+                return integer;
             }
             catch
             {
@@ -46,10 +60,20 @@ public class ErrorHandling
         while (true)
             try
             {
-                decimal.TryParse(Console.ReadLine(), out var decimalNumber);
-                if (decimalNumber > 0)
-                    return decimalNumber;
-                Action.NotSuccessful(" Wrong input");
+                var inputString = Console.ReadLine();
+                if (inputString.Length > 0)
+                    if (inputString.StartsWith("-") || inputString.StartsWith("+") || inputString.StartsWith("1") ||
+                        inputString.StartsWith("2") || inputString.StartsWith("3") || inputString.StartsWith("4") || 
+                        inputString.StartsWith("5") || inputString.StartsWith("6") || inputString.StartsWith("7") ||
+                        inputString.StartsWith("8") || inputString.StartsWith("9") || inputString.StartsWith("0"))
+                    {
+                        var decimalNumber = Convert.ToDecimal(inputString);
+                        return decimalNumber;
+                    }
+                    else
+                    {
+                        WrongInputMessage();
+                    }
             }
             catch
             {

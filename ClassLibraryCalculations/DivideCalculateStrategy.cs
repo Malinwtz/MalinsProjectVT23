@@ -16,9 +16,9 @@ public class DivideCalculateStrategy : ICalculateStrategy
 
             Console.WriteLine(" The number to divide with can not be zero. Try again");
             Console.Write(" Number to be divided: ");
-            num1 = ErrorHandling.TryInt();
+            num1 = ErrorHandling.TryIntAboveZero();
             Console.Write(" Number to divide with: ");
-            num2 = ErrorHandling.TryInt();
+            num2 = ErrorHandling.TryIntAboveZero();
         }
     }
 }

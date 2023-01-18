@@ -18,23 +18,24 @@ public class CreateCalculation : ICrudCalculation
     public decimal CalculatedResult { get; set; }
     public ApplicationDbContext DbContext { get; set; }
 
+    public readonly string StringSquareRootOf = "Square root of";
     public void RunCrud(int selectedFromCalculateMenu)
     {
         Console.Clear();
         Action.White(" Write number to calculate: ");
-        var userInputNumberToAdd1 = ErrorHandling.TryInt();
-        var userInputNumberToAdd2 = 0;
+        var userInputNumberToAdd1 = ErrorHandling.TryDecimal();
+        decimal userInputNumberToAdd2 = 0;
 
-        if (CalculateStrategy.CalculationMethod == "Square root of")
+        if (CalculateStrategy.CalculationMethod == StringSquareRootOf)
         {
             CalculatedResult = CalculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);
             Action.Magenta($"\n Result: {CalculateStrategy.CalculationMethod} {userInputNumberToAdd1} " +
                                  $"= {CalculatedResult}\n");
         }
-        else if (CalculateStrategy.CalculationMethod != "Square root of")
+        else if (CalculateStrategy.CalculationMethod != StringSquareRootOf)
         {
             Action.White(" Write number 2 to calculate: ");
-            userInputNumberToAdd2 = ErrorHandling.TryInt();
+            userInputNumberToAdd2 = ErrorHandling.TryDecimal();
 
             CalculatedResult = CalculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);
             Action.Magenta(

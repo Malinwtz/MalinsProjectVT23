@@ -1,3 +1,4 @@
+using ClassLibraryCalculations.Interface;
 using ClassLibraryStrings;
 using MalinsProjectVT23.Data;
 using MalinsProjectVT23.Interface;
@@ -21,9 +22,7 @@ public class ReadShape : ICrudShape
                                     .Include(s => s.Shape)
                                     .Any())
         {
-            Action.NotSuccessful($" The list of shapes does not contain");
-            Action.Yellow($"{ shape.Name}\n");
-            Action.PressEnterToContinue();
+            ListOfShapeIsEmpty(shape);
         }
         else if (DbContext.ShapeResults.Any())
         {
@@ -46,5 +45,11 @@ public class ReadShape : ICrudShape
                 $" {shape.ShapeResultId}", $"{shape.Shape.Name}", $"{shape.Height:0.00##}",
                 $"{shape.Length:0.00##}", $"{shape.Area:0.00##}", $"{shape.Circumference:0.00##}", $"{shape.ResultDate}");
         }
+    }
+    public void ListOfShapeIsEmpty(IShape shape)
+    {
+        Action.Red(" The list of shapes does not contain ");
+        Action.Yellow($"{shape.Name}\n");
+        Action.PressEnterToContinue();
     }
 }

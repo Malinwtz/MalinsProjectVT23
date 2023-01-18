@@ -5,7 +5,7 @@ public class Action
     public static void PressEnterToContinue()
     {
         Console.ForegroundColor = ConsoleColor.Gray;
-        Console.Write("\n\n Tryck på enter för att fortsätta...");
+        Console.Write("\n\n Press enter to continue...");
         Console.ReadKey();
     }
 
@@ -21,6 +21,12 @@ public class Action
     {
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine(text);
+        Console.ForegroundColor = ConsoleColor.Gray;
+    }
+    public static void Red(string text)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.Write(text);
         Console.ForegroundColor = ConsoleColor.Gray;
     }
 

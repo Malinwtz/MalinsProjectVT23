@@ -32,9 +32,7 @@ namespace MalinsProjectVT23.ShapeController.CRUD
                     .Include(s => s.Shape)
                     .Any())
             {
-                Action.NotSuccessful(" The list of shapes does not contain");
-                Action.Yellow($" {shape.Name}\n");
-                Action.PressEnterToContinue();
+                Read.ListOfShapeIsEmpty(shape);
             }
             else if (DbContext.ShapeResults.Any())
             {
@@ -42,11 +40,32 @@ namespace MalinsProjectVT23.ShapeController.CRUD
                 Line.LineOneHyphen();
                 Action.Yellow(" Select shape by Id \n ");
                 var shapeFound = Update.FindShapeById(shape);
-                DbContext.ShapeResults.Remove(shapeFound);
-                DbContext.SaveChanges();
-                Action.Successful(" Shape deleted");
-                Action.PressEnterToContinue();
+                Update.ShowChosenShape();
+
+                var userInputDelete = AskIfDeleteShape();
+
+                if (userInputDelete.ToUpper() == "Y")
+                {
+                    DbContext.ShapeResults.Remove(shapeFound);
+                    DbContext.SaveChanges();
+                    Action.Successful(" Shape deleted");
+                    Action.PressEnterToContinue();
+                }
+                else
+                {
+                    Action.Yellow(" Shape not deleted");
+                    Action.PressEnterToContinue();
+                }
             }
+        }
+
+        private static string? AskIfDeleteShape()
+        {
+            Action.Red(" Delete shape? Press Y to delete\n " +
+                       "Press any other key to continue without deleting shape\n");
+            Action.White(" Write input: ");
+            var userInputDelete = Console.ReadLine();
+            return userInputDelete;
         }
     }
 }

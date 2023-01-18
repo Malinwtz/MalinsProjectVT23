@@ -27,22 +27,41 @@ public class DeleteCalculation : ICrudCalculation
     public void RunCrud(int selectedFromMenu)
     {
         Console.Clear();
-        if (!DbContext.Calculations.Any())
+        if (!DbContext.Calculations.Where(c=>c.CalculationStrategy == CalculateStrategy.CalculationMethod).Any())
         {
-            Action.NotSuccessful(" The list of calculations is empty ");
-            Action.PressEnterToContinue();
+            ReadCalculation.ListOfCalculationIsEmpty();
         }
-        else if (DbContext.ShapeResults.Any())
+        else if (DbContext.Calculations.Where(c => c.CalculationStrategy == CalculateStrategy.CalculationMethod).Any())
         {
             ReadCalculation.View();
             Line.LineOneHyphen();
-            Action.White(" Select calculation by Id \n");
 
+            Action.Magenta(" Select calculation by Id \n");
             var calculationFoundById = UpdateCalculation.FindCalculationById(CalculateStrategy);
-            DbContext.Calculations.Remove(calculationFoundById);
-            DbContext.SaveChanges();
-            Action.Successful(" Calculation deleted");
-            Action.PressEnterToContinue();
+            UpdateCalculation.ShowChosenCalculation(calculationFoundById);
+
+            var userInputDelete = AskIfDeleteCalculation();
+
+            if (userInputDelete.ToUpper() == "Y")
+            {
+                DbContext.Calculations.Remove(calculationFoundById);
+                DbContext.SaveChanges();
+                Action.Successful(" Calculation deleted");
+            }
+            else
+            {
+                Action.Magenta(" Calculation not deleted");
+            }
         }
+        Action.PressEnterToContinue();
+    }
+
+    private static string? AskIfDeleteCalculation()
+    {
+        Action.Red(" Delete calculation? Press Y to delete.\n " +
+                   "Press any other key to continue without deleting shape.\n");
+        Action.White(" Write input: ");
+        var userInputDelete = Console.ReadLine();
+        return userInputDelete;
     }
 }
