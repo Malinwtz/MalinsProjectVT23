@@ -1,0 +1,85 @@
+2023-01-05
+Gjort menyer för startsida och miniräknare. 
+Gjort ett ER-diagram över hur tabellerna ska se ut i databasen.
+
+2023-01-09
+Tänkt ut hur undermenyerna ska se ut och skrivit in detta som en kommentar. 
+Gjort en koppling till databas via Code First och skapat en databas från koden. 
+Skapat ett class library för beräkningar. Gjort ett till class library för felhantering. Funderade på om det skulle vara ett och samma 
+class library men tänkte att det blir enklare att hantera dem ifall varje class library bara innehåller en sak. Om jag skulle vilja använda 
+exempelvis felhantering i ett annat projekt så behöver jag inte ha beräkningar med i samma class library.  
+
+2023-01-10
+Gjort ett interface IShape för att kunna lägga till fler former, men vet inte hur det ska fungera. Kollat på youtube och gamla anteckningar 
+om interfaces utan framgång, därför inte hänt så mycket med projektet.
+Skapat Sten, sax, påse meny för att välja att spela eller se statistik och undermeny för själva spelet. 
+
+2023-01-11
+Kollat mer på youtube om dependency injection.
+Kopierat kod från tidigare sten, sax, påse spel och anpassat så att koden fungerar ok i projektet.
+Lagt till CRUDMenu och createShape. I Shape-menyn ska den form som valts skickas med (genom att använda IShape) och med den skapas olika former 
+utifrån respektive beräkningar.
+Skapat beräkningar av formerna. 
+Lagt till klasserna CreateShape och ReadShape som ska gälla för alla tänkbara former som kan skapas så att det bara behövs en klass för själva 
+formens uträkning om man vill redigera programmet och lägga till en ny form. 
+
+2023-01-12
+Försökt få till strategy pattern i Calculate för att slippa upprepa kod. Hade redan börjat med strategy pattern i shapes så jag fortsatte med det 
+där också.  Svårt att få till klasser som ska implementera samma interface men göra olika saker om de ska ta in olika parametrar. Löste ett sådant 
+problem genom att inte använda alla parametrar som skickades in i klassen och metoden. 
+
+2023-01-13
+Försökt att få till strategy pattern i miniräknaren för att slippa newa upp klasser fler gånger. I samband med byte av branch glömde jag att spara 
+en ändring i masterbranchen så att det blev en merge-konflikt när jag skulle komma tillbaka till master-branchen. Jag kunde till en början göra en 
+merge men det hände inget med klasserna, de hängde inte med. Jag lyckades inte lösa det så jag kopierade in klasserna i master vilket inte är optimalt 
+eftersom jag kan ha missat något. Jag hade också jobbat väldigt mycket i branchen som skulle mergeas in i master så det blev mycket kod som fick kopieras. 
+Det är väldigt lätt att feature-brancherna blir stora för att jag tappar fokus i vad jag håller på med, till exempel att jag hittar ett fel som jag vill 
+ändra innan jag glömmer bort det och sen minns jag inte vad jag höll på med innan. Försöker bli bättre på att arbeta med en sak i taget och skriva en lista 
+på saker som jag ska göra för att inte tappa bort mig. 
+I fortsättningen bra att fokusera på en sak i taget för att inte tappa bort vad jag håller på med. Även att komma ihåg att spara innan jag byter från 
+master-branchen så att det inte blir en merge-konflikt.
+Har lagt till flera interfaces och försökt använda mig av dependency injection för att skicka med information till nästa klass. 
+
+2023-10-14
+La till data annotations decimaler för att göra det möjligt att lägga in större tal i databasen – trodde jag. Det gick inte som jag tänkt mig och programmet 
+kraschade med ett felmeddelande att talet jag försökte lägga in i databasen var för stort, därför tog jag bort dem idag. Senare begränsade jag istället 
+decimalerna så att det skulle bli max två decimaler.
+Igår la jag till en calculationstrategy  som en property i calculation-klassen i efterhand eftersom jag kom på att jag vill visa det i tabellen och för att 
+det blir enkelt att spara ner beräkningsmetoden i beräkningen som ska göras. 
+
+2023-01-15
+Gjort enum istället för string som namn på formerna för att minska risken för fel. Ändrat i Datainitialzer så att de fyra formerna seedas från början. Min 
+tanke är att varje form ska förekomma en gång i tabellen och att det är resultaten som ska cruddas och kan förekomma fler gånger.
+
+2023-01-16
+Gjorde om create och update shape om det är en triangel så att man bara ska behöva skriva in basen för triangeln. Om användaren även får skriva in höjden så 
+måste programmet kontrollera så att höjden stämmer och det kan bli fel. Eftersom det går att räkna ut höjden med hjälp av basen på triangeln så är det onödigt 
+att användaren även ska skriva in höjden och riskera att skriva fel. 
+
+2023-01-17
+Ändrat så att det inte läggs till en ny shape varje gång ett nytt shape result skapas. Då innehåller tabellen shapes bara en av varje form och kan kopplas 
+till resutltatet genom formens id. 
+Gjort en ShapeEnum så att det bara ska gå att välja av de former som finns.
+
+2023-01-18
+Gjorde en readonly string för roten ut för att ersätta stringen jag hade skrivit på flera ställen. En enum för alla olika räknesätt hade varit bättre men jag 
+kände inte att jag hade tid att göra om så mycket i programmet.
+Har kollat igenom koden så att den ser snygg ut och gjort lite refaktorisering som jag missat tidigare. 
+
+Svårigheter/Saker jag lärt mig
+  Branches har bråkat en del för mig. När jag har bytt branch och glömt att göra en commit i den branchen så blir det problem när jag ska gå tillbaka. Har hänt 
+flera gånger men den första var värst eftersom jag senare blivit bättre på att göra commits. 
+   Har gjort flera migrations för att jag kommit på i efterhand att jag vill ändra på hur min databas ser ut. Jag hade svårt att bestämma mig för en plan och 
+hålla mig till den. Hade kanske blivit mindre ändringar om jag tänkt igenom ER-diagrammet ordentligt innan jag började men jag hade inte heller något klar 
+bild av hur programmet skulle se ut innan jag började. 
+   På flera ställen hade jag kunnat göra fler enums för att få in mer SRP men har inte lagt ner allt för mycket tid på det då programmet fungerar och jag inte 
+kände att jag hade den tiden. 
+   Jag har varit bra på att följa instruktionerna eftersom jag har skrivit ner dem i punktform i en att-göra-lista. Ändå missade jag att man ska kunna räkna ut 
+averageUserWins. Eftersom jag under tiden jag har arbetat med projektet har gått igenom informationen i uppgiften flera gånger har jag upptäckt att den 
+funktionen saknades och lagt till den i efterhand. 
+
+Förbättringsförslag
+> Ordna kolumnerna i SQL (genom [Column]) så att de hamnar i en mer logisk ordning i databasen. (inte haft tid)
+> Fler enums för mer SRP. (inte haft tid)
+> Använd Autofac. (vet inte hur man gör än)
+
