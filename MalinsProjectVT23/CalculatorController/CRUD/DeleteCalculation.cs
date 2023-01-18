@@ -36,7 +36,7 @@ public class DeleteCalculation : ICrudCalculation
             ReadCalculation.View();
             Line.LineOneHyphen();
 
-            Action.Magenta(" Select calculation by Id \n");
+            Action.Magenta("\n Select calculation by Id \n");
             var calculationFoundById = UpdateCalculation.FindCalculationById(CalculateStrategy);
             UpdateCalculation.ShowChosenCalculation(calculationFoundById);
 
@@ -58,8 +58,9 @@ public class DeleteCalculation : ICrudCalculation
 
     private static string? AskIfDeleteCalculation()
     {
-        Action.Red(" Delete calculation? Press Y to delete.\n " +
-                   "Press any other key to continue without deleting shape.\n");
+        Action.Red("\n\n Delete calculation? Press");
+        Action.White(" Y");
+        Action.Red(" to delete.\n" + " Press any other key to continue without deleting calculation.\n");
         Action.White(" Write input: ");
         var userInputDelete = Console.ReadLine();
         return userInputDelete;

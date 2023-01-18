@@ -19,9 +19,10 @@ public class PlayGame
         DbContext = dbContext;
     }
 
-    private int _computerPoints { get; set; }
-    private int _userPoints { get; set; }
-    private decimal _averageUserWins { get; set; }
+    private int _computerPoints { get; set; } = 0;
+    private int _userPoints { get; set; } = 0;
+    private decimal _averageUserWins { get; set; } = 0;
+    private int _numberOfDraws { get; set; } = 0;
     private string[] gameOptions { get; } = { "Rock", "Scissor", "Paper" };
     public ApplicationDbContext DbContext { get; set; }
 
@@ -48,7 +49,7 @@ public class PlayGame
         Console.Clear();
         Action.Blue("\n Game finished!\n\n");
 
-        CalculateAverageNumberOfUserWins(numberOfGames);
+        CalculateAverageNumberOfUserWins(numberOfGames - _numberOfDraws);
         
         var resultString = ShowEndedGameResultMessage();
         ShowWinner(resultString);
@@ -83,6 +84,7 @@ public class PlayGame
         if (randomizedOption == userOption)
         {
             Action.Cyan($"\n {GameResult.Draw.ToString()}!");
+            _numberOfDraws++;
         }
         else if ((randomizedOption == 0 && userOption > randomizedOption && userOption != gameOptions.Length - 1)
                  || (randomizedOption == 1 && userOption > randomizedOption) || (randomizedOption == 2 &&

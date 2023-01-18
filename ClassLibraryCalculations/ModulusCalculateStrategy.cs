@@ -13,7 +13,7 @@ public class ModulusCalculateStrategy : ICalculateStrategy
         {
             if (num2 != 0) 
             {
-                return num1 % num2;
+                return Math.Round(num1 % num2, 2, MidpointRounding.AwayFromZero);
             }
 
             Console.WriteLine(" The number to divide with can not be zero. Try again");

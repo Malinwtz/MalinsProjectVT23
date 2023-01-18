@@ -37,7 +37,7 @@ namespace MalinsProjectVT23.CalculatorController.CRUD
             {
                 ReadCalculation.View();
                 Line.LineOneHyphen();
-                Action.Magenta(" Select calculation by Id \n");
+                Action.Magenta("\n Select calculation by Id \n");
 
                 var calculationFoundById = FindCalculationById(CalculateStrategy);
                 ShowChosenCalculation(calculationFoundById);
@@ -76,7 +76,7 @@ namespace MalinsProjectVT23.CalculatorController.CRUD
                 }
                 else if (CalculateStrategy.CalculationMethod == Create.StringSquareRootOf)
                 {
-                    Action.Magenta(" 1. Set a new value");
+                    Action.Magenta("\n 1. Set a new value");
                     ReturnFromMenuClass.ExitMenu();
                     selectionFromUser = ReturnFromMenuClass.ReturnFromMenu(1);
                     
@@ -88,7 +88,9 @@ namespace MalinsProjectVT23.CalculatorController.CRUD
                     Action.Magenta(
                         $"\n New result: {CalculateStrategy.CalculationMethod} {calculationFoundById.Input1} = {CalculatedResult}\n");
                 }
+                Action.PressEnterToContinue();
 
+                Console.Clear();
                 DbContext.SaveChanges();
                 Action.Successful(" Value changed!");
             }
@@ -100,7 +102,7 @@ namespace MalinsProjectVT23.CalculatorController.CRUD
             while (true)
                 try
                 {
-                    Action.White(" Write id:");
+                    Action.White(" Write id: ");
                     var calculationIdToFind = Convert.ToInt32(Console.ReadLine());
                   
                     var calculationFoundById = DbContext.Calculations
@@ -118,11 +120,11 @@ namespace MalinsProjectVT23.CalculatorController.CRUD
         public void ShowChosenCalculation(Calculation foundCalculation)
         {
             Console.Clear();
-            Action.DarkMagenta($"\n Chosen calculation:\n Id { foundCalculation.CalculationId}, Date { foundCalculation.CalculationDate}\n");
+            Action.DarkMagenta($"\n Chosen calculation:\n\n Id { foundCalculation.CalculationId}, Date { foundCalculation.CalculationDate}\n");
             if(foundCalculation.CalculationStrategy == Create.StringSquareRootOf)
                 Action.Magenta($" {foundCalculation.CalculationStrategy} {foundCalculation.Input1} = {foundCalculation.Result} ");
             else
-                Action.Magenta($" {foundCalculation.Input1} {foundCalculation.CalculationStrategy} {foundCalculation.Input2} = {foundCalculation.Result} ");
+                Action.Magenta($" {foundCalculation.Input1} {foundCalculation.CalculationStrategy} {foundCalculation.Input2} = {foundCalculation.Result} \n");
         }
 
         private static decimal SetANewValueToCalculation()

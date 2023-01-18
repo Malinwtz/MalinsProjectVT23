@@ -61,8 +61,9 @@ namespace MalinsProjectVT23.ShapeController.CRUD
 
         private static string? AskIfDeleteShape()
         {
-            Action.Red(" Delete shape? Press Y to delete\n " +
-                       "Press any other key to continue without deleting shape\n");
+            Action.Red("\n\n Delete shape? Press");
+            Action.White(" Y");
+            Action.Red(" to delete.\n" + " Press any other key to continue without deleting shape.\n");
             Action.White(" Write input: ");
             var userInputDelete = Console.ReadLine();
             return userInputDelete;

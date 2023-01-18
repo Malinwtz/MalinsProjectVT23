@@ -17,6 +17,7 @@ public class MainMenu
         var endAlternative = 3;
         Line.LineThreeStar();
         Action.White(" MAIN MENU\n");
+        Line.LineTwoEqual();
         Line.LineThreeStar();
         Action.DarkYellow("\n 1. Shapes\n\n");
         Action.DarkMagenta(" 2. Calculator\n\n");
