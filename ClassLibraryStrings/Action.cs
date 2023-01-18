@@ -1,11 +1,14 @@
-﻿namespace ClassLibraryStrings;
+﻿using System.Drawing;
+using Console = System.Console;
+
+namespace ClassLibraryStrings;
 
 public class Action
 {
     public static void PressEnterToContinue()
     {
-        Console.ForegroundColor = ConsoleColor.Gray;
-        Console.Write("\n\n Press enter to continue...");
+        Console.ForegroundColor = ConsoleColor.DarkGray;
+        Console.WriteLine("\n\n Press enter to continue...");
         Console.ReadKey();
     }
 
@@ -77,5 +80,27 @@ public class Action
         Console.ForegroundColor = ConsoleColor.Magenta;
         Console.Write(text);
         Console.ForegroundColor = ConsoleColor.Gray;
+    }
+
+    public static void BlueGradient(string text)
+    {
+        var chars = text.ToCharArray();
+            Colorful.Console.WriteWithGradient(chars, Color.Aqua,
+                Color.Blue, 5);
+            Console.ResetColor();
+    }
+    public static void YellowGradient(string text)
+    {
+        var chars = text.ToCharArray();
+            Colorful.Console.WriteWithGradient(chars, Color.Gold,
+                Color.OrangeRed, 5);
+            Console.ResetColor();
+    }
+    public static void PurpleGradient(string text)
+    {
+        var chars = text.ToCharArray();
+            Colorful.Console.WriteWithGradient(chars, Color.MediumOrchid,
+                Color.Indigo, 5);
+            Console.ResetColor();
     }
 }

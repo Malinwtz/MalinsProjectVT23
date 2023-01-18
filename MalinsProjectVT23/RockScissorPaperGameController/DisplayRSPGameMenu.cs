@@ -11,7 +11,7 @@ public class DisplayRSPGameMenu : IDisplayMenu
     {
         Console.Clear();
         var endAlternative = 2;
-        Action.DarkCyan(" Rock Scissor Paper Menu\n");
+        Action.Blue(" Rock Scissor Paper Menu\n");
         Line.LineThreeStar();
         Action.Cyan("\n 1. Play game");
         Action.Cyan($" {endAlternative}. Show statistics\n\n");
