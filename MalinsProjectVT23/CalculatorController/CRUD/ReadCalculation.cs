@@ -34,7 +34,7 @@ public class ReadCalculation : ICrudCalculation
 
     public void ListOfCalculationIsEmpty()
     {
-        Action.Red(" The list of calculation does not contain the ");
+        Action.Red(" The list of calculations does not contain the ");
         Action.White($"({CalculateStrategy.CalculationMethod}) ");
         Action.Red("method");
     }
@@ -45,6 +45,7 @@ public class ReadCalculation : ICrudCalculation
         Console.WriteLine("{0,-10} {1,-20} {2,-15} {3,-20} {4,-30} {5,-15}",
             " CalcId", "Input1", "CalcMethod", "Input2", "Result", "Date");
         Line.LineTwoEqual();
+
         Console.ForegroundColor = ConsoleColor.Magenta;
         foreach (var calculation in DbContext.Calculations.Where(c=>c.CalculationStrategy == CalculateStrategy.CalculationMethod))
             Console.WriteLine("{0,-10} {1,-20} {2,-15} {3,-20} {4,-30} {5,-15}",
