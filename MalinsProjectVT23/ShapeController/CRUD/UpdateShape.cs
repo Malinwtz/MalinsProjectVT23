@@ -45,27 +45,12 @@ public class UpdateShape : ICrudShape
                 var sel = ChangeHeightOrLengthMenu();
                 if (sel == 0) return;
 
-                Action.White(" Set a new value: ");
-                var newValue = ErrorHandling.TryDecimal();
-                switch (sel)
-                {
-                    case 1:
-                    {
-                        ShapeFoundById.Height = newValue;
-                        break;
-                    }
-                    case 2:
-                    {
-                        ShapeFoundById.Length = newValue;
-                        break;
-                    }
-                }
+                var newValue = GetNewValueFromUser();
+                SetNewValueToShapeHeightOrLength(sel, newValue);
             }
             else if (shape.Name == ShapeEnum.TypeOfShape.Triangle.ToString())
             {
-                Action.Yellow(" Set new length\n");
-                Action.White(" Value: ");
-                ShapeFoundById.Length = ErrorHandling.TryDecimal();
+                SetNewLengthValueToShape();
                 ShapeFoundById.Height = shape.CalculateHeight(ShapeFoundById.Length);
             }
 
@@ -75,6 +60,37 @@ public class UpdateShape : ICrudShape
             Action.Successful(" Value changed!");
             Action.PressEnterToContinue();
         }
+    }
+
+    private void SetNewLengthValueToShape()
+    {
+        Action.Yellow(" Set new length\n");
+        Action.White(" Value: ");
+        ShapeFoundById.Length = ErrorHandling.TryDecimal();
+    }
+
+    private void SetNewValueToShapeHeightOrLength(int sel, decimal newValue)
+    {
+        switch (sel)
+        {
+            case 1:
+            {
+                ShapeFoundById.Height = newValue;
+                break;
+            }
+            case 2:
+            {
+                ShapeFoundById.Length = newValue;
+                break;
+            }
+        }
+    }
+
+    private static decimal GetNewValueFromUser()
+    {
+        Action.White(" Set a new value: ");
+        var newValue = ErrorHandling.TryDecimal();
+        return newValue;
     }
 
     public void ShowChosenShape()

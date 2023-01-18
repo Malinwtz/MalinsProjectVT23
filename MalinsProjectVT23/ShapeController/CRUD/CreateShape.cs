@@ -20,35 +20,12 @@ public class CreateShape : ICrudShape
         Console.Clear();
         Action.Yellow($" Create shape: {shape.Name}\n");
 
-        switch (shape)
-        {
-            case Rectangle:
-            {
-                ShapeFoundInDatabase = DbContext.Shapes.First(s => s.Name == shape.Name);
-                break;
-            }
-            case Triangle:
-            {
-                ShapeFoundInDatabase = DbContext.Shapes.First(s => s.Name == shape.Name); 
-                break;
-            }
-            case Parallelogram:
-            {
-                ShapeFoundInDatabase = DbContext.Shapes.First(s => s.Name == shape.Name); 
-                break;
-            }
-            case Rhombus:
-            {
-                ShapeFoundInDatabase = DbContext.Shapes.First(s => s.Name == shape.Name); 
-                break;
-            }
-        }
+        FindShapeInDataBase(shape);
 
         decimal height = 0;
         if (shape.Name != ShapeEnum.TypeOfShape.Triangle.ToString())
         {
-            Action.White(" Write height (cm): ");
-            height = ErrorHandling.TryDecimal();
+            height = GetHeightInputFromUser();
         }
         
         decimal length = 0;
@@ -78,6 +55,41 @@ public class CreateShape : ICrudShape
         Action.Yellow($" {shape.Name}\n Height: {height}cm,\n Length: {length}cm" +
                           $"\n Area: {pArea}cm2,\n Circumference: {pCircumference}cm");
         Action.PressEnterToContinue();
+    }
+
+    private static decimal GetHeightInputFromUser()
+    {
+        decimal height;
+        Action.White(" Write height (cm): ");
+        height = ErrorHandling.TryDecimal();
+        return height;
+    }
+
+    private void FindShapeInDataBase(IShape shape)
+    {
+        switch (shape)
+        {
+            case Rectangle:
+            {
+                ShapeFoundInDatabase = DbContext.Shapes.First(s => s.Name == shape.Name);
+                break;
+            }
+            case Triangle:
+            {
+                ShapeFoundInDatabase = DbContext.Shapes.First(s => s.Name == shape.Name);
+                break;
+            }
+            case Parallelogram:
+            {
+                ShapeFoundInDatabase = DbContext.Shapes.First(s => s.Name == shape.Name);
+                break;
+            }
+            case Rhombus:
+            {
+                ShapeFoundInDatabase = DbContext.Shapes.First(s => s.Name == shape.Name);
+                break;
+            }
+        }
     }
 
     private void AddShapeResultAndShapeToDatabase(decimal pArea, decimal pCircumference, decimal height, decimal length,
