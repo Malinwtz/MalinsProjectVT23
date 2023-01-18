@@ -52,17 +52,17 @@ public class CalculatorRunMenu : IRunSecondMenu
                 break;
             }
         }
-        
+
+        var displayCrudCalculatorMenu = new DisplayCrudCalculatorMenu();
+        var createCalculation = new CreateCalculation(dbContext, CalculateStrategy);
+        var readCalculation = new ReadCalculation(DbContext, createCalculation, CalculateStrategy);
+        var updateCalculation = new UpdateCalculation(DbContext, readCalculation, createCalculation, CalculateStrategy);
+        var crudCalculatorRunMenu = new CrudCalculatorRunMenu(DbContext, createCalculation, readCalculation, updateCalculation, CalculateStrategy);
         while (true)
         {
-            var displayCrudCalculatorMenu = new DisplayCrudCalculatorMenu();
             var selectedFromCrudCalculationMenu = displayCrudCalculatorMenu.ReturnSelectionFromMenu();
             if (selectedFromCrudCalculationMenu == 0) break;
             
-            var createCalculation = new CreateCalculation(dbContext, CalculateStrategy);
-            var readCalculation = new ReadCalculation(DbContext, createCalculation, CalculateStrategy);
-            var updateCalculation = new UpdateCalculation(DbContext, readCalculation, createCalculation, CalculateStrategy);
-            var crudCalculatorRunMenu = new CrudCalculatorRunMenu(DbContext, createCalculation, readCalculation, updateCalculation, CalculateStrategy);
             Console.Clear();
             crudCalculatorRunMenu.RunMenuOptions(selectedFromCrudCalculationMenu);
         }

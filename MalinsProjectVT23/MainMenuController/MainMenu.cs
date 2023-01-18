@@ -1,10 +1,4 @@
-﻿using ClassLibraryCalculations.Interface;
-using ClassLibraryStrings;
-using MalinsProjectVT23.CalculatorController;
-using MalinsProjectVT23.Data;
-using MalinsProjectVT23.Interface;
-using MalinsProjectVT23.RockScissorPaperGameController;
-using MalinsProjectVT23.ShapeController;
+﻿using ClassLibraryStrings;
 using Action = ClassLibraryStrings.Action;
 
 namespace MalinsProjectVT23.MainMenuController;

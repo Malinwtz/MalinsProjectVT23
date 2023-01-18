@@ -1,5 +1,4 @@
 ﻿using MalinsProjectVT23.CalculatorController;
-using MalinsProjectVT23.CalculatorController.CRUD;
 using MalinsProjectVT23.Data;
 using MalinsProjectVT23.Interface;
 using MalinsProjectVT23.RockScissorPaperGameController;
@@ -10,15 +9,16 @@ namespace MalinsProjectVT23.MainMenuController;
 
 public class RunMainMenu
 {
-    public ApplicationDbContext DbContext { get; set; }
-    public ReadShape ReadShape { get; set; }
-    public UpdateShape UpdateShape { get; set; }
     public RunMainMenu(ApplicationDbContext dbContext, ReadShape readShape, UpdateShape updateShape)
     {
         DbContext = dbContext;
         ReadShape = readShape;
         UpdateShape = updateShape;
     }
+
+    public ApplicationDbContext DbContext { get; set; }
+    public ReadShape ReadShape { get; set; }
+    public UpdateShape UpdateShape { get; set; }
     public IRunSecondMenu RunMenu { get; set; }
     public IDisplayMenu DisplayMenu { get; set; }
 
@@ -49,7 +49,7 @@ public class RunMainMenu
 
         while (true)
         {
-            var inputFromChosenMenu = DisplayMenu.ReturnSelectionFromMenu(); 
+            var inputFromChosenMenu = DisplayMenu.ReturnSelectionFromMenu();
             if (inputFromChosenMenu == 0) break;
             Console.Clear();
             RunMenu.RunMenuOptions(inputFromChosenMenu, dbContext);

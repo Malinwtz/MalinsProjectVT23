@@ -1,7 +1,5 @@
-﻿using ClassLibraryStrings;
-using MalinsProjectVT23.Data;
+﻿using MalinsProjectVT23.Data;
 using MalinsProjectVT23.Interface;
-using MalinsProjectVT23.MainMenuController;
 using Action = ClassLibraryStrings.Action;
 
 namespace MalinsProjectVT23.RockScissorPaperGameController;

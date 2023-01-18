@@ -1,5 +1,4 @@
-﻿using ClassLibraryCalculations.Interface;
-using MalinsProjectVT23.Data;
+﻿using MalinsProjectVT23.Data;
 
 namespace MalinsProjectVT23.Interface;
 

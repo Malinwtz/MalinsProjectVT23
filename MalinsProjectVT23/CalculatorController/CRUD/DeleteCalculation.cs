@@ -1,16 +1,15 @@
 ﻿using ClassLibraryCalculations.Interface;
-using ClassLibraryErrorHandling;
 using ClassLibraryStrings;
 using MalinsProjectVT23.Data;
 using MalinsProjectVT23.Interface;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using Action = ClassLibraryStrings.Action;
 
 namespace MalinsProjectVT23.CalculatorController.CRUD;
 
 public class DeleteCalculation : ICrudCalculation
 {
-    public DeleteCalculation(ApplicationDbContext dbContext, ReadCalculation readCalculation, UpdateCalculation updateCalculation,
+    public DeleteCalculation(ApplicationDbContext dbContext, ReadCalculation readCalculation,
+        UpdateCalculation updateCalculation,
         ICalculateStrategy calculateStrategy)
     {
         DbContext = dbContext;
@@ -27,7 +26,7 @@ public class DeleteCalculation : ICrudCalculation
     public void RunCrud(int selectedFromMenu)
     {
         Console.Clear();
-        if (!DbContext.Calculations.Where(c=>c.CalculationStrategy == CalculateStrategy.CalculationMethod).Any())
+        if (!DbContext.Calculations.Where(c => c.CalculationStrategy == CalculateStrategy.CalculationMethod).Any())
         {
             ReadCalculation.ListOfCalculationIsEmpty();
         }
@@ -53,6 +52,7 @@ public class DeleteCalculation : ICrudCalculation
                 Action.Magenta(" Calculation not deleted");
             }
         }
+
         Action.PressEnterToContinue();
     }
 

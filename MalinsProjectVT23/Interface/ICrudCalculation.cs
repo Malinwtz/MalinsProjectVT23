@@ -1,9 +1,6 @@
-﻿using ClassLibraryCalculations.Interface;
-using MalinsProjectVT23.Data;
-
-namespace MalinsProjectVT23.Interface;
+﻿namespace MalinsProjectVT23.Interface;
 
 public interface ICrudCalculation
 {
-    void RunCrud(int selectedFromMenu); 
+    void RunCrud(int selectedFromMenu);
 }

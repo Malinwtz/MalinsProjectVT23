@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace MalinsProjectVT23.Interface;
 
-namespace MalinsProjectVT23.Interface
+public interface ICrudShape
 {
-    public interface ICrudShape
-    {
-        void RunCrud(IShape shape);
-    }
+    void RunCrud(IShape shape);
 }
