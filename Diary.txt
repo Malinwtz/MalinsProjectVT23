@@ -82,4 +82,5 @@ Förbättringsförslag
 > Ordna kolumnerna i SQL (genom [Column]) så att de hamnar i en mer logisk ordning i databasen. (inte haft tid)
 > Fler enums för mer SRP. (inte haft tid)
 > Använd Autofac. (vet inte hur man gör än)
+> Göra tre olika projekt istället för ett. 
 
