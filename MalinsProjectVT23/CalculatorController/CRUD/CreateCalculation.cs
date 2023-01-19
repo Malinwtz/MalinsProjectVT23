@@ -22,18 +22,23 @@ public class CreateCalculation : ICrudCalculation
     public void RunCrud(int selectedFromCalculateMenu)
     {
         Console.Clear();
-        Action.White(" Write number to calculate: ");
-        var userInputNumberToAdd1 = ErrorHandling.TryDecimal();
+        
         decimal userInputNumberToAdd2 = 0;
-
+        decimal userInputNumberToAdd1 = 0;
         if (CalculateStrategy.CalculationMethod == StringSquareRootOf)
         {
+            Action.White(" Write number to calculate: ");
+            userInputNumberToAdd1 = ErrorHandling.TryPositiveDecimal();
+
             CalculatedResult = CalculateStrategy.Calculate(userInputNumberToAdd1, userInputNumberToAdd2);
             Action.Magenta($"\n Result: {CalculateStrategy.CalculationMethod} {userInputNumberToAdd1} " +
                                  $"= {CalculatedResult}\n");
         }
         else if (CalculateStrategy.CalculationMethod != StringSquareRootOf)
         {
+            Action.White(" Write number to calculate: ");
+            userInputNumberToAdd1 = ErrorHandling.TryDecimal();
+
             Action.White(" Write number 2 to calculate: ");
             userInputNumberToAdd2 = ErrorHandling.TryDecimal();
 

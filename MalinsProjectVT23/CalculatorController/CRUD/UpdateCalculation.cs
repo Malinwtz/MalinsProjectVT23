@@ -137,7 +137,7 @@ public class UpdateCalculation : ICrudCalculation
     private static decimal SetANewValueToCalculation()
     {
         Action.White(" Set a new value: ");
-        var newValue = ErrorHandling.TryDecimal();
+        var newValue = ErrorHandling.TryPositiveDecimal();
         return newValue;
     }
 }

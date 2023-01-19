@@ -41,14 +41,29 @@ public class ReadCalculation : ICrudCalculation
 
     public void View()
     {
-        Console.ForegroundColor = ConsoleColor.DarkMagenta;
-        Console.WriteLine("{0,-10} {1,-20} {2,-15} {3,-20} {4,-30} {5,-15}",
-            " CalcId", "Input1", "CalcMethod", "Input2", "Result", "Date");
-        Line.LineTwoEqual();
-        Console.ForegroundColor = ConsoleColor.Magenta;
-        foreach (var calculation in DbContext.Calculations.Where(c=>c.CalculationStrategy == CalculateStrategy.CalculationMethod))
-            Console.WriteLine("{0,-10} {1,-20} {2,-15} {3,-20} {4,-30} {5,-15}",
-                $" {calculation.CalculationId}", $"{calculation.Input1:0.00}", $"{calculation.CalculationStrategy}", 
-                $"{calculation.Input2:0.00}", $"{calculation.Result:0.00}", $"{calculation.CalculationDate}");
+        if (CalculateStrategy.CalculationMethod == Create.StringSquareRootOf)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("{0,-8} {1,-18} {2,-18} {3,-25} {4,-15}",
+                " CalcId", "CalcMethod", "Input1", "Result", "Date");
+            Line.LineTwoEqual();
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            foreach (var calculation in DbContext.Calculations.Where(c => c.CalculationStrategy == CalculateStrategy.CalculationMethod))
+                Console.WriteLine("{0,-8} {1,-18} {2,-18} {3,-25} {4,-15}",
+                    $" {calculation.CalculationId}", $"{calculation.CalculationStrategy}",
+                    $"{calculation.Input1:0.00}", $"{calculation.Result:0.00}", $"{calculation.CalculationDate}");
+        }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("{0,-8} {1,-18} {2,-18} {3,-18} {4,-25} {5,-15}",
+                " CalcId", "Input1", "CalcMethod", "Input2", "Result", "Date");
+            Line.LineTwoEqual();
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            foreach (var calculation in DbContext.Calculations.Where(c => c.CalculationStrategy == CalculateStrategy.CalculationMethod))
+                Console.WriteLine("{0,-8} {1,-18} {2,-18} {3,-18} {4,-25} {5,-15}",
+                    $" {calculation.CalculationId}", $"{calculation.Input1:0.00}", $"{calculation.CalculationStrategy}",
+                    $"{calculation.Input2:0.00}", $"{calculation.Result:0.00}", $"{calculation.CalculationDate}");
+        }
     }
 }

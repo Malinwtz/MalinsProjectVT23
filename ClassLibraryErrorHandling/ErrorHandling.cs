@@ -80,4 +80,30 @@ public class ErrorHandling
                 WrongInputMessage();
             }
     }
+
+    public static decimal TryPositiveDecimal()
+    {
+        while (true)
+            try
+            {
+                var inputString = Console.ReadLine();
+                if (inputString.Length > 0)
+                    if (inputString.StartsWith("+") || inputString.StartsWith("1") ||
+                        inputString.StartsWith("2") || inputString.StartsWith("3") || inputString.StartsWith("4") ||
+                        inputString.StartsWith("5") || inputString.StartsWith("6") || inputString.StartsWith("7") ||
+                        inputString.StartsWith("8") || inputString.StartsWith("9") || inputString.StartsWith("0"))
+                    {
+                        var decimalNumber = Convert.ToDecimal(inputString);
+                        return decimalNumber;
+                    }
+                    else
+                    {
+                        WrongInputMessage();
+                    }
+            }
+            catch
+            {
+                WrongInputMessage();
+            }
+    }
 }
