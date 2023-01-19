@@ -11,7 +11,7 @@ public class DisplayShapeMenu : IDisplayMenu
     public int ReturnSelectionFromMenu()
     {
         var endAlternative = 4;
-        Action.DarkYellow(" Shape Menu\n");
+        Action.DarkYellow("\n Shape Menu\n");
         Line.LineThreeStar();
         Action.Yellow(" 1. Rectangle\n");
         Action.Yellow(" 2. Parallelogram\n");

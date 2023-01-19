@@ -11,7 +11,7 @@ public class DisplayCalculatorMenu : IDisplayMenu
     {
         Console.Clear();
         var endAlternative = 6;
-        Action.DarkMagenta(" Calculator Menu - Choose calculation method\n");
+        Action.DarkMagenta("\n Calculator Menu - Choose calculation method\n");
         Line.LineThreeStar();
         Action.Magenta("\n 1. Add two numbers (+)\n");
         Action.Magenta(" 2. Subtract two numbers (-)\n");

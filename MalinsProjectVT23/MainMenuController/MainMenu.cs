@@ -6,12 +6,13 @@ namespace MalinsProjectVT23.MainMenuController;
 
 public class MainMenu
 {
-    private string MainMenuString { get; set; } = "MAIN MENU";
+    private string MainMenuString { get; set; } = "\n MAIN MENU\n";
     public int ReturnSelectionFromMenu()
     {
         Console.Clear();
         var endAlternative = 3;
-        StringFormat.Center(MainMenuString);
+       // StringFormat.Center(MainMenuString);
+        Action.PurpleGradient(MainMenuString);
         Line.LineTwoEqual();
         Line.LineThreeStar();
         Action.Yellow("\n 1. Shapes\n\n");

@@ -11,7 +11,7 @@ public class DisplayCrudCalculatorMenu : IDisplayMenu
     {
         Console.Clear();
         var endAlternative = 4;
-        Action.DarkMagenta(" Calculator Crud Menu - Choose CRUD operation\n");
+        Action.DarkMagenta("\n Calculator Crud Menu - Choose CRUD operation\n");
         Line.LineThreeStar();
         Action.Magenta("\n 1. Create calculation\n");
         Action.Magenta(" 2. Read calculations\n");

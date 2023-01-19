@@ -10,7 +10,7 @@ public class DisplayCrudShapeMenu : IDisplayMenu
     public int ReturnSelectionFromMenu()
     {
         var endAlternative = 4;
-        Action.DarkYellow(" Crud Shape Menu\n");
+        Action.DarkYellow("\n Crud Shape Menu\n");
         Line.LineThreeStar();
         Action.Yellow(" 1. Create shape\n");
         Action.Yellow(" 2. Show list of saved shapes\n");
