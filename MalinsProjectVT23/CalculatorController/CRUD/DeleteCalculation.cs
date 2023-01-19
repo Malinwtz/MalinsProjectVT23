@@ -9,8 +9,7 @@ namespace MalinsProjectVT23.CalculatorController.CRUD;
 public class DeleteCalculation : ICrudCalculation
 {
     public DeleteCalculation(ApplicationDbContext dbContext, ReadCalculation readCalculation,
-        UpdateCalculation updateCalculation,
-        ICalculateStrategy calculateStrategy)
+        UpdateCalculation updateCalculation, ICalculateStrategy calculateStrategy)
     {
         DbContext = dbContext;
         ReadCalculation = readCalculation;

@@ -14,8 +14,8 @@ public class MainMenu
         StringFormat.Center(MainMenuString);
         Line.LineTwoEqual();
         Line.LineThreeStar();
-        Action.DarkYellow("\n 1. Shapes\n\n");
-        Action.DarkMagenta(" 2. Calculator\n\n");
+        Action.Yellow("\n 1. Shapes\n\n");
+        Action.Magenta(" 2. Calculator\n\n");
         Action.DarkCyan($" {endAlternative}. Rock, Scissor, Paper\n\n\n");
         ReturnFromMenuClass.ExitMenu();
         var sel = ReturnFromMenuClass.ReturnFromMenu(endAlternative);

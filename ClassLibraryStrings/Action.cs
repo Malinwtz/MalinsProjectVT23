@@ -88,19 +88,22 @@ public class Action
             Colorful.Console.WriteWithGradient(chars, Color.Aqua,
                 Color.Blue, 5);
             Console.ResetColor();
+            Colorful.Console.ReplaceAllColorsWithDefaults();
     }
     public static void YellowGradient(string text)
     {
         var chars = text.ToCharArray();
             Colorful.Console.WriteWithGradient(chars, Color.Gold,
                 Color.OrangeRed, 5);
-            Console.ResetColor();
+
+        Colorful.Console.ReplaceAllColorsWithDefaults();
     }
     public static void PurpleGradient(string text)
     {
         var chars = text.ToCharArray();
             Colorful.Console.WriteWithGradient(chars, Color.MediumOrchid,
                 Color.Indigo, 5);
-            Console.ResetColor();
+
+        Colorful.Console.ReplaceAllColorsWithDefaults();
     }
 }
