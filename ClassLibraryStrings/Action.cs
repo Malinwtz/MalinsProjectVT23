@@ -85,15 +85,14 @@ public class Action
     public static void BlueGradient(string text)
     {
         var chars = text.ToCharArray();
-            Colorful.Console.WriteWithGradient(chars, Color.Aqua,
-                Color.Blue, 5);
+            Colorful.Console.WriteWithGradient(chars, Color.RoyalBlue,
+                Color.AntiqueWhite, 5);
             Console.ResetColor();
-            Colorful.Console.ReplaceAllColorsWithDefaults();
     }
     public static void YellowGradient(string text)
     {
         var chars = text.ToCharArray();
-            Colorful.Console.WriteWithGradient(chars, Color.Gold,
+            Colorful.Console.WriteWithGradient(chars, Color.AntiqueWhite,
                 Color.OrangeRed, 5);
 
         Colorful.Console.ReplaceAllColorsWithDefaults();
@@ -101,9 +100,7 @@ public class Action
     public static void PurpleGradient(string text)
     {
         var chars = text.ToCharArray();
-            Colorful.Console.WriteWithGradient(chars, Color.MediumOrchid,
-                Color.Indigo, 5);
-
-        Colorful.Console.ReplaceAllColorsWithDefaults();
+            Colorful.Console.WriteWithGradient(chars, Color.BlueViolet,
+                Color.AntiqueWhite, 5);
     }
 }

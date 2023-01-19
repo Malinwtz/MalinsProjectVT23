@@ -1,18 +1,15 @@
-﻿using System.Security.AccessControl;
-using ClassLibraryStrings;
+﻿using ClassLibraryStrings;
 using Action = ClassLibraryStrings.Action;
 
 namespace MalinsProjectVT23.MainMenuController;
 
 public class MainMenu
 {
-    private string MainMenuString { get; set; } = "\n MAIN MENU\n";
     public int ReturnSelectionFromMenu()
     {
         Console.Clear();
         var endAlternative = 3;
-       // StringFormat.Center(MainMenuString);
-        Action.PurpleGradient(MainMenuString);
+        Action.BlueGradient("\n MAIN MENU\n");
         Line.LineTwoEqual();
         Line.LineThreeStar();
         Action.Yellow("\n 1. Shapes\n\n");
