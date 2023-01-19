@@ -4,6 +4,7 @@ using MalinsProjectVT23.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MalinsProjectVT23.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230119104339_Changed order in columns")]
+    partial class Changedorderincolumns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,31 +28,30 @@ namespace MalinsProjectVT23.Migrations
                 {
                     b.Property<int>("CalculationId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnOrder(0);
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CalculationId"), 1L, 1);
 
                     b.Property<DateTime>("CalculationDate")
                         .HasColumnType("datetime2")
-                        .HasColumnOrder(5);
+                        .HasColumnOrder(6);
 
                     b.Property<string>("CalculationStrategy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnOrder(2);
+                        .HasColumnOrder(3);
 
                     b.Property<decimal>("Input1")
                         .HasColumnType("decimal(18,2)")
-                        .HasColumnOrder(1);
+                        .HasColumnOrder(2);
 
                     b.Property<decimal>("Input2")
                         .HasColumnType("decimal(18,2)")
-                        .HasColumnOrder(3);
+                        .HasColumnOrder(4);
 
                     b.Property<decimal>("Result")
                         .HasColumnType("decimal(18,2)")
-                        .HasColumnOrder(4);
+                        .HasColumnOrder(5);
 
                     b.HasKey("CalculationId");
 
@@ -61,8 +62,7 @@ namespace MalinsProjectVT23.Migrations
                 {
                     b.Property<int>("GameId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnOrder(0);
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GameId"), 1L, 1);
 

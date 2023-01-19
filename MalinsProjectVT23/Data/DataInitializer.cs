@@ -24,10 +24,6 @@ public class DataInitializer
         {
             dbContext.Shapes.Add(new Shape
             {
-                Name = ShapeEnum.TypeOfShape.Parallelogram.ToString(),
-            });
-            dbContext.Shapes.Add(new Shape
-            {
                 Name = ShapeEnum.TypeOfShape.Rectangle.ToString(),
             });
             dbContext.Shapes.Add(new Shape
@@ -53,17 +49,10 @@ public class DataInitializer
                 Area = 5 * 10,
                 Circumference = (10+5)*2,
                 ResultDate = DateTime.Now,
-                Shape = dbContext.Shapes.First(s => s.Name == ShapeEnum.TypeOfShape.Parallelogram.ToString())
-            });
-
-            dbContext.ShapeResults.Add(new ShapeResult
-            {
-                Height = 5,
-                Length = 10,
-                Area = 5 * 10,
-                Circumference = (10 + 5) * 2,
-                ResultDate = DateTime.Now,
-                Shape = dbContext.Shapes.First(s => s.Name == ShapeEnum.TypeOfShape.Rectangle.ToString())
+                Shape = new Shape
+                {
+                    Name = ShapeEnum.TypeOfShape.Parallelogram.ToString()
+                }
             });
         }
     }
